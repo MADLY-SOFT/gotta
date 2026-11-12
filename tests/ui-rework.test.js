@@ -313,7 +313,10 @@ test('v1.13 roulette uses compact suspense timing and rarity-framed result cards
   assert.match(js, /data-server-result=/);
   assert.doesNotMatch(js, /<small>\$\{escapeHtml\(rarity\)\}<\/small>/);
   assert.match(js, /mainNote\.hidden = !mainNote\.textContent/);
-  assert.match(css, /roulette-reels\.horizontal-reels\.multi-lane/);
+  assert.match(css, /\.multi-lane \.horizontal-reel/);
+  assert.match(css, /\[data-stage="reveal"\] \.reel-card-winner/);
+  assert.match(js, /setRouletteStage\('charging'\)/);
+  assert.match(js, /function rouletteLanding/);
   assert.match(css, /\.reel-card-winner/);
 });
 
@@ -361,17 +364,16 @@ test('v1.05 main-menu relic taps cross-fade and deliberate throws travel farther
   assert.match(css, /#main-menu #play-btn span[^}]*15\.5px/s);
 });
 
-test('v1.09 progression windows use game typography and active theme tokens', () => {
-  const css = read('public/css/modules/zz/progression-theme.css');
-  assert.match(css, /achievement-modal \*/, 'achievement descendants use the game font');
-  assert.match(css, /#quests-content \*/, 'quest descendants use the game font');
-  assert.match(css, /\.case-history-panel \*/, 'history descendants use the game font');
-  assert.match(css, /font-family: var\(--z-font-game\) !important/);
-  assert.match(css, /border-radius: var\(--border-radius\) !important/);
-  assert.match(css, /background: linear-gradient\(155deg, var\(--bg-primary\), color-mix/);
-  assert.match(css, /color: var\(--text-primary\) !important/);
-  assert.match(css, /case-history-drop > b/);
-  assert.match(css, /display: -webkit-box !important/);
+test('v2.0 design system: one token source, skins swap the accent and no override layer remains', () => {
+  const tokens = read('public/css/modules/base/tokens.css');
+  for (const skin of ['gold', 'ice', 'fire', 'toxic', 'violet', 'ocean', 'sand', 'neon', 'cyber']) assert.match(tokens, new RegExp(`\\[data-skin="${skin}"\\]\\{--accent:`));
+  assert.match(tokens, /:root,\[data-skin\],\[data-corners\]\{/, 'derived tokens follow the active skin');
+  assert.match(tokens, /--border-color:var\(--accent\)/, 'legacy aliases used by JS templates stay mapped');
+  assert.match(tokens, /--z-font-pixel:"Press Start 2P"/);
+  assert.equal(fs.existsSync(path.join(root, 'public/css/modules/zz/progression-theme.css')), false);
+  const css = read('public/css/app.css');
+  assert.ok(Buffer.byteLength(css) < 260_000, `bundle should stay compact, got ${Buffer.byteLength(css)} bytes`);
+  assert.doesNotMatch(css, /@z-order/);
 });
 
 test('v1.06 modal polish keeps pixel typography readable and dialogs inside the game frame', () => {
