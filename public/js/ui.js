@@ -372,15 +372,18 @@ function openCoinsShop() {
     if (!modal) {
         modal = document.createElement('div');
         modal.id = 'coins-shop-modal';
-        modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:600;';
+        modal.className = 'coins-shop-overlay';
         modal.innerHTML = `
-            <div style="background:var(--bg-primary);border:3px solid var(--border-color);padding:20px;max-width:90%;width:350px;border-radius:var(--border-radius);text-align:center;box-shadow:0 6px 0 rgba(0,0,0,0.5),0 0 30px var(--glow-color);">
-                <h3 style="color:var(--text-primary);margin-bottom:15px;font-size:9px;">МАГАЗИН ВАЛЮТ:</h3>
+            <section class="coins-shop-panel" role="dialog" aria-modal="true" aria-labelledby="coins-shop-title">
+                <header class="coins-shop-head">
+                    <div><small>БЕСПЛАТНО КАЖДЫЙ ДЕНЬ</small><h3 id="coins-shop-title">МАГАЗИН ВАЛЮТ</h3></div>
+                    <button class="coins-shop-x" onclick="playClick(); closeCoinsShop();" aria-label="Закрыть"><i class="pixel-close-icon" aria-hidden="true"></i></button>
+                </header>
                 <div id="coins-shop-content"></div>
-                <button onclick="playClick(); closeCoinsShop();" style="margin-top:15px;padding:10px 20px;border:2px solid var(--border-color);cursor:pointer;font-size:9px;font-family:'Press Start 2P',cursive;background:var(--btn-bg);color:var(--text-primary);width:100%;border-radius:var(--border-radius);">ЗАКРЫТЬ</button>
-            </div>
+                <button class="coins-shop-close" onclick="playClick(); closeCoinsShop();">ЗАКРЫТЬ</button>
+            </section>
         `;
-        document.body.appendChild(modal);
+        (document.getElementById('app') || document.body).appendChild(modal);
     }
     
     modal.style.display = 'flex';
@@ -409,11 +412,16 @@ function renderCoinsShop() {
     
     const adPack = document.createElement('div');
     adPack.className = 'coin-pack' + (adAvailable ? '' : ' disabled');
+    adPack.setAttribute('role', 'button');
+    adPack.setAttribute('aria-disabled', String(!adAvailable));
     adPack.innerHTML = `
-        <div class="pack-icon">🎬</div>
-        <div class="pack-name">150 МОНЕТ</div>
-        <div class="pack-price">ЗА РЕКЛАМУ</div>
-        <div class="pack-timer ${adAvailable ? '' : 'urgent'}" id="ad-timer">${adStatus}</div><div class="pack-limit">${remainingToday} НАГРАД СЕГОДНЯ</div>
+        <div class="pack-icon"><img src="${PATHS.coin}" alt=""><span class="pack-play" aria-hidden="true"></span></div>
+        <div class="pack-body">
+            <div class="pack-name">150 МОНЕТ</div>
+            <div class="pack-price">ЗА РЕКЛАМУ</div>
+        </div>
+        <div class="pack-timer ${adAvailable ? '' : 'urgent'}" id="ad-timer">${adStatus}</div>
+        <div class="pack-limit"><span>${remainingToday} НАГРАД СЕГОДНЯ</span><i class="pack-progress"><b style="width:${Math.round(remainingToday / 20 * 100)}%"></b></i></div>
     `;
     
     adPack.onclick = () => {
