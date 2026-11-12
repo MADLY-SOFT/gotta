@@ -43,7 +43,7 @@ function renderCaseListView() {
     document.getElementById('result-overlay')?.classList.remove('show');
     panel.dataset.view = 'list';
     panel.innerHTML = `
-        <div class="case-list-heading"><h3>ВЫБЕРИТЕ КЕЙС</h3><button type="button" class="case-history-open" onclick="playClick();openCaseHistory()">ИСТОРИЯ ОТКРЫТИЙ</button></div>
+        <div class="case-list-heading"><h3>ВЫБЕРИТЕ КЕЙС</h3><button type="button" class="case-history-open" onclick="playClick();openCaseHistory()" aria-label="История открытий">ИСТОРИЯ</button></div>
         <div class="case-browser-tools"><input id="case-search" type="search" autocomplete="off" maxlength="40" placeholder="НАЙТИ КЕЙС…" value="${escapeHtml(caseSearchText)}" oninput="setCaseSearch(this.value)"><select id="case-sort" aria-label="Сортировка кейсов" onchange="setCaseSort(this.value)"><option value="progression" ${caseSortMode==='progression'?'selected':''}>ПО ПРОГРЕССУ</option><option value="price-asc" ${caseSortMode==='price-asc'?'selected':''}>ЦЕНА ↑</option><option value="price-desc" ${caseSortMode==='price-desc'?'selected':''}>ЦЕНА ↓</option></select></div>
         <div id="cases-filter"></div>
         <div id="cases-grid"></div>`;
@@ -117,7 +117,7 @@ function renderCases() {
         return Number(a.requiredLevel||0)-Number(b.requiredLevel||0) || Number(a.id)-Number(b.id);
     });
     if (filteredCases.length === 0) {
-        grid.innerHTML = '<p style="color:var(--text-secondary);text-align:center;font-size:8px;">НЕТ КЕЙСОВ</p>';
+        grid.innerHTML = '<p class="cases-empty">НЕТ КЕЙСОВ</p>';
         return;
     }
     
@@ -132,24 +132,22 @@ function renderCases() {
         if (caseData.currency === 'gems') card.classList.add('gem-case'); 
         if (isLocked) card.classList.add('locked'); 
         
-        let borderColor = caseData.borderColor || '#ffd700'; 
-        if (isLocked) borderColor = '#666'; 
-        
-        card.style.borderColor = borderColor; 
-        const darkBg = darkenColor(borderColor, 0.25); 
-        card.style.background = `linear-gradient(145deg, ${darkBg}, ${darkenColor(borderColor, 0.15)})`; 
-        card.style.boxShadow = `0 6px 0 rgba(0,0,0,0.5), 0 0 25px ${hexToRgba(borderColor, 0.5)}, inset 0 0 20px rgba(0,0,0,0.3)`; 
+        card.style.setProperty('--case-color', isLocked ? '#5b6470' : getCaseFrameColor(caseData));
+        card.setAttribute('role', 'button');
+        card.tabIndex = 0;
         
         const priceDisplay = caseData.isAd ? 'БЕСПЛАТНО' : ''; 
         const currencyIcon = caseData.currency === 'gems' ? PATHS.gem : PATHS.coin; 
+        const topTier = Math.max(1, ...getDropTable(caseData.id).map(d => Number(d.tier) || 1));
         
         let lockLabel = ''; 
         if (isLocked) {
-            lockLabel = `<div class="case-lock-label"><span class="pixel-lock-icon" aria-hidden="true"></span> ДОСТУПНО С ${caseData.requiredLevel} УРОВНЯ</div>`; 
+            lockLabel = `<div class="case-lock-label"><span class="pixel-lock-icon" aria-hidden="true"></span> С ${caseData.requiredLevel} УРОВНЯ</div>`; 
         }
         
         card.innerHTML = `
-            <img class="case-icon" src="${caseData.image}" loading="eager" decoding="async" alt="${escapeHtml(caseData.name)}" onerror="this.style.display='none';">
+            <span class="case-card-tier tier-${topTier}" title="Максимальная редкость: ${escapeHtml(tierNames[topTier] || '')}">${'◆'.repeat(Math.min(6, topTier))}</span>
+            <div class="case-art"><img class="case-icon" src="${caseData.image}" loading="eager" decoding="async" alt="${escapeHtml(caseData.name)}" onerror="this.style.display='none';"></div>
             <div class="case-name">${escapeHtml(caseData.name)}</div>
             ${priceDisplay ? 
                 `<div class="case-price"><span class="case-price-text">${priceDisplay}</span></div>` : 
@@ -163,6 +161,7 @@ function renderCases() {
             playClick(); 
             showCaseDetail(caseData); 
         }; 
+        card.onkeydown = event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); card.click(); } };
         
         fragment.appendChild(card); 
     }); 
@@ -220,64 +219,72 @@ function showCaseDetail(caseData) {
     
     const isLocked = caseData.requiredLevel && GameState.level < caseData.requiredLevel; 
     const dropTable = getDropTable(caseData.id);
-    
-    let itemsHTML = '<div class="case-drop-grid">';
     const totalChance = Math.max(1, dropTable.reduce((a,d)=>a+Number(d.chance||0),0));
-    dropTable.forEach(drop => {
+    // Rarest drops first: the case page should tease what could be inside.
+    const sortedDrops = [...dropTable].sort((a,b)=>(Number(b.tier)||1)-(Number(a.tier)||1) || Number(a.chance||0)-Number(b.chance||0));
+    const itemsHTML = `<div class="case-drop-grid">${sortedDrops.map(drop => {
         const item = getItemById(drop.itemId);
-        if (!item) return;
-        const tier = Number(drop.tier)||1;
-        const tierColor = tierColors[tier] || '#fff';
+        if (!item) return '';
+        const tier = Math.max(1, Math.min(6, Number(drop.tier)||1));
         const chance = ((Number(drop.chance||0) / totalChance) * 100).toFixed(2);
-        itemsHTML += `
-            <button class="case-drop-item tier-${tier}" type="button" onclick="playClick(); showItemInfo(${item.id}, false);" style="--drop-tier:${tierColor};">
+        return `<button class="case-drop-item tier-${tier}" type="button" onclick="playClick(); showItemInfo(${item.id}, false);" style="--drop-tier:${tierColors[tier] || '#fff'};" aria-label="${escapeHtml(item.name)} · ${escapeHtml(tierNames[tier] || '')} · ${chance}%">
                 <span class="case-drop-image">${itemSprite(item.image, 'case-drop-atlas')}</span>
                 <span class="case-drop-chance">${chance}%</span>
-            </button>
-        `;
-    });
-    itemsHTML += '</div>';
+            </button>`;
+    }).join('')}</div>`;
 
     const currencyIcon = caseData.currency === 'gems' ? PATHS.gem : PATHS.coin;
-    const priceDisplay = caseData.isAd ? 'РЕКЛАМА' : `<img src="${currencyIcon}" style="width:16px;height:16px;vertical-align:middle;" onerror="this.style.display='none';"> ${caseData.price}`; 
-    let borderColor = isLocked ? '#666' : (caseData.borderColor || '#ffd700');
-    const caseFrameColor = isLocked ? '#666' : getCaseFrameColor(caseData); 
-    
+    const priceDisplay = caseData.isAd
+        ? '<span class="case-detail-price is-free">БЕСПЛАТНО · ЗА РЕКЛАМУ</span>'
+        : `<span class="case-detail-price ${caseData.currency === 'gems' ? 'is-gem' : ''}"><img src="${currencyIcon}" alt="" onerror="this.style.display='none';">${Number(caseData.price).toLocaleString('ru-RU')}</span>`;
+    const caseFrameColor = isLocked ? '#5b6470' : getCaseFrameColor(caseData);
+
     const expRange = Array.isArray(caseData.exp) ? `${Math.min(...caseData.exp)}–${Math.max(...caseData.exp)}` : String(caseData.exp||20);
     const ratingRange = Array.isArray(caseData.rating) ? `${Math.min(...caseData.rating)}–${Math.max(...caseData.rating)}` : String(caseData.rating||1);
-    const rewardHTML = `<div class="case-reward-strip"><div><span>ОПЫТ</span><b>${escapeHtml(expRange)}</b></div><div><span>РЕЙТИНГ</span><b>${escapeHtml(ratingRange)}</b></div></div>`;
-    let buttonHTML = ''; 
-    if (isLocked) {
-        buttonHTML = `
-            <div style="color:#ff9800;font-size:9px;padding:15px;border:2px solid #ff9800;border-radius:8px;margin-bottom:20px;">
-                <span class="pixel-lock-icon" aria-hidden="true"></span> ДОСТУПНО С ${caseData.requiredLevel} УРОВНЯ<br>
-                <span style="font-size:7px;color:#aaa;">ВАШ УРОВЕНЬ: ${GameState.level}</span>
-            </div>
-        `; 
-    } else {
-        buttonHTML = `
-            <button onclick="playClick(); openCasePreview(${caseData.id});" class="case-detail-open">
-                ${caseData.isAd ? 'СМОТРЕТЬ РЕКЛАМУ' : 'ОТКРЫТЬ'}
-            </button>
-        `; 
-    }
-    
+    const rewardHTML = `<div class="case-reward-strip"><div><span>ОПЫТ</span><b>+${escapeHtml(expRange)}</b></div><div><span>РЕЙТИНГ</span><b>+${escapeHtml(ratingRange)}</b></div><div><span>ПРЕДМЕТОВ</span><b>${sortedDrops.length}</b></div></div>`;
+    const buttonHTML = isLocked
+        ? `<div class="case-detail-locked"><span class="pixel-lock-icon" aria-hidden="true"></span> ДОСТУПНО С ${Number(caseData.requiredLevel)} УРОВНЯ<small>ВАШ УРОВЕНЬ: ${Number(GameState.level)||1}</small></div>`
+        : `<button onclick="playClick(); openCasePreview(${caseData.id});" class="case-detail-open"><span>${caseData.isAd ? 'СМОТРЕТЬ РЕКЛАМУ' : 'ОТКРЫТЬ КЕЙС'}</span></button>`;
+
     detailPanel.innerHTML = `
         <div class="case-detail-toolbar"><button class="case-detail-top-back" type="button" onclick="playClick(); backToCaseList();">← К КЕЙСАМ</button><button class="case-detail-favorite ${isFavoriteCase(caseData.id)?'active':''}" data-case-id="${Number(caseData.id)}" type="button" aria-label="${isFavoriteCase(caseData.id)?'Убрать из избранного':'Добавить в избранное'}" aria-pressed="${isFavoriteCase(caseData.id)}" onclick="toggleFavoriteCase(${Number(caseData.id)},event)">${favoriteStarSvg()}</button></div>
-        <div class="case-detail-main">
-            <div style="text-align:center;">
-                <div class="case-detail-image-frame" style="display:inline-block;border:3px solid ${caseFrameColor};padding:10px;border-radius:var(--border-radius);background:rgba(0,0,0,0.3);box-shadow:0 0 14px ${hexToRgba(caseFrameColor,0.38)},inset 0 0 10px ${hexToRgba(caseFrameColor,0.12)};">
-                    <img src="${caseData.image}" style="width:80px;height:80px;object-fit:contain;" onerror="this.style.display='none';">
-                </div>
-                <div style="color:var(--text-primary);font-size:14px;margin-top:10px;">${escapeHtml(caseData.name)}</div>
-                <div style="color:${caseData.currency === 'gems' ? '#00bcd4' : 'var(--border-color)'};font-size:12px;margin:10px 0;">${priceDisplay}</div>
+        <div class="case-detail-main ${isLocked ? 'is-locked' : ''}" style="--case-color:${caseFrameColor}">
+            <div class="case-detail-hero">
+                <div class="case-detail-image-frame"><span class="case-hero-rays" aria-hidden="true"></span><img src="${caseData.image}" alt="" onerror="this.style.display='none';"></div>
+                <div class="case-detail-name">${escapeHtml(caseData.name)}</div>
+                ${priceDisplay}
                 ${buttonHTML}
-                ${rewardHTML}
-                <div class="case-drop-title"><span>ВОЗМОЖНЫЕ ПРЕДМЕТЫ</span></div>
-                ${itemsHTML}
             </div>
+            ${rewardHTML}
+            <div class="case-drop-title"><span>ШАНСЫ ПО РЕДКОСТИ</span></div>
+            ${caseOddsMarkup(dropTable, 'case-odds')}
+            <div class="case-drop-title"><span>ВОЗМОЖНЫЕ ПРЕДМЕТЫ</span><small>СНАЧАЛА САМЫЕ РЕДКИЕ</small></div>
+            ${itemsHTML}
         </div>
     `; 
+}
+
+// Aggregated chance per rarity tier, used by the case page and the opening screen.
+function caseTierOdds(dropTable) {
+    const total = Math.max(1e-9, dropTable.reduce((sum, d) => sum + Number(d.chance || 0), 0));
+    const byTier = new Map();
+    dropTable.forEach(d => {
+        const tier = Math.max(1, Math.min(6, Number(d.tier) || 1));
+        byTier.set(tier, (byTier.get(tier) || 0) + Number(d.chance || 0));
+    });
+    return [...byTier.entries()].sort((a, b) => a[0] - b[0]).map(([tier, chance]) => ({ tier, pct: chance / total * 100 }));
+}
+
+function formatOdds(pct) {
+    return pct >= 10 ? pct.toFixed(1) : pct >= 1 ? pct.toFixed(2) : pct.toFixed(pct >= .1 ? 2 : 3);
+}
+
+function caseOddsMarkup(dropTable, className) {
+    const odds = caseTierOdds(dropTable);
+    if (!odds.length) return '';
+    const bar = odds.map(o => `<i class="tier-${o.tier}" style="flex-grow:${Math.max(o.pct, 1.5).toFixed(3)}"></i>`).join('');
+    const legend = odds.map(o => `<span class="tier-${o.tier}"><em>${escapeHtml(tierNames[o.tier] || '')}</em><b>${formatOdds(o.pct)}%</b></span>`).join('');
+    return `<div class="${className}"><div class="odds-bar" aria-hidden="true">${bar}</div><div class="odds-legend">${legend}</div></div>`;
 }
 
 // ==================== ОТКРЫТИЕ КЕЙСА ====================
@@ -455,6 +462,8 @@ function renderRouletteLanes(count = selectedOpenQuantity) {
     container.classList.toggle('stacked-lanes-container', safeCount === 3 || safeCount === 5);
     container.classList.toggle('single-reel-container', safeCount === 1);
     container.classList.remove('is-spinning');
+    const rouletteOverlay = document.getElementById('roulette-overlay');
+    if (rouletteOverlay) rouletteOverlay.dataset.lanes = String(safeCount);
     strip.className = `roulette-reels horizontal-reels ${safeCount === 1 ? 'single-reel' : ''} ${safeCount === 10 ? 'multi-lane' : ''} ${safeCount === 3 || safeCount === 5 ? 'stacked-lanes' : ''}`;
     strip.innerHTML = Array.from({ length: safeCount }, (_, laneIndex) => {
         const cards = Array.from({ length: ROULETTE_TARGET_INDEX + ROULETTE_TRAILING_CARDS + 1 }, () => {
@@ -496,7 +505,20 @@ function showRoulette(caseData) {
     isSpinning = false;
 
     const overlay = document.getElementById('roulette-overlay');
-    if (overlay) overlay.classList.add('show');
+    if (overlay) {
+        overlay.classList.add('show');
+        setRouletteStage('idle');
+        overlay.style.setProperty('--case-color', getCaseFrameColor(caseData));
+        overlay.style.removeProperty('--live-tier');
+    }
+    const caseName = document.getElementById('roulette-case-name');
+    if (caseName) caseName.textContent = caseData.name || 'КЕЙС';
+    for (const id of ['roulette-case-image', 'roulette-case-thumb']) {
+        const image = document.getElementById(id);
+        if (image) { image.style.visibility = ''; image.src = caseData.image; }
+    }
+    const odds = document.getElementById('roulette-odds');
+    if (odds) odds.innerHTML = caseOddsMarkup(getDropTable(caseData.id), 'roulette-odds-inner');
     const backBtn = document.getElementById('back-roulette-btn');
     if (backBtn) backBtn.disabled = false;
     const spinBtn = document.getElementById('spin-btn');
@@ -535,6 +557,36 @@ function goBackFromRoulette() {
     renderCaseListView();
 }
 
+// ==================== ОТКРЫТИЕ: ПОСТАНОВКА ====================
+// Stages drive the CSS: idle → charging (case shakes while the server answers)
+// → spinning (reels run, the marker takes the colour of the card under it)
+// → reveal (winners light up, rare drops flash). Results always come from the server.
+const ROULETTE_CHARGE_MS = 950;
+const ROULETTE_FAST_CHARGE_MS = 520;
+
+function setRouletteStage(stage) {
+    const overlay = document.getElementById('roulette-overlay');
+    if (overlay) overlay.dataset.stage = stage;
+}
+
+function rouletteWait(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+function flashRoulette(tier) {
+    const flash = document.getElementById('roulette-flash');
+    if (!flash) return;
+    flash.style.setProperty('--flash-color', tierColors[tier] || '#fff');
+    flash.classList.remove('is-flashing');
+    void flash.offsetWidth;
+    flash.classList.add('is-flashing');
+}
+
+// Where the marker finally rests inside the winning card, as a fraction of the card step.
+// Sometimes the reel overshoots into the neighbour and rolls back ("near miss").
+function rouletteLanding(laneCount) {
+    const nearMiss = Math.random() < (laneCount === 1 ? .38 : .18);
+    if (nearMiss) return { offset: (Math.random() < .5 ? -1 : 1) * (.56 + Math.random() * .14), nearMiss: true };
+    return { offset: (Math.random() - .5) * .76, nearMiss: false };
+}
 
 async function spinRoulette() {
     if (!currentRouletteCase || isSpinning) { playError(); return; }
@@ -544,8 +596,14 @@ async function spinRoulette() {
     const backBtn = document.getElementById('back-roulette-btn'); if (backBtn) backBtn.disabled = true;
     const spinBtn = document.getElementById('spin-btn');
     if (spinBtn) spinBtn.disabled = true;
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    const overlay = document.getElementById('roulette-overlay');
     try {
-        const data = await gameAction('openCase', { caseId: currentRouletteCase.id, quantity: selectedOpenQuantity, fast: false });
+        setRouletteStage('charging');
+        const [data] = await Promise.all([
+            gameAction('openCase', { caseId: currentRouletteCase.id, quantity: selectedOpenQuantity, fast: false }),
+            rouletteWait(reducedMotion ? 0 : ROULETTE_CHARGE_MS)
+        ]);
         currentRouletteResult = data.result;
         const rewards = Array.isArray(data.result?.items) ? data.result.items : [{ item: data.result?.item, tier: data.result?.tier }];
         const firstReward = rewards[0];
@@ -565,11 +623,11 @@ async function spinRoulette() {
         if (!currentRouletteVariants.length) throw new Error('Не удалось подготовить предметы для прокрутки.');
         if (!applyRouletteRewards(rewards)) throw new Error('Подготовленные ленты не совпадают с выбранным количеством.');
         await decodeRouletteWinners();
+        setRouletteStage('spinning');
         container.classList.add('is-spinning');
         const targetIndex = ROULETTE_TARGET_INDEX;
         const lanes = [...strip.querySelectorAll('.horizontal-reel')];
         const tracks = lanes.map(lane => lane.querySelector('.reel-track'));
-        const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
         await new Promise(resolve => {
             let completed = 0;
             const timers = [];
@@ -586,7 +644,8 @@ async function spinRoulette() {
                 clearAll();
                 resolve();
             };
-            const laneFinished = () => {
+            const laneFinished = lane => {
+                lane?.classList.add('is-stopped');
                 completed += 1;
                 if (completed >= tracks.length) finish();
             };
@@ -603,7 +662,7 @@ async function spinRoulette() {
                 const timerId = setTimeout(() => {
                     if (reducedMotion) {
                         track.style.transform = `translate3d(${destination}px,0,0)`;
-                        laneFinished();
+                        laneFinished(lane);
                         return;
                     }
                     const startedAt = performance.now();
@@ -611,7 +670,10 @@ async function spinRoulette() {
                     const cardWidth = firstCard.getBoundingClientRect().width;
                     const gap = Math.max(0, parseFloat(getComputedStyle(track).columnGap) || 0);
                     const step = Math.max(1, cardWidth + gap);
+                    const landing = rouletteLanding(tracks.length);
+                    const restingPoint = destination - landing.offset * step;
                     let lastSlot = -1;
+                    let litSlot = -1;
                     let done = false;
                     const stopFrameLoop = () => {
                         done = true;
@@ -630,50 +692,72 @@ async function spinRoulette() {
                             for (let passed = Math.max(1, lastSlot + 1); passed <= currentSlot; passed++) playRouletteTick();
                             lastSlot = currentSlot;
                         }
-                        if (now - startedAt < duration) {
+                        const underMarker = Math.max(0, Math.min(track.children.length - 1, Math.floor(centerOffset / step)));
+                        if (underMarker !== litSlot) {
+                            litSlot = underMarker;
+                            const color = track.children[underMarker]?.style.getPropertyValue('--reel-tier-color') || '#d8dfe5';
+                            lane.style.setProperty('--live-tier', color);
+                            if (index === 0) overlay?.style.setProperty('--live-tier', color);
+                        }
+                        if (now - startedAt < duration + 700) {
                             frameId = requestAnimationFrame(tickLoop);
                             frames.add(frameId);
                         } else {
                             stopFrameLoop();
                         }
                     };
-                    track.style.transition = `transform ${duration}ms cubic-bezier(.38,.72,.2,1)`;
-                    track.style.transform = `translate3d(${destination}px,0,0)`;
+                    track.style.transition = `transform ${duration}ms cubic-bezier(.12,.72,.12,1)`;
+                    track.style.transform = `translate3d(${restingPoint}px,0,0)`;
                     frameId = requestAnimationFrame(tickLoop);
                     frames.add(frameId);
-                    // transitionend is preferred; the timer is a safety net for hidden tabs or detached nodes.
-                    let transitionDone = false;
-                    const onTransitionEnd = event => {
-                        if (event.propertyName !== 'transform' || transitionDone) return;
-                        transitionDone = true;
+                    // After the main roll the reel eases onto the exact card centre;
+                    // a near miss rolls back from the neighbouring card.
+                    let rollDone = false;
+                    const settle = () => {
+                        if (rollDone || settled) return;
+                        rollDone = true;
                         track.removeEventListener('transitionend', onTransitionEnd);
-                        stopFrameLoop();
-                        laneFinished();
+                        if (landing.nearMiss) lane.classList.add('is-near-miss');
+                        const settleMs = landing.nearMiss ? 620 : 360;
+                        track.style.transition = `transform ${settleMs}ms ${landing.nearMiss ? 'cubic-bezier(.45,0,.2,1)' : 'cubic-bezier(.3,.7,.3,1)'}`;
+                        track.style.transform = `translate3d(${destination}px,0,0)`;
+                        timers.push(setTimeout(() => {
+                            stopFrameLoop();
+                            if (landing.nearMiss) playRouletteTick();
+                            laneFinished(lane);
+                        }, settleMs + (landing.nearMiss ? 40 : 0)));
                     };
-                    track.addEventListener('transitionend', onTransitionEnd);
-                    timers.push(setTimeout(() => {
-                        if (transitionDone || settled) return;
-                        transitionDone = true;
-                        track.removeEventListener('transitionend', onTransitionEnd);
-                        stopFrameLoop();
-                        laneFinished();
-                    }, duration + 120));
+                    // transitionend is preferred; the timer is a safety net for hidden tabs or detached nodes.
+                    const onTransitionEnd = event => {
+                        if (event.propertyName !== 'transform') return;
+                        timers.push(setTimeout(settle, landing.nearMiss ? 260 : 120));
+                    };
+                    track.addEventListener('transitionend', onTransitionEnd, { once: true });
+                    timers.push(setTimeout(settle, duration + 400));
                 }, delay);
                 timers.push(timerId);
             });
         });
         document.getElementById('roulette-container')?.classList.remove('is-spinning');
+        const bestTier = Math.max(1, ...rewards.map(reward => Number(reward.tier) || 1));
+        if (overlay) {
+            overlay.dataset.revealTier = String(bestTier);
+            overlay.style.setProperty('--reveal-color', tierColors[bestTier] || '#fff');
+        }
+        setRouletteStage('reveal');
+        if (bestTier >= 4) flashRoulette(bestTier);
         playWinSound();
         notifyLevelUp(data.result);
-        setTimeout(() => {
-            document.getElementById('roulette-overlay')?.classList.remove('show');
-            showResult(firstReward.item, firstReward.tier, { ...currentRouletteResult, items: rewards });
-            updateBalance();
-            renderProfile?.();
-            renderHouse?.();
-            currentRouletteResult=null; isSpinning=false; const backBtn=document.getElementById('back-roulette-btn'); if(backBtn) backBtn.disabled=false;
-        },220);
+        await rouletteWait(reducedMotion ? 120 : (bestTier >= 5 ? 1250 : bestTier >= 4 ? 1000 : 700));
+        document.getElementById('roulette-overlay')?.classList.remove('show');
+        showResult(firstReward.item, firstReward.tier, { ...currentRouletteResult, items: rewards });
+        updateBalance();
+        renderProfile?.();
+        renderHouse?.();
+        currentRouletteResult = null; isSpinning = false; if (backBtn) backBtn.disabled = false;
+        setRouletteStage('idle');
     } catch(e) {
+        setRouletteStage('idle');
         document.getElementById('roulette-container')?.classList.remove('is-spinning');
         isSpinning=false; updateOpeningButtons(); const backBtn=document.getElementById('back-roulette-btn'); if(backBtn) backBtn.disabled=false; playError(); showNotification(e.message||'Не удалось открыть кейс');
     }
@@ -684,18 +768,26 @@ async function fastSpin() {
     if (typeof gameAction !== 'function') { playError(); return; }
     isSpinning=true;
     updateOpeningButtons();
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     try {
-        const data=await gameAction('openCase',{caseId:currentRouletteCase.id,quantity:selectedOpenQuantity,fast:true});
+        setRouletteStage('charging');
+        const [data] = await Promise.all([
+            gameAction('openCase',{caseId:currentRouletteCase.id,quantity:selectedOpenQuantity,fast:true}),
+            rouletteWait(reducedMotion ? 0 : ROULETTE_FAST_CHARGE_MS)
+        ]);
         const result=data.result;
         notifyLevelUp(result);
         const rewards=Array.isArray(result?.items)?result.items:[{item:result?.item,tier:result?.tier}];
+        const bestTier = Math.max(1, ...rewards.map(reward => Number(reward.tier) || 1));
+        if (bestTier >= 4 && !reducedMotion) { flashRoulette(bestTier); await rouletteWait(260); }
         document.getElementById('roulette-overlay')?.classList.remove('show');
         document.getElementById('roulette-container')?.classList.remove('is-spinning');
-        if(rewards[0]?.item) showResult(rewards[0].item,rewards[0].tier,{...result,items:rewards});
+        setRouletteStage('idle');
+        if(rewards[0]?.item) { playWinSound(); showResult(rewards[0].item,rewards[0].tier,{...result,items:rewards}); }
         updateBalance();
         renderProfile?.(); renderHouse?.();
         currentRouletteResult=null; isSpinning=false; const backBtn=document.getElementById('back-roulette-btn'); if(backBtn) backBtn.disabled=false;
-    } catch(e) { document.getElementById('roulette-container')?.classList.remove('is-spinning'); isSpinning=false; updateOpeningButtons(); const backBtn=document.getElementById('back-roulette-btn'); if(backBtn) backBtn.disabled=false; playError(); showNotification(e.message||'Не удалось открыть кейс'); }
+    } catch(e) { setRouletteStage('idle'); document.getElementById('roulette-container')?.classList.remove('is-spinning'); isSpinning=false; updateOpeningButtons(); const backBtn=document.getElementById('back-roulette-btn'); if(backBtn) backBtn.disabled=false; playError(); showNotification(e.message||'Не удалось открыть кейс'); }
 }
 
 function notifyLevelUp(result) {
@@ -712,6 +804,12 @@ function notifyLevelUp(result) {
 
 // ==================== РЕЗУЛЬТАТ ====================
 
+function rewardValue(reward) {
+    const tier = Math.max(1, Math.min(6, Number(reward?.tier) || 1));
+    const local = typeof getItemById === 'function' ? getItemById(Number(reward?.item?.id)) : null;
+    return Math.max(0, Number(reward?.item?.price ?? local?.tiers?.[tier]?.price ?? 0) || 0);
+}
+
 function showResult(item, tier, stats = {}) {
     const resultImage = document.getElementById('result-image');
     const resultName = document.getElementById('result-name');
@@ -722,31 +820,63 @@ function showResult(item, tier, stats = {}) {
 
     const rewards = Array.isArray(stats.items) && stats.items.length ? stats.items : [{ item, tier }];
     const isBulk = rewards.length > 1;
+    const bestIndex = rewards.reduce((best, reward, index) => {
+        const a = Number(reward.tier) || 1, b = Number(rewards[best].tier) || 1;
+        return a > b || (a === b && rewardValue(reward) > rewardValue(rewards[best])) ? index : best;
+    }, 0);
+    const bestTier = Math.max(1, Math.min(6, Number(rewards[bestIndex]?.tier) || 1));
+    const shownTier = isBulk ? bestTier : Math.max(1, Math.min(6, Number(tier) || 1));
+    const totalValue = rewards.reduce((sum, reward) => sum + rewardValue(reward), 0);
+
+    resultOverlay.dataset.tier = String(shownTier);
+    resultOverlay.classList.toggle('is-bulk', isBulk);
+    resultOverlay.style.setProperty('--result-color', tierColors[shownTier] || tierColors[1]);
+    const kicker = document.getElementById('result-kicker');
+    if (kicker) kicker.textContent = isBulk ? `ОТКРЫТО КЕЙСОВ: ${rewards.length}` : (shownTier >= 5 ? 'НЕВЕРОЯТНАЯ НАХОДКА!' : shownTier >= 4 ? 'РЕДКАЯ НАХОДКА!' : 'НОВАЯ НАХОДКА');
+    const stage = document.getElementById('result-item-stage');
+    if (stage) stage.hidden = isBulk;
     resultImage.style.display = isBulk || !item.image ? 'none' : 'block';
     setItemAtlasElement(resultImage, item.image || item.id);
     resultName.textContent = isBulk ? `ПОЛУЧЕНО ПРЕДМЕТОВ: ${rewards.length}` : item.name;
     resultTier.textContent = isBulk ? '' : (tierNames[tier] || 'ПРЕДМЕТ');
-    resultTier.style.display = isBulk ? 'none' : 'block';
-    resultTier.style.color = tierColors[Math.max(...rewards.map(x => Number(x.tier) || 1))] || tierColors[1];
+    resultTier.style.display = isBulk ? 'none' : '';
+    resultTier.className = `tier-${shownTier}`;
     let statsEl = document.getElementById('result-stats');
     if (!statsEl) { statsEl = document.createElement('div'); statsEl.id = 'result-stats'; resultTier.insertAdjacentElement('afterend', statsEl); }
     const gainedXp = Number(stats.totalXp ?? stats.xp ?? rewards[0]?.xp ?? 0);
     const gainedRating = Number(stats.totalRating ?? stats.rating ?? rewards[0]?.rating ?? 0);
-    statsEl.innerHTML = `<span>ОПЫТ <b>+${gainedXp.toLocaleString('ru-RU')}</b></span><span>РЕЙТИНГ <b>+${gainedRating.toLocaleString('ru-RU')}</b></span>`;
+    const valueStat = totalValue > 0 ? `<span>${isBulk ? 'ОБЩАЯ ЦЕНА' : 'ЦЕНА'} <b class="is-coin"><img src="${PATHS.coin}" alt="" onerror="this.style.display='none'">${totalValue.toLocaleString('ru-RU')}</b></span>` : '';
+    statsEl.innerHTML = `${valueStat}<span>ОПЫТ <b>+${gainedXp.toLocaleString('ru-RU')}</b></span><span>РЕЙТИНГ <b>+${gainedRating.toLocaleString('ru-RU')}</b></span>`;
 
     let bulkGrid = document.getElementById('bulk-result-grid');
     if (!bulkGrid) { bulkGrid = document.createElement('div'); bulkGrid.id = 'bulk-result-grid'; statsEl.insertAdjacentElement('afterend', bulkGrid); }
     bulkGrid.hidden = !isBulk;
     bulkGrid.style.setProperty('--bulk-result-columns', String(Math.min(5, rewards.length)));
-    bulkGrid.innerHTML = isBulk ? rewards.map(reward => {
+    bulkGrid.innerHTML = isBulk ? rewards.map((reward, index) => {
         const drop = reward.item || {};
-        const rarity = Number(reward.tier) || 1;
-        return `<div class="bulk-result-item tier-${rarity}" style="--reel-tier-color:${tierColors[rarity] || '#d8dfe5'}">${itemSprite(drop.image, 'bulk-item-atlas')}<b>${escapeHtml(drop.name || 'Предмет')}</b></div>`;
+        const rarity = Math.max(1, Math.min(6, Number(reward.tier) || 1));
+        const best = index === bestIndex && rarity >= 2;
+        return `<div class="bulk-result-item tier-${rarity}${best ? ' is-best' : ''}" style="--reel-tier-color:${tierColors[rarity] || '#d8dfe5'};--reveal-delay:${index * 70}ms" title="${escapeHtml(drop.name || 'Предмет')} · ${escapeHtml(tierNames[rarity] || '')}">${itemSprite(drop.image, 'bulk-item-atlas')}<b>${escapeHtml(drop.name || 'Предмет')}</b></div>`;
     }).join('') : '';
 
-    resultContent.style.borderColor = 'var(--border-color)';
+    const again = document.getElementById('result-again');
+    if (again) {
+        const caseData = currentRouletteCase || getCaseById(currentCaseDetailId);
+        again.hidden = !caseData || Boolean(caseData.isAd);
+    }
     resultOverlay.classList.add('show');
     if (rewards.some(reward => Number(reward.tier) >= 4)) spawnConfetti();
+}
+
+// Re-opens the opening screen for the same case with the same quantity.
+function openCaseAgain() {
+    const caseId = currentCaseDetailId || currentRouletteCase?.id;
+    const quantity = selectedOpenQuantity;
+    closeResult();
+    const caseData = caseId ? getCaseById(caseId) : null;
+    if (!caseData) return;
+    openCasePreview(caseData.id);
+    if (!caseData.isAd && quantity !== 1 && document.getElementById('roulette-overlay')?.classList.contains('show')) setOpenQuantity(quantity);
 }
 
 function closeResult() {
