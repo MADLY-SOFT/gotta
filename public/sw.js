@@ -1,10 +1,13 @@
 'use strict';
-const CACHE_NAME = 'zombix-v116-atlas-runtime-fix';
+const CACHE_NAME = 'zombix-v200-nightfall';
 // Only public, non-sensitive files belong in the install-time application shell.
 // Private promo configuration is deliberately stored outside /public.
 const SHELL = [
   "./index.html",
   "./css/app.css",
+  "./fonts/Rubik-Cyrillic.woff2",
+  "./fonts/Rubik-Latin.woff2",
+  "./fonts/PressStart2P-Regular.ttf",
   "./manifest.json",
   "./js/main.js",
   "./js/ui.js",
