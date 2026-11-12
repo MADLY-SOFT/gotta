@@ -160,6 +160,12 @@ function updateContractInfo() {
     
     // Кнопка
     startBtn.disabled = count < CONTRACT_MIN_ITEMS || count > CONTRACT_MAX_ITEMS; 
+    // Altar intensity follows the number of offered items.
+    const content = document.getElementById('contract-content');
+    if (content) {
+        content.style.setProperty('--contract-count', count);
+        content.classList.toggle('is-ready', !startBtn.disabled);
+    }
 }
 
 // ==================== ВЫПОЛНЕНИЕ КОНТРАКТА ====================
@@ -216,13 +222,13 @@ function showContractResult(match, targetPrice, inputValue, resultPriceValue, pr
     resultImg.style.display = match.item.image ? 'block' : 'none';
     resultName.textContent = match.item.name; 
     resultTier.textContent = tierNames[match.tier]; 
-    resultTier.style.color = tierColors[match.tier]; 
+    overlay.className = `contract-result-overlay tier-${Number(match.tier)||1}`;
     const itemValue = Math.max(0, Math.round(Number(resultPriceValue)||Number(match.item?.tiers?.[match.tier]?.price)||0));
     const input = Math.max(0, Math.round(Number(inputValue)||0));
     const net = Number.isFinite(Number(profit)) ? Math.round(Number(profit)) : itemValue - input;
     const sign = net >= 0 ? '+' : '';
     const netClass = net >= 0 ? 'contract-profit-plus' : 'contract-profit-minus';
-    resultPrice.innerHTML = `<div class="contract-result-row"><span>СТОИМОСТЬ ВНЕСЁННЫХ</span><b>${input.toLocaleString('ru-RU')} <img src="${PATHS.coin}" alt="" style="width:14px;height:14px;vertical-align:-3px"></b></div><div class="contract-result-row"><span>ЦЕНА ПРЕДМЕТА</span><b>${itemValue.toLocaleString('ru-RU')} <img src="${PATHS.coin}" alt="" style="width:14px;height:14px;vertical-align:-3px"></b></div><div class="contract-result-net ${netClass}"><span>ОКУП</span><b>${sign}${net.toLocaleString('ru-RU')} <img src="${PATHS.coin}" alt="" style="width:14px;height:14px;vertical-align:-3px"></b></div>`; 
+    resultPrice.innerHTML = `<div class="contract-result-row"><span>СТОИМОСТЬ ВНЕСЁННЫХ</span><b>${input.toLocaleString('ru-RU')} <img src="${PATHS.coin}" alt="" class="contract-coin-icon"></b></div><div class="contract-result-row"><span>ЦЕНА ПРЕДМЕТА</span><b>${itemValue.toLocaleString('ru-RU')} <img src="${PATHS.coin}" alt="" class="contract-coin-icon"></b></div><div class="contract-result-net ${netClass}"><span>ОКУП</span><b>${sign}${net.toLocaleString('ru-RU')} <img src="${PATHS.coin}" alt="" class="contract-coin-icon"></b></div>`; 
     
     overlay.classList.add('show'); 
     
