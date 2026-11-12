@@ -46,7 +46,7 @@
 .case-card:nth-child(2n){animation-delay:.04s}
 .case-card:hover{border-color:color-mix(in srgb,var(--case-color) 70%,transparent);box-shadow:var(--shadow-1),0 0 24px color-mix(in srgb,var(--case-color) 22%,transparent)}
 .case-card:active{transform:scale(.97)}
-.case-card-tier{position:absolute;top:10px;left:10px;font-size:8px;letter-spacing:1px;color:var(--tier);text-shadow:0 0 6px var(--tier);opacity:.9}
+.case-card-tier{position:absolute;top:10px;left:10px;font-size:9px;letter-spacing:1px;color:var(--tier);text-shadow:0 0 6px var(--tier);opacity:.9}
 .case-art{position:relative;width:100%;height:104px;display:grid;place-items:center}
 .case-art::after{content:"";position:absolute;bottom:6px;left:18%;right:18%;height:14px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--case-color) 55%,transparent),transparent);filter:blur(2px)}
 .case-icon{position:relative;z-index:1;width:84px;height:84px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(0 8px 10px rgba(0,0,0,.55));transition:transform .3s var(--ease-spring)}
@@ -186,7 +186,7 @@
 .bulk-result-item .item-atlas{width:44px;height:44px}
 .bulk-result-item b{width:100%;font:600 9px/1.2 var(--z-font-ui);color:var(--text-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bulk-result-item.is-best{border-color:var(--reel-tier-color);box-shadow:0 0 18px color-mix(in srgb,var(--reel-tier-color) 45%,transparent)}
-.bulk-result-item.is-best::before{content:"ЛУЧШЕЕ";position:absolute;top:3px;left:50%;transform:translateX(-50%);padding:1px 5px;border-radius:var(--r-pill);background:var(--reel-tier-color);color:#000;font:800 7px/1.4 var(--z-font-ui);letter-spacing:.08em}
+.bulk-result-item.is-best::before{content:"ЛУЧШЕЕ";position:absolute;top:3px;left:50%;transform:translateX(-50%);padding:1px 5px;border-radius:var(--r-pill);background:var(--reel-tier-color);color:#000;font:800 9px/1.3 var(--z-font-ui);letter-spacing:.08em}
 .result-actions{width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:var(--space-2);margin-top:var(--space-3)}
 #result-again,#result-close{height:52px;border-radius:var(--r-md);font:900 var(--fs-md)/1 var(--z-font-ui);letter-spacing:.12em;transition:transform .12s}
 #result-close{background:var(--btn-primary-bg);color:var(--accent-ink);box-shadow:var(--shadow-press)}
