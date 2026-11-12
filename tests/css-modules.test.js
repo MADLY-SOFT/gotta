@@ -71,7 +71,8 @@ test('runtime loads one generated stylesheet and service worker caches it', () =
   assert.match(html, /rel="preload" href="fonts\/PressStart2P-Regular\.ttf" as="font" type="font\/ttf" crossorigin/);
   assert.doesNotMatch(html, /href="(?:game|ui-v100)\.css"/);
   assert.match(sw, /\.\/css\/app\.css/);
-  assert.match(sw, /zombix-v116-atlas-runtime-fix/);
+  assert.match(sw, /zombix-v200-nightfall/);
+  assert.match(sw, /\.\/fonts\/Rubik-Cyrillic\.woff2/);
   assert.doesNotMatch(sw, /promo_codes\.json/);
   const bundle = fs.readFileSync(appCssPath, 'utf8');
   assert.match(bundle, /url\(\"\.\.\/fonts\/PressStart2P-Regular\.ttf\"\)/);

@@ -1,6 +1,6 @@
 {
   "name": "zombix-case-simulator",
-  "version": "1.16.0",
+  "version": "2.0.0",
   "private": true,
   "description": "Zombix Case Simulator - hardened Node.js native HTTP and SQLite game server",
   "scripts": {
