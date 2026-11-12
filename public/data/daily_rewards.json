@@ -1,0 +1,219 @@
+{
+  "cycleDays": 30,
+  "timezone": "Europe/Moscow",
+  "rewards": [
+    {
+      "day": 1,
+      "coins": 280,
+      "gems": 0
+    },
+    {
+      "day": 2,
+      "coins": 370,
+      "gems": 1
+    },
+    {
+      "day": 3,
+      "coins": 535,
+      "gems": 1
+    },
+    {
+      "day": 4,
+      "coins": 560,
+      "gems": 1
+    },
+    {
+      "day": 5,
+      "coins": 660,
+      "gems": 2,
+      "items": [
+        {
+          "itemId": 1,
+          "tier": 1,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "coins": 0,
+      "gems": 1
+    },
+    {
+      "day": 7,
+      "coins": 840,
+      "gems": 0
+    },
+    {
+      "day": 8,
+      "coins": 940,
+      "gems": 1
+    },
+    {
+      "day": 9,
+      "coins": 1105,
+      "gems": 1
+    },
+    {
+      "day": 10,
+      "coins": 1130,
+      "gems": 3,
+      "items": [
+        {
+          "itemId": 2,
+          "tier": 1,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "day": 11,
+      "coins": 1220,
+      "gems": 0
+    },
+    {
+      "day": 12,
+      "coins": 0,
+      "gems": 2
+    },
+    {
+      "day": 13,
+      "coins": 1420,
+      "gems": 0
+    },
+    {
+      "day": 14,
+      "coins": 1510,
+      "gems": 2,
+      "items": [
+        {
+          "itemId": 3,
+          "tier": 1,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "day": 15,
+      "coins": 0,
+      "gems": 4
+    },
+    {
+      "day": 16,
+      "coins": 1700,
+      "gems": 2
+    },
+    {
+      "day": 17,
+      "coins": 1800,
+      "gems": 0
+    },
+    {
+      "day": 18,
+      "coins": 0,
+      "gems": 2,
+      "items": [
+        {
+          "itemId": 4,
+          "tier": 1,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "day": 19,
+      "coins": 1980,
+      "gems": 0
+    },
+    {
+      "day": 20,
+      "coins": 2080,
+      "gems": 5
+    },
+    {
+      "day": 21,
+      "coins": 0,
+      "gems": 0,
+      "items": [
+        {
+          "itemId": 5,
+          "tier": 2,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "day": 22,
+      "coins": 2270,
+      "gems": 3
+    },
+    {
+      "day": 23,
+      "coins": 2360,
+      "gems": 0
+    },
+    {
+      "day": 24,
+      "coins": 0,
+      "gems": 3,
+      "items": [
+        {
+          "itemId": 6,
+          "tier": 2,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "day": 25,
+      "coins": 2560,
+      "gems": 6
+    },
+    {
+      "day": 26,
+      "coins": 2650,
+      "gems": 3
+    },
+    {
+      "day": 27,
+      "coins": 0,
+      "gems": 0,
+      "items": [
+        {
+          "itemId": 7,
+          "tier": 2,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "day": 28,
+      "coins": 2840,
+      "gems": 3
+    },
+    {
+      "day": 29,
+      "coins": 2940,
+      "gems": 0,
+      "items": [
+        {
+          "itemId": 8,
+          "tier": 2,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "day": 30,
+      "coins": 0,
+      "gems": 7,
+      "items": [
+        {
+          "itemId": 9,
+          "tier": 3,
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

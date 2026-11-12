@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "file": "png/items-atlas.png",
+  "cell": [
+    30,
+    30
+  ],
+  "columns": 16,
+  "rows": 11,
+  "items": 171,
+  "sourcePixels": 153900,
+  "atlasPixels": 158400,
+  "mapping": "item ID N -> cell index N-1; row-major"
+}

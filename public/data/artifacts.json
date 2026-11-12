@@ -1,0 +1,210 @@
+{
+  "version": 1,
+  "artifacts": [
+    {
+      "id": 1,
+      "name": "Синее Ядро",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 2,
+      "name": "Бирюзовая Искра",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 3,
+      "name": "Алый Импульс",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 4,
+      "name": "Янтарный Свет",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 5,
+      "name": "Зелёный Пульс",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 6,
+      "name": "Пустотное Кольцо",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 7,
+      "name": "Тёмный Знак",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 8,
+      "name": "Лазурный Осколок",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 9,
+      "name": "Морская Капля",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 10,
+      "name": "Изумрудный Осколок",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 11,
+      "name": "Пепельное Сердце",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 12,
+      "name": "Фиолетовый Камень",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 13,
+      "name": "Кислотный Глаз",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 14,
+      "name": "Сломанный Коготь",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 15,
+      "name": "Фиолетовая Пыль",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 16,
+      "name": "Зелёная Пыль",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 17,
+      "name": "Огненный След",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 18,
+      "name": "Изумрудная Капля",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 19,
+      "name": "Синяя Капля",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 20,
+      "name": "Синий Глаз",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 21,
+      "name": "Чёрная Петля",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 22,
+      "name": "Золотое Сердце",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 23,
+      "name": "Треснувший Янтарь",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 24,
+      "name": "Серый Узел",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 25,
+      "name": "Чёрный Кристалл",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 26,
+      "name": "Золотой Осколок",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 27,
+      "name": "Щиток",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 28,
+      "name": "Малое Кольцо",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 29,
+      "name": "Пурпурная Спираль",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 30,
+      "name": "Жгучий Осколок",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 31,
+      "name": "Зелёный Осколок",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 32,
+      "name": "Синий Осколок",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 33,
+      "name": "Белый Осколок",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 34,
+      "name": "Циановая Сфера",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 35,
+      "name": "Циановое Кольцо",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 36,
+      "name": "Огненный Вектор",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 37,
+      "name": "Алый Вектор",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 38,
+      "name": "Изумрудный Вектор",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 39,
+      "name": "Ядовитый Вектор",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 40,
+      "name": "Бирюзовый Вектор",
+      "image": "png/artifacts-atlas.png"
+    },
+    {
+      "id": 41,
+      "name": "Синий Вектор",
+      "image": "png/artifacts-atlas.png"
+    }
+  ]
+}

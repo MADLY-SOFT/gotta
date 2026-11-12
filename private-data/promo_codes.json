@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "codes": [
+    {
+      "code": "TEST100",
+      "enabled": true,
+      "coins": 1000000,
+      "gems": 10000,
+      "items": [
+        {
+          "itemId": 1,
+          "tier": 2,
+          "count": 2
+        }
+      ]
+    },
+    {
+      "code": "MARKET25",
+      "enabled": true,
+      "coins": 0,
+      "gems": 0,
+      "artifacts": [
+        {
+          "artifactId": 1,
+          "count": 5
+        },
+        {
+          "artifactId": 2,
+          "count": 5
+        },
+        {
+          "artifactId": 3,
+          "count": 5
+        },
+        {
+          "artifactId": 4,
+          "count": 5
+        },
+        {
+          "artifactId": 5,
+          "count": 5
+        }
+      ]
+    }
+  ]
+}

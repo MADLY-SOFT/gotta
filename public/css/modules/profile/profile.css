@@ -1,0 +1,198 @@
+/* ZOMBIX CSS MODULE: profile/profile
+ * Edit this file, then run: npm run build:css
+ * @z-order markers preserve the original cross-module cascade.
+ */
+/* @z-order: 00000173 */
+#profile-section{ background: var(--card-bg); border: 3px solid var(--border-color); padding: 20px; margin-bottom: 20px; text-align: center; border-radius: var(--border-radius); box-shadow: 0 6px 0 rgba(0,0,0,0.5), 0 0 25px var(--glow-color); }
+
+/* @z-order: 00000174 */
+#profile-avatar{ width: 80px; height: 80px; border: 3px solid var(--border-color); cursor: pointer; object-fit: cover; image-rendering: pixelated; transition: all 0.3s; margin: 0 auto 15px; display: block; border-radius: 50%; box-shadow: 0 0 20px var(--glow-color); }
+
+/* @z-order: 00000175 */
+#profile-name{ color: var(--text-primary); font-size: 14px; margin-bottom: 15px; }
+
+/* @z-order: 00000176 */
+#profile-exp-bar-container{ width: 100%; height: 15px; background: #333; overflow: hidden; margin-bottom: 5px; border-radius: 8px; }
+
+/* @z-order: 00000177 */
+#profile-exp-bar{ height: 100%; background: linear-gradient(90deg, #4CAF50, #8BC34A); transition: width 0.3s; }
+
+/* @z-order: 00000178 */
+#profile-exp-text{ color: var(--text-secondary); font-size: 8px; margin-bottom: 15px; }
+
+/* @z-order: 00000776 */
+.profile-modal-btn{border-radius:var(--border-radius)!important}
+
+/* @z-order: 00000777 */
+#profile-name-wrap{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:15px;min-height:32px}
+
+/* @z-order: 00000778 */
+#profile-name{margin:0!important;line-height:1.2;max-width:calc(100% - 38px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* @z-order: 00000779 */
+#nickname-edit-btn{width:32px;height:32px;min-width:32px;padding:0;border:2px solid var(--border-color);border-radius:var(--border-radius);background:var(--btn-bg);color:var(--border-color);font:700 18px/28px Arial,sans-serif;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.45);transition:.15s ease}
+
+/* @z-order: 00000780 */
+#nickname-edit-btn:hover{box-shadow:0 0 12px var(--glow-color),0 3px 0 rgba(0,0,0,.45)}
+
+/* @z-order: 00000781 */
+#nickname-edit-btn:active{transform:translateY(2px)}
+
+/* @z-order: 00000790 */
+.profile-modal-btn{width:100%;margin-top:8px;padding:11px;border:2px solid var(--border-color);background:var(--btn-bg);color:var(--text-primary);font:8px "Press Start 2P",cursive;cursor:pointer}
+
+/* @z-order: 00001129 */
+.profile-stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px;}
+
+/* @z-order: 00001130 */
+.profile-stat-card{position:relative;padding:10px 8px 9px;border:2px solid rgba(255,255,255,.13);border-radius:var(--border-radius);background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(0,0,0,.32));box-shadow:0 4px 0 rgba(0,0,0,.35),inset 0 0 18px rgba(255,255,255,.025);overflow:hidden;}
+
+/* @z-order: 00001131 */
+.profile-stat-card:before{content:"";position:absolute;left:0;top:0;width:28%;height:2px;background:var(--border-color);box-shadow:0 0 9px var(--glow-color)}
+
+/* @z-order: 00001132 */
+.profile-stat-card span{display:block;font-size:5px;color:var(--text-secondary);margin-bottom:6px}
+
+/* @z-order: 00001133 */
+.profile-stat-card b{display:block;font-size:11px;color:var(--text-primary);line-height:1.2}
+
+/* @z-order: 00001134 */
+.profile-stat-card small{display:block;margin-top:4px;font-size:4px;color:var(--text-secondary)}
+
+/* @z-order: 00001135 */
+.profile-stat-card.rating b{color:var(--border-color)}
+
+/* @z-order: 00001136 */
+#profile-section{padding:18px!important;background:radial-gradient(circle at 50% 0%,rgba(255,193,7,.10),transparent 44%),var(--card-bg)!important;position:relative;overflow:hidden}
+
+/* @z-order: 00001137 */
+#profile-section:after{content:"";position:absolute;inset:0;pointer-events:none;border:1px solid rgba(255,255,255,.05);border-radius:inherit;}
+
+/* @z-order: 00001138 */
+#profile-avatar{width:92px;height:92px;box-shadow:0 0 0 4px rgba(0,0,0,.28),0 0 24px var(--glow-color);}
+
+/* @z-order: 00001139 */
+.profile-stats-compact{grid-template-columns:repeat(2,minmax(0,1fr));max-width:520px;margin:12px auto 0;}
+
+/* @z-order: 00001140 */
+.profile-stats-compact .profile-stat-card{padding:11px 9px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(0,0,0,.34));}
+
+/* @z-order: 00001195 */
+@media (max-width:520px){
+.profile-stats-compact{gap:6px;}
+}
+
+/* @z-order: 00001210 */
+.profile-stat-card{border-radius:var(--border-radius)!important;}
+
+/* @z-order: 00001307 */
+#artifact-profile-section{margin:10px 0;border:2px solid rgba(255,255,255,.08);border-radius:var(--border-radius);background:rgba(0,0,0,.25);padding:9px}
+
+/* @z-order: 00002462 */
+.avatar-atlas.profile-avatar-sprite{box-sizing:border-box;}
+
+/* @z-order: 00002463 */
+#profile-section.profile-hub{padding:14px;background:linear-gradient(145deg,rgba(255,191,52,.10),transparent 48%),linear-gradient(180deg,#20251f,#101511);text-align:left;border-color:#9b7b36;box-shadow:0 5px 0 #080b08, inset 0 1px rgba(255,255,255,.08);overflow:hidden}
+
+/* @z-order: 00002464 */
+.profile-hub-eyebrow{display:flex;align-items:center;gap:7px;font-size:7px;letter-spacing:.5px;color:#d7bd78;border-bottom:1px solid #ffffff20;padding-bottom:12px}
+
+/* @z-order: 00002465 */
+.profile-hub-live{width:7px;height:7px;background:#9ddd75;box-shadow:0 0 8px #9ddd75;border-radius:50%}
+
+/* @z-order: 00002466 */
+.profile-hub-tag{margin-left:auto;font-size:6px;color:#8e9d85}
+
+/* @z-order: 00002467 */
+.profile-hub-identity{display:flex;align-items:center;gap:15px;padding:18px 0 14px;min-width:0}
+
+/* @z-order: 00002468 */
+.profile-hub-avatar-button{box-sizing:border-box;display:block;position:relative;flex:0 0 100px;width:100px;height:100px;border:2px solid #d2aa50;border-radius:14px;background:#101a15;padding:5px;box-shadow:inset 0 0 0 3px #070a08,0 4px 0 #080a08;cursor:pointer}
+
+/* @z-order: 00002469 */
+#profile-section .profile-hub-avatar-button #profile-avatar{width:100%;height:100%;margin:0;border:0;border-radius:8px;box-shadow:none;background-color:#202c23}
+
+/* @z-order: 00002470 */
+.profile-hub-avatar-edit{position:absolute;right:-5px;bottom:-5px;background:#e1b64e;color:#18150b;border:2px solid #13170e;border-radius:6px;width:26px;height:26px;display:grid;place-items:center;font:700 16px Arial}
+
+/* @z-order: 00002471 */
+.profile-hub-persona{flex:1;min-width:0}
+
+/* @z-order: 00002472 */
+.profile-hub-caption{display:block;font-size:6px;color:#a4b79c;line-height:1.8;margin-bottom:8px}
+
+/* @z-order: 00002473 */
+#profile-section #profile-name-wrap{justify-content:flex-start;margin:0 0 10px;min-height:25px;gap:6px}
+
+/* @z-order: 00002474 */
+#profile-section #profile-name{font-size:clamp(9px,2.6vw,13px);text-align:left;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* @z-order: 00002475 */
+#profile-section #nickname-edit-btn{flex-shrink:0;width:27px;min-width:27px;height:27px;line-height:23px;font-size:14px}
+
+/* @z-order: 00002476 */
+.profile-hub-avatar-link{width:100%;max-width:210px;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:9px 8px;background:#28352a;color:#f3d27e;border:1px solid #77815b;border-radius:5px;font:6px 'Press Start 2P',cursive;cursor:pointer}
+
+/* @z-order: 00002477 */
+.profile-hub-avatar-link span{color:#d1d9bd}
+
+/* @z-order: 00002478 */
+.profile-hub-progress{padding:12px;background:#080d0b;border:1px solid #556344;border-radius:7px}
+
+/* @z-order: 00002479 */
+.profile-hub-progress-label{display:flex;justify-content:space-between;gap:8px;font-size:7px;color:#b6c6a7;margin-bottom:10px}
+
+/* @z-order: 00002480 */
+.profile-hub-progress-label strong{color:#f2cb69}
+
+/* @z-order: 00002481 */
+#profile-section #profile-exp-bar-container{margin:0 0 9px;height:12px;border-radius:3px;overflow:hidden;background:#293329;border:1px solid #64704c}
+
+/* @z-order: 00002482 */
+#profile-section #profile-exp-bar{height:100%;background:linear-gradient(90deg,#8a9d42,#efc55d)}
+
+/* @z-order: 00002483 */
+#profile-section #profile-exp-text{font-size:7px;color:#aebaa6;text-align:right}
+
+/* @z-order: 00002484 */
+#profile-section .profile-hub-stats{margin-top:10px;gap:9px}
+
+/* @z-order: 00002485 */
+#profile-section .profile-hub-stats .profile-stat-card{min-width:0;padding:12px 7px;background:#111b15;border:1px solid #566342;border-radius:7px;box-shadow:inset 0 1px #ffffff0a}
+
+/* @z-order: 00002486 */
+#profile-section .profile-hub-stats .profile-stat-card.rating{border-color:#b58c45;background:#211e12}
+
+/* @z-order: 00002500 */
+@media (max-width:360px){
+.profile-hub-identity{gap:10px}
+}
+
+/* @z-order: 00002501 */
+@media (max-width:360px){
+.profile-hub-avatar-button{flex-basis:88px;width:88px;height:88px}
+}
+
+/* @z-order: 00002503 */
+#profile-section .profile-hub-avatar-button #profile-avatar{position:absolute;inset:8px;width:auto;height:auto;margin:0;border-radius:8px}
+
+/* @z-order: 00002505 */
+.profile-hub-progress,
+#profile-section #profile-exp-bar-container,
+#profile-section .profile-hub-stats .profile-stat-card,
+.profile-hub-avatar-link {border-radius:var(--border-radius);}
+
+/* @z-order: 00002506 */
+#profile-section .profile-hub-avatar-button{border-radius:14px;overflow:visible;}
+
+/* @z-order: 00002507 */
+#profile-section .profile-hub-avatar-button #profile-avatar{border-radius:8px;}
+
+/* @z-order: 00002508 */
+#profile-section #profile-exp-text{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;line-height:1.7;text-align:left}
+
+/* @z-order: 00003173 */
+.profile-progress-open{width:100%;margin:10px 0 16px;min-height:46px;display:flex;justify-content:space-between;align-items:center;}
+
+/* @z-order: 00003287 */
+.profile-progress-open{width:100%;}

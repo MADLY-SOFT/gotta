@@ -1,0 +1,2 @@
+/* Deprecated compatibility entry point. v1.00 styles are now in ./css/modules/. */
+@import url("./css/app.css");

@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-11-09T05:34:30.833Z",
+  "players": 100,
+  "operations": 700,
+  "failures": 0,
+  "latencyMs": {
+    "p50": 509.99,
+    "p95": 1080.83,
+    "p99": 1111.84,
+    "max": 1121.64
+  },
+  "publicStats": {
+    "online": 100,
+    "playing": 100,
+    "totalPlayers": 100,
+    "dau": 100,
+    "peakOnline": 100
+  },
+  "database": {
+    "integrity": "ok",
+    "projections": {
+      "players": 100,
+      "ok": true,
+      "errors": []
+    }
+  },
+  "failureSamples": []
+}

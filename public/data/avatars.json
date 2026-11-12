@@ -1,0 +1,640 @@
+{
+  "avatars": [
+    {
+      "id": 1,
+      "image": "png/avatars/avatar_1.png",
+      "price": 0,
+      "currency": "coins"
+    },
+    {
+      "id": 2,
+      "image": "png/avatars/avatar_2.png",
+      "price": 100,
+      "currency": "coins"
+    },
+    {
+      "id": 3,
+      "image": "png/avatars/avatar_3.png",
+      "price": 2,
+      "currency": "gems"
+    },
+    {
+      "id": 4,
+      "image": "png/avatars/avatar_4.png",
+      "price": 150,
+      "currency": "coins"
+    },
+    {
+      "id": 5,
+      "image": "png/avatars/avatar_5.png",
+      "price": 3,
+      "currency": "gems"
+    },
+    {
+      "id": 6,
+      "image": "png/avatars/avatar_6.png",
+      "price": 200,
+      "currency": "coins"
+    },
+    {
+      "id": 7,
+      "image": "png/avatars/avatar_7.png",
+      "price": 4,
+      "currency": "gems"
+    },
+    {
+      "id": 8,
+      "image": "png/avatars/avatar_8.png",
+      "price": 250,
+      "currency": "coins"
+    },
+    {
+      "id": 9,
+      "image": "png/avatars/avatar_9.png",
+      "price": 5,
+      "currency": "gems"
+    },
+    {
+      "id": 10,
+      "image": "png/avatars/avatar_10.png",
+      "price": 300,
+      "currency": "coins"
+    },
+    {
+      "id": 11,
+      "image": "png/avatars/avatar_11.png",
+      "price": 6,
+      "currency": "gems"
+    },
+    {
+      "id": 12,
+      "image": "png/avatars/avatar_12.png",
+      "price": 350,
+      "currency": "coins"
+    },
+    {
+      "id": 13,
+      "image": "png/avatars/avatar_13.png",
+      "price": 7,
+      "currency": "gems"
+    },
+    {
+      "id": 14,
+      "image": "png/avatars/avatar_14.png",
+      "price": 400,
+      "currency": "coins"
+    },
+    {
+      "id": 15,
+      "image": "png/avatars/avatar_15.png",
+      "price": 8,
+      "currency": "gems"
+    },
+    {
+      "id": 16,
+      "image": "png/avatars/avatar_16.png",
+      "price": 450,
+      "currency": "coins"
+    },
+    {
+      "id": 17,
+      "image": "png/avatars/avatar_17.png",
+      "price": 9,
+      "currency": "gems"
+    },
+    {
+      "id": 18,
+      "image": "png/avatars/avatar_18.png",
+      "price": 500,
+      "currency": "coins"
+    },
+    {
+      "id": 19,
+      "image": "png/avatars/avatar_19.png",
+      "price": 10,
+      "currency": "gems"
+    },
+    {
+      "id": 20,
+      "image": "png/avatars/avatar_20.png",
+      "price": 550,
+      "currency": "coins"
+    },
+    {
+      "id": 21,
+      "image": "png/avatars/avatar_21.png",
+      "price": 11,
+      "currency": "gems"
+    },
+    {
+      "id": 22,
+      "image": "png/avatars/avatar_22.png",
+      "price": 600,
+      "currency": "coins"
+    },
+    {
+      "id": 23,
+      "image": "png/avatars/avatar_23.png",
+      "price": 12,
+      "currency": "gems"
+    },
+    {
+      "id": 24,
+      "image": "png/avatars/avatar_24.png",
+      "price": 650,
+      "currency": "coins"
+    },
+    {
+      "id": 25,
+      "image": "png/avatars/avatar_25.png",
+      "price": 13,
+      "currency": "gems"
+    },
+    {
+      "id": 26,
+      "image": "png/avatars/avatar_26.png",
+      "price": 700,
+      "currency": "coins"
+    },
+    {
+      "id": 27,
+      "image": "png/avatars/avatar_27.png",
+      "price": 14,
+      "currency": "gems"
+    },
+    {
+      "id": 28,
+      "image": "png/avatars/avatar_28.png",
+      "price": 750,
+      "currency": "coins"
+    },
+    {
+      "id": 29,
+      "image": "png/avatars/avatar_29.png",
+      "price": 15,
+      "currency": "gems"
+    },
+    {
+      "id": 30,
+      "image": "png/avatars/avatar_30.png",
+      "price": 800,
+      "currency": "coins"
+    },
+    {
+      "id": 31,
+      "image": "png/avatars/avatar_31.png",
+      "price": 20,
+      "currency": "gems"
+    },
+    {
+      "id": 32,
+      "image": "png/avatars/avatar_32.png",
+      "price": 3200,
+      "currency": "coins"
+    },
+    {
+      "id": 33,
+      "image": "png/avatars/avatar_33.png",
+      "price": 3300,
+      "currency": "coins"
+    },
+    {
+      "id": 34,
+      "image": "png/avatars/avatar_34.png",
+      "price": 3400,
+      "currency": "coins"
+    },
+    {
+      "id": 35,
+      "image": "png/avatars/avatar_35.png",
+      "price": 3500,
+      "currency": "coins"
+    },
+    {
+      "id": 36,
+      "image": "png/avatars/avatar_36.png",
+      "price": 3600,
+      "currency": "coins"
+    },
+    {
+      "id": 37,
+      "image": "png/avatars/avatar_37.png",
+      "price": 3700,
+      "currency": "coins"
+    },
+    {
+      "id": 38,
+      "image": "png/avatars/avatar_38.png",
+      "price": 3800,
+      "currency": "coins"
+    },
+    {
+      "id": 39,
+      "image": "png/avatars/avatar_39.png",
+      "price": 3900,
+      "currency": "coins"
+    },
+    {
+      "id": 40,
+      "image": "png/avatars/avatar_40.png",
+      "price": 4000,
+      "currency": "coins"
+    },
+    {
+      "id": 41,
+      "image": "png/avatars/avatar_41.png",
+      "price": 4100,
+      "currency": "coins"
+    },
+    {
+      "id": 42,
+      "image": "png/avatars/avatar_42.png",
+      "price": 4200,
+      "currency": "coins"
+    },
+    {
+      "id": 43,
+      "image": "png/avatars/avatar_43.png",
+      "price": 4300,
+      "currency": "coins"
+    },
+    {
+      "id": 44,
+      "image": "png/avatars/avatar_44.png",
+      "price": 4400,
+      "currency": "coins"
+    },
+    {
+      "id": 45,
+      "image": "png/avatars/avatar_45.png",
+      "price": 4500,
+      "currency": "coins"
+    },
+    {
+      "id": 46,
+      "image": "png/avatars/avatar_46.png",
+      "price": 4600,
+      "currency": "coins"
+    },
+    {
+      "id": 47,
+      "image": "png/avatars/avatar_47.png",
+      "price": 4700,
+      "currency": "coins"
+    },
+    {
+      "id": 48,
+      "image": "png/avatars/avatar_48.png",
+      "price": 4800,
+      "currency": "coins"
+    },
+    {
+      "id": 49,
+      "image": "png/avatars/avatar_49.png",
+      "price": 4900,
+      "currency": "coins"
+    },
+    {
+      "id": 50,
+      "image": "png/avatars/avatar_50.png",
+      "price": 5000,
+      "currency": "coins"
+    },
+    {
+      "id": 51,
+      "image": "png/avatars/avatar_51.png",
+      "price": 5100,
+      "currency": "coins"
+    },
+    {
+      "id": 52,
+      "image": "png/avatars/avatar_52.png",
+      "price": 5200,
+      "currency": "coins"
+    },
+    {
+      "id": 53,
+      "image": "png/avatars/avatar_53.png",
+      "price": 5300,
+      "currency": "coins"
+    },
+    {
+      "id": 54,
+      "image": "png/avatars/avatar_54.png",
+      "price": 5400,
+      "currency": "coins"
+    },
+    {
+      "id": 55,
+      "image": "png/avatars/avatar_55.png",
+      "price": 5500,
+      "currency": "coins"
+    },
+    {
+      "id": 56,
+      "image": "png/avatars/avatar_56.png",
+      "price": 5600,
+      "currency": "coins"
+    },
+    {
+      "id": 57,
+      "image": "png/avatars/avatar_57.png",
+      "price": 5700,
+      "currency": "coins"
+    },
+    {
+      "id": 58,
+      "image": "png/avatars/avatar_58.png",
+      "price": 5800,
+      "currency": "coins"
+    },
+    {
+      "id": 59,
+      "image": "png/avatars/avatar_59.png",
+      "price": 5900,
+      "currency": "coins"
+    },
+    {
+      "id": 60,
+      "image": "png/avatars/avatar_60.png",
+      "price": 6000,
+      "currency": "coins"
+    },
+    {
+      "id": 61,
+      "image": "png/avatars/avatar_61.png",
+      "price": 6100,
+      "currency": "coins"
+    },
+    {
+      "id": 62,
+      "image": "png/avatars/avatar_62.png",
+      "price": 6200,
+      "currency": "coins"
+    },
+    {
+      "id": 63,
+      "image": "png/avatars/avatar_63.png",
+      "price": 6300,
+      "currency": "coins"
+    },
+    {
+      "id": 64,
+      "image": "png/avatars/avatar_64.png",
+      "price": 6400,
+      "currency": "coins"
+    },
+    {
+      "id": 65,
+      "image": "png/avatars/avatar_65.png",
+      "price": 6500,
+      "currency": "coins"
+    },
+    {
+      "id": 66,
+      "image": "png/avatars/avatar_66.png",
+      "price": 6600,
+      "currency": "coins"
+    },
+    {
+      "id": 67,
+      "image": "png/avatars/avatar_67.png",
+      "price": 6700,
+      "currency": "coins"
+    },
+    {
+      "id": 68,
+      "image": "png/avatars/avatar_68.png",
+      "price": 6800,
+      "currency": "coins"
+    },
+    {
+      "id": 69,
+      "image": "png/avatars/avatar_69.png",
+      "price": 6900,
+      "currency": "coins"
+    },
+    {
+      "id": 70,
+      "image": "png/avatars/avatar_70.png",
+      "price": 7000,
+      "currency": "coins"
+    },
+    {
+      "id": 71,
+      "image": "png/avatars/avatar_71.png",
+      "price": 7100,
+      "currency": "coins"
+    },
+    {
+      "id": 72,
+      "image": "png/avatars/avatar_72.png",
+      "price": 7200,
+      "currency": "coins"
+    },
+    {
+      "id": 73,
+      "image": "png/avatars/avatar_73.png",
+      "price": 7300,
+      "currency": "coins"
+    },
+    {
+      "id": 74,
+      "image": "png/avatars/avatar_74.png",
+      "price": 7400,
+      "currency": "coins"
+    },
+    {
+      "id": 75,
+      "image": "png/avatars/avatar_75.png",
+      "price": 7500,
+      "currency": "coins"
+    },
+    {
+      "id": 76,
+      "image": "png/avatars/avatar_76.png",
+      "price": 7600,
+      "currency": "coins"
+    },
+    {
+      "id": 77,
+      "image": "png/avatars/avatar_77.png",
+      "price": 7700,
+      "currency": "coins"
+    },
+    {
+      "id": 78,
+      "image": "png/avatars/avatar_78.png",
+      "price": 7800,
+      "currency": "coins"
+    },
+    {
+      "id": 79,
+      "image": "png/avatars/avatar_79.png",
+      "price": 7900,
+      "currency": "coins"
+    },
+    {
+      "id": 80,
+      "image": "png/avatars/avatar_80.png",
+      "price": 8000,
+      "currency": "coins"
+    },
+    {
+      "id": 81,
+      "image": "png/avatars/avatar_81.png",
+      "price": 8100,
+      "currency": "coins"
+    },
+    {
+      "id": 82,
+      "image": "png/avatars/avatar_82.png",
+      "price": 8200,
+      "currency": "coins"
+    },
+    {
+      "id": 83,
+      "image": "png/avatars/avatar_83.png",
+      "price": 8300,
+      "currency": "coins"
+    },
+    {
+      "id": 84,
+      "image": "png/avatars/avatar_84.png",
+      "price": 8400,
+      "currency": "coins"
+    },
+    {
+      "id": 85,
+      "image": "png/avatars/avatar_85.png",
+      "price": 8500,
+      "currency": "coins"
+    },
+    {
+      "id": 86,
+      "image": "png/avatars/avatar_86.png",
+      "price": 8600,
+      "currency": "coins"
+    },
+    {
+      "id": 87,
+      "image": "png/avatars/avatar_87.png",
+      "price": 8700,
+      "currency": "coins"
+    },
+    {
+      "id": 88,
+      "image": "png/avatars/avatar_88.png",
+      "price": 8800,
+      "currency": "coins"
+    },
+    {
+      "id": 89,
+      "image": "png/avatars/avatar_89.png",
+      "price": 8900,
+      "currency": "coins"
+    },
+    {
+      "id": 90,
+      "image": "png/avatars/avatar_90.png",
+      "price": 9000,
+      "currency": "coins"
+    },
+    {
+      "id": 91,
+      "image": "png/avatars/avatar_91.png",
+      "price": 9100,
+      "currency": "coins"
+    },
+    {
+      "id": 92,
+      "image": "png/avatars/avatar_92.png",
+      "price": 9200,
+      "currency": "coins"
+    },
+    {
+      "id": 93,
+      "image": "png/avatars/avatar_93.png",
+      "price": 9300,
+      "currency": "coins"
+    },
+    {
+      "id": 94,
+      "image": "png/avatars/avatar_94.png",
+      "price": 9400,
+      "currency": "coins"
+    },
+    {
+      "id": 95,
+      "image": "png/avatars/avatar_95.png",
+      "price": 9500,
+      "currency": "coins"
+    },
+    {
+      "id": 96,
+      "image": "png/avatars/avatar_96.png",
+      "price": 9600,
+      "currency": "coins"
+    },
+    {
+      "id": 97,
+      "image": "png/avatars/avatar_97.png",
+      "price": 9700,
+      "currency": "coins"
+    },
+    {
+      "id": 98,
+      "image": "png/avatars/avatar_98.png",
+      "price": 9800,
+      "currency": "coins"
+    },
+    {
+      "id": 99,
+      "image": "png/avatars/avatar_99.png",
+      "price": 9900,
+      "currency": "coins"
+    },
+    {
+      "id": 100,
+      "image": "png/avatars/avatar_100.png",
+      "price": 10000,
+      "currency": "coins"
+    },
+    {
+      "id": 101,
+      "image": "png/avatars/avatar_101.png",
+      "price": 10100,
+      "currency": "coins"
+    },
+    {
+      "id": 102,
+      "image": "png/avatars/avatar_102.png",
+      "price": 10200,
+      "currency": "coins"
+    },
+    {
+      "id": 103,
+      "image": "png/avatars/avatar_103.png",
+      "price": 10300,
+      "currency": "coins"
+    },
+    {
+      "id": 104,
+      "image": "png/avatars/avatar_104.png",
+      "price": 10400,
+      "currency": "coins"
+    },
+    {
+      "id": 105,
+      "image": "png/avatars/avatar_105.png",
+      "price": 10500,
+      "currency": "coins"
+    },
+    {
+      "id": 106,
+      "image": "png/avatars/avatar_106.png",
+      "price": 10600,
+      "currency": "coins"
+    }
+  ]
+}

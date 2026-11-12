@@ -1,0 +1,120 @@
+/* ZOMBIX CSS MODULE: account/settings
+ * Edit this file, then run: npm run build:css
+ * @z-order markers preserve the original cross-module cascade.
+ */
+/* @z-order: 00000039 */
+#settings-btn{ background: none; border: 2px solid var(--border-color); color: var(--text-primary); font-size: 16px; cursor: pointer; font-family: "Press Start 2P", cursive; padding: 5px 10px; transition: all 0.2s; border-radius: var(--border-radius); }
+
+/* @z-order: 00000129 */
+#settings-modal{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 700; }
+
+/* @z-order: 00000130 */
+#settings-modal.show{ display: flex; }
+
+/* @z-order: 00000131 */
+#settings-content{ background: var(--bg-primary); border: 3px solid var(--border-color); padding: 25px; max-width: 90%; width: 350px; max-height: 80%; overflow-y: auto; text-align: center; border-radius: var(--border-radius); }
+
+/* @z-order: 00000132 */
+.settings-title{ color: var(--border-color); font-size: 14px; margin-bottom: 20px; }
+
+/* @z-order: 00000133 */
+.settings-section{ margin-bottom: 20px; text-align: left; }
+
+/* @z-order: 00000134 */
+.settings-label{ color: var(--text-primary); font-size: 9px; margin-bottom: 10px; display: block; }
+
+/* @z-order: 00000135 */
+.settings-btn-group{ display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* @z-order: 00000136 */
+.settings-option{ padding: 8px 12px; font-size: 8px; border: 2px solid var(--border-color); cursor: pointer; font-family: "Press Start 2P", cursive; background: var(--btn-bg); color: var(--text-primary); transition: all 0.2s; flex: 1; min-width: 80px; border-radius: var(--border-radius); }
+
+/* @z-order: 00000137 */
+.settings-option.active{ background: var(--border-color); color: #1a1a2e; box-shadow: 0 0 20px var(--glow-color); }
+
+/* @z-order: 00000138 */
+.settings-close-btn{ margin-top: 15px; padding: 12px 20px; font-size: 10px; border: 2px solid var(--border-color); cursor: pointer; font-family: "Press Start 2P", cursive; background: var(--btn-bg); color: var(--text-primary); width: 100%; border-radius: var(--border-radius); }
+
+/* @z-order: 00000309 */
+#settings-btn{
+    width:38px!important;height:38px!important;min-width:38px!important;padding:0!important;
+    display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 38px!important;
+    background:rgba(0,0,0,.22)!important;border:2px solid var(--border-color)!important;
+    border-radius:var(--border-radius)!important;color:var(--text-primary)!important;
+    box-shadow:0 3px 0 rgba(0,0,0,.5),0 0 10px color-mix(in srgb,var(--glow-color) 45%, transparent)!important;
+    transition:transform .16s ease,background .16s ease,box-shadow .16s ease!important;
+}
+
+/* @z-order: 00000311 */
+#settings-btn{font-family:Arial,sans-serif!important;font-size:21px!important;line-height:38px!important;font-weight:400!important}
+
+/* @z-order: 00000313 */
+#settings-btn:active{transform:scale(.93)!important}
+
+/* @z-order: 00000314 */
+#settings-btn:hover{background:rgba(255,255,255,.07)!important;box-shadow:0 3px 0 rgba(0,0,0,.5),0 0 15px var(--glow-color)!important}
+
+/* @z-order: 00000365 */
+#settings-btn{
+  width:38px !important; height:38px !important; min-width:38px !important;
+  padding:0 !important; margin:0 !important;
+  display:flex !important; align-items:center !important; justify-content:center !important;
+  border:2px solid var(--border-color) !important;
+  background:rgba(0,0,0,.32) !important;
+  color:#fff !important;
+  border-radius:var(--border-radius) !important;
+  box-shadow:0 3px 0 rgba(0,0,0,.55) !important;
+}
+
+/* @z-order: 00000366 */
+#settings-btn img{
+  display:block; width:22px; height:22px; object-fit:contain;
+  image-rendering:pixelated; pointer-events:none;
+  filter:none !important;
+}
+
+/* @z-order: 00000368 */
+#settings-btn img{ width:23px; height:23px; }
+
+/* @z-order: 00000369 */
+#settings-btn:active{ transform:translateY(1px) scale(.96) !important; }
+
+/* @z-order: 00000402 */
+@media (max-width:360px){
+#settings-btn{ width:36px !important;height:36px !important;min-width:36px !important; }
+}
+
+/* @z-order: 00000403 */
+@media (max-width:360px){
+#settings-btn img{ width:20px;height:20px; }
+}
+
+/* @z-order: 00000775 */
+#settings-content{border-radius:var(--border-radius)!important}
+
+/* @z-order: 00000776 */
+.settings-close-btn,
+.settings-option{border-radius:var(--border-radius)!important}
+
+/* @z-order: 00000791 */
+.settings-account-card{border:2px solid rgba(255,255,255,.12);background:rgba(0,0,0,.28);border-radius:var(--border-radius);padding:11px;margin-bottom:14px;text-align:left}
+
+/* @z-order: 00000792 */
+.settings-account-title{color:var(--border-color);font-size:8px;margin-bottom:9px;text-align:center}
+
+/* @z-order: 00000798 */
+.danger-option{border-color:#a24b56!important;color:#ff9aa5!important}
+
+/* @z-order: 00000922 */
+.settings-account-open{position:relative;width:100%;display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;gap:4px 10px;align-items:center;padding:12px 14px;margin:2px 0 14px;border:2px solid var(--border-color);border-radius:var(--border-radius);background:linear-gradient(90deg,rgba(255,255,255,.045),rgba(0,0,0,.25));color:var(--text-primary);font:8px "Press Start 2P",cursive;text-align:left;cursor:pointer;box-shadow:0 0 12px var(--glow-color)}
+
+/* @z-order: 00000923 */
+.settings-account-open small{grid-column:1;font-size:5px;color:var(--text-secondary)}
+
+/* @z-order: 00000924 */
+.settings-account-open b{grid-column:2;grid-row:1 / span 2;font-size:20px;color:var(--border-color);font-weight:normal}
+
+/* @z-order: 00000954 */
+@media (max-width:520px){
+.settings-account-open{padding:11px}
+}

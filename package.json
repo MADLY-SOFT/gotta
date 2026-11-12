@@ -1,0 +1,29 @@
+{
+  "name": "zombix-case-simulator",
+  "version": "1.16.0",
+  "private": true,
+  "description": "Zombix Case Simulator - hardened Node.js native HTTP and SQLite game server",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test --test-concurrency=1",
+    "check": "npm test && npm run validate:data",
+    "test:unit": "node --test tests/case-engine.test.js tests/inventory.test.js tests/inventory-query.test.js tests/player-projection.test.js tests/request-security.test.js",
+    "test:integration": "node --test tests/case-api.integration.test.js tests/market-api.integration.test.js tests/database-migration.test.js tests/db-maintenance.test.js tests/special-actions.integration.test.js",
+    "economy:sim": "node scripts/economy-sim.js",
+    "validate:data": "node scripts/validate-data.js",
+    "simulate:economy": "node scripts/economy-sim.js",
+    "db:check": "node scripts/db-maintenance.js",
+    "db:optimize": "node scripts/db-maintenance.js --apply",
+    "db:verify-projections": "node scripts/verify-projections.js",
+    "load:100": "node scripts/load-100.js",
+    "db:rebuild-projections": "node scripts/rebuild-player-projections.js",
+    "build:css": "node scripts/build-css.js",
+    "audit:css": "node scripts/audit-css.js"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "devDependencies": {
+    "postcss": "^8.5.6"
+  }
+}

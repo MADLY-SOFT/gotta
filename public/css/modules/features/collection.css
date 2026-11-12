@@ -1,0 +1,93 @@
+/* ZOMBIX CSS MODULE: features/collection
+ * Edit this file, then run: npm run build:css
+ * @z-order markers preserve the original cross-module cascade.
+ */
+/* @z-order: 00001229 */
+#collection-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(3,6,9,.84);backdrop-filter:blur(5px);padding:10px}
+
+/* @z-order: 00001230 */
+#collection-modal.show{display:flex}
+
+/* @z-order: 00001231 */
+#collection-content{width:min(980px,100%);height:min(760px,96vh);overflow:hidden;background:linear-gradient(180deg,rgba(18,24,30,.98),rgba(9,13,17,.99));border:1px solid var(--border-color);box-shadow:0 18px 70px rgba(0,0,0,.55);border-radius:var(--radius,14px);color:var(--text-primary)}
+
+/* @z-order: 00001232 */
+.collection-head{min-height:58px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.18)}
+
+/* @z-order: 00001233 */
+.collection-title{font-size:14px;font-weight:900;letter-spacing:1px}
+
+/* @z-order: 00001234 */
+.collection-subtitle{font-size:7px;color:var(--text-secondary);margin-top:5px;letter-spacing:.5px}
+
+/* @z-order: 00001235 */
+.collection-close{width:38px;height:38px;border:1px solid var(--border-color);background:rgba(255,255,255,.04);color:var(--text-primary);font-size:24px;border-radius:8px}
+
+/* @z-order: 00001236 */
+#collection-body{height:calc(100% - 59px);overflow:auto;padding:10px}
+
+/* @z-order: 00001267 */
+.collection-progress{border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:9px;margin-bottom:9px}
+
+/* @z-order: 00001268 */
+.collection-progress>div{display:flex;justify-content:space-between;font-size:8px}
+
+/* @z-order: 00001269 */
+.collection-progress span{color:var(--border-color)}
+
+/* @z-order: 00001270 */
+.collection-progress>i{display:block;height:7px;background:rgba(255,255,255,.07);margin-top:7px;border-radius:4px;overflow:hidden}
+
+/* @z-order: 00001271 */
+.collection-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}
+
+/* @z-order: 00001272 */
+.collection-item{min-height:125px;border:1px solid rgba(255,255,255,.08);border-radius:8px;background:rgba(255,255,255,.025);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px;text-align:center}
+
+/* @z-order: 00001273 */
+.collection-image{width:68px;height:68px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#444;background:rgba(0,0,0,.16);border-radius:7px}
+
+/* @z-order: 00001274 */
+.collection-item img{width:62px;height:62px;object-fit:contain;image-rendering:pixelated}
+
+/* @z-order: 00001275 */
+.collection-item b{font-size:6px;margin-top:5px;line-height:1.3}
+
+/* @z-order: 00001276 */
+.collection-item small{font-size:5px;color:var(--text-secondary);margin-top:3px}
+
+/* @z-order: 00001277 */
+.collection-item.found{border-color:rgba(255,255,255,.15)}
+
+/* @z-order: 00001278 */
+.collection-item.unknown{opacity:.55}
+
+/* @z-order: 00001279 */
+@media (max-width:760px){
+#collection-modal{padding:4px}
+}
+
+/* @z-order: 00001284 */
+@media (max-width:760px){
+.collection-grid{grid-template-columns:repeat(4,1fr)}
+}
+
+/* @z-order: 00001285 */
+@media (max-width:430px){
+.collection-title{font-size:11px}
+}
+
+/* @z-order: 00001286 */
+@media (max-width:430px){
+.collection-subtitle{font-size:5px}
+}
+
+/* @z-order: 00001293 */
+@media (max-width:430px){
+.collection-grid{grid-template-columns:repeat(3,1fr)}
+}
+
+/* @z-order: 00003183 */
+@media (max-width:360px){
+.progress-collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}

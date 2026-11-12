@@ -1,0 +1,75 @@
+/* ZOMBIX CSS MODULE: features/other-actions
+ * Edit this file, then run: npm run build:css
+ * @z-order markers preserve the original cross-module cascade.
+ */
+/* @z-order: 00000447 */
+#panel-other #other-actions{
+    padding-bottom: 8px;
+}
+
+/* @z-order: 00000603 */
+#panel-other #other-actions{width:min(92%,390px);margin:12px auto 0!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:9px!important;align-items:stretch!important;}
+
+/* @z-order: 00000604 */
+.other-action-btn{width:100%!important;min-height:72px!important;margin:0!important;padding:9px 6px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:6px!important;box-sizing:border-box!important;border:1px solid rgba(255,255,255,.16)!important;border-bottom:3px solid var(--border-color)!important;border-radius:var(--border-radius)!important;background:linear-gradient(180deg,rgba(35,35,35,.98),rgba(11,11,11,.98))!important;color:var(--text-primary)!important;font:6px "Press Start 2P",cursive!important;cursor:pointer!important;box-shadow:0 4px 0 rgba(0,0,0,.45)!important;transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease!important;}
+
+/* @z-order: 00000605 */
+.other-action-btn img{width:30px!important;height:30px!important;object-fit:contain!important;image-rendering:pixelated!important;filter:none!important;}
+
+/* @z-order: 00000606 */
+.other-action-btn span{line-height:1.35;text-align:center;}
+
+/* @z-order: 00000607 */
+.other-action-btn:hover{border-color:var(--border-color)!important;box-shadow:0 4px 0 rgba(0,0,0,.45),0 0 12px var(--glow-color)!important;}
+
+/* @z-order: 00000608 */
+.other-action-btn:active{transform:translateY(2px)!important;box-shadow:0 2px 0 rgba(0,0,0,.45)!important;}
+
+/* @z-order: 00000613 */
+@media (max-width:420px){
+#panel-other #other-actions{width:94%;gap:7px!important}
+}
+
+/* @z-order: 00000614 */
+@media (max-width:420px){
+.other-action-btn{min-height:68px!important;font-size:5.5px!important}
+}
+
+/* @z-order: 00000615 */
+@media (max-width:420px){
+.other-action-btn img{width:27px!important;height:27px!important}
+}
+
+/* @z-order: 00000641 */
+@media (prefers-reduced-motion:reduce){
+.other-action-btn{transition:none!important}
+}
+
+/* @z-order: 00000705 */
+.other-action-btn span{font-size:6.5px!important;line-height:1.5!important}
+
+/* @z-order: 00000706 */
+.other-action-btn img{filter:none!important}
+
+/* @z-order: 00000718 */
+.other-action-btn span{font-size:7.5px!important;line-height:1.55!important;}
+
+/* @z-order: 00000732 */
+@media (max-width:520px){
+.other-action-btn span{font-size:7px!important}
+}
+
+/* @z-order: 00000959 */
+.other-action-btn img[src*="quests.png"]{image-rendering:pixelated}
+
+/* @z-order: 00000960 */
+.other-action-btn:has(img[src*="quests.png"]){background:linear-gradient(145deg,rgba(76,175,80,.08),rgba(0,0,0,.2))!important}
+
+/* @z-order: 00002076 */
+#panel-other .other-action-btn:has(img[src*="market.png"]){background:linear-gradient(180deg,rgba(213,160,24,.20),rgba(16,16,16,.98))!important;border-bottom-color:#ffd34e!important;border-color:rgba(255,211,78,.28)!important}
+
+/* @z-order: 00002348 */
+#other-actions .other-action-btn{position:relative;overflow:visible}
+
+/* @z-order: 00002349 */
+#other-actions .other-action-btn.has-reward::after{content:'!';position:absolute;right:-7px;top:-8px;display:grid;place-items:center;width:19px;height:19px;background:#d9202c;border:2px solid #ff777d;outline:2px solid #38060a;box-shadow:2px 2px 0 #080808;color:#fff;font:11px 'Press Start 2P',monospace;line-height:1;z-index:2;image-rendering:pixelated;pointer-events:none}

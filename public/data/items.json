@@ -1,0 +1,4678 @@
+{
+  "categories": [
+    {
+      "id": "resources",
+      "name": "Ресурсы"
+    },
+    {
+      "id": "weapons",
+      "name": "Оружие"
+    },
+    {
+      "id": "head",
+      "name": "Шлемы"
+    },
+    {
+      "id": "body",
+      "name": "Броня"
+    },
+    {
+      "id": "boots",
+      "name": "Обувь"
+    },
+    {
+      "id": "details",
+      "name": "Детали"
+    },
+    {
+      "id": "medic",
+      "name": "Медицина"
+    },
+    {
+      "id": "new_year",
+      "name": "Коллекционные"
+    },
+    {
+      "id": "fish",
+      "name": "Еда"
+    },
+    {
+      "id": "ore",
+      "name": "Материалы"
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "name": "Бревно",
+      "image": "png/items/items_1.png",
+      "category": "resources",
+      "categoryLabel": "Ресурсы",
+      "tiers": {
+        "1": {
+          "price": 25
+        },
+        "2": {
+          "price": 85
+        },
+        "3": {
+          "price": 290
+        },
+        "4": {
+          "price": 985
+        },
+        "5": {
+          "price": 3340
+        },
+        "6": {
+          "price": 11360
+        }
+      }
+    },
+    {
+      "id": 2,
+      "name": "Доска",
+      "image": "png/items/items_2.png",
+      "tiers": {
+        "1": {
+          "price": 25
+        },
+        "2": {
+          "price": 85
+        },
+        "3": {
+          "price": 290
+        },
+        "4": {
+          "price": 985
+        },
+        "5": {
+          "price": 3340
+        },
+        "6": {
+          "price": 11360
+        }
+      },
+      "category": "resources",
+      "categoryLabel": "Ресурсы"
+    },
+    {
+      "id": 4,
+      "name": "Камень",
+      "image": "png/items/items_4.png",
+      "tiers": {
+        "1": {
+          "price": 25
+        },
+        "2": {
+          "price": 85
+        },
+        "3": {
+          "price": 290
+        },
+        "4": {
+          "price": 985
+        },
+        "5": {
+          "price": 3340
+        },
+        "6": {
+          "price": 11360
+        }
+      },
+      "category": "resources",
+      "categoryLabel": "Ресурсы"
+    },
+    {
+      "id": 34,
+      "name": "Жилет",
+      "image": "png/items/items_34.png",
+      "category": "body",
+      "categoryLabel": "Броня",
+      "tiers": {
+        "1": {
+          "price": 25
+        },
+        "2": {
+          "price": 85
+        },
+        "3": {
+          "price": 290
+        },
+        "4": {
+          "price": 985
+        },
+        "5": {
+          "price": 3340
+        },
+        "6": {
+          "price": 11360
+        }
+      }
+    },
+    {
+      "id": 41,
+      "name": "Синий Эликсир",
+      "image": "png/items/items_41.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 30
+        },
+        "2": {
+          "price": 100
+        },
+        "3": {
+          "price": 345
+        },
+        "4": {
+          "price": 1180
+        },
+        "5": {
+          "price": 4010
+        },
+        "6": {
+          "price": 13630
+        }
+      }
+    },
+    {
+      "id": 52,
+      "name": "Розовый Кристалл",
+      "image": "png/items/items_52.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 30
+        },
+        "2": {
+          "price": 100
+        },
+        "3": {
+          "price": 345
+        },
+        "4": {
+          "price": 1180
+        },
+        "5": {
+          "price": 4010
+        },
+        "6": {
+          "price": 13630
+        }
+      }
+    },
+    {
+      "id": 53,
+      "name": "Уголь",
+      "image": "png/items/items_53.png",
+      "category": "resources",
+      "categoryLabel": "Ресурсы",
+      "tiers": {
+        "1": {
+          "price": 30
+        },
+        "2": {
+          "price": 100
+        },
+        "3": {
+          "price": 345
+        },
+        "4": {
+          "price": 1180
+        },
+        "5": {
+          "price": 4010
+        },
+        "6": {
+          "price": 13630
+        }
+      }
+    },
+    {
+      "id": 62,
+      "name": "Клинок",
+      "image": "png/items/items_62.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 30
+        },
+        "2": {
+          "price": 100
+        },
+        "3": {
+          "price": 345
+        },
+        "4": {
+          "price": 1180
+        },
+        "5": {
+          "price": 4010
+        },
+        "6": {
+          "price": 13630
+        }
+      }
+    },
+    {
+      "id": 63,
+      "name": "Леденец",
+      "image": "png/items/items_63.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 30
+        },
+        "2": {
+          "price": 100
+        },
+        "3": {
+          "price": 345
+        },
+        "4": {
+          "price": 1180
+        },
+        "5": {
+          "price": 4010
+        },
+        "6": {
+          "price": 13630
+        }
+      }
+    },
+    {
+      "id": 74,
+      "name": "Кость",
+      "image": "png/items/items_74.png",
+      "category": "resources",
+      "categoryLabel": "Ресурсы",
+      "tiers": {
+        "1": {
+          "price": 35
+        },
+        "2": {
+          "price": 120
+        },
+        "3": {
+          "price": 405
+        },
+        "4": {
+          "price": 1375
+        },
+        "5": {
+          "price": 4675
+        },
+        "6": {
+          "price": 15900
+        }
+      }
+    },
+    {
+      "id": 76,
+      "name": "ТТ",
+      "image": "png/items/items_76.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 35
+        },
+        "2": {
+          "price": 120
+        },
+        "3": {
+          "price": 405
+        },
+        "4": {
+          "price": 1375
+        },
+        "5": {
+          "price": 4675
+        },
+        "6": {
+          "price": 15900
+        }
+      }
+    },
+    {
+      "id": 91,
+      "name": "Праздничная Шапка",
+      "image": "png/items/items_91.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 35
+        },
+        "2": {
+          "price": 120
+        },
+        "3": {
+          "price": 405
+        },
+        "4": {
+          "price": 1375
+        },
+        "5": {
+          "price": 4675
+        },
+        "6": {
+          "price": 15900
+        }
+      }
+    },
+    {
+      "id": 112,
+      "name": "Тёмный Артефакт",
+      "image": "png/items/items_112.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 35
+        },
+        "2": {
+          "price": 120
+        },
+        "3": {
+          "price": 405
+        },
+        "4": {
+          "price": 1375
+        },
+        "5": {
+          "price": 4675
+        },
+        "6": {
+          "price": 15900
+        }
+      }
+    },
+    {
+      "id": 125,
+      "name": "Череп",
+      "image": "png/items/items_125.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 40
+        },
+        "2": {
+          "price": 135
+        },
+        "3": {
+          "price": 460
+        },
+        "4": {
+          "price": 1570
+        },
+        "5": {
+          "price": 5345
+        },
+        "6": {
+          "price": 18175
+        }
+      }
+    },
+    {
+      "id": 129,
+      "name": "Капкан",
+      "image": "png/items/items_129.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 40
+        },
+        "2": {
+          "price": 135
+        },
+        "3": {
+          "price": 460
+        },
+        "4": {
+          "price": 1570
+        },
+        "5": {
+          "price": 5345
+        },
+        "6": {
+          "price": 18175
+        }
+      }
+    },
+    {
+      "id": 139,
+      "name": "Штурмовой",
+      "image": "png/items/items_139.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 40
+        },
+        "2": {
+          "price": 135
+        },
+        "3": {
+          "price": 460
+        },
+        "4": {
+          "price": 1570
+        },
+        "5": {
+          "price": 5345
+        },
+        "6": {
+          "price": 18175
+        }
+      }
+    },
+    {
+      "id": 155,
+      "name": "Граната",
+      "image": "png/items/items_155.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 40
+        },
+        "2": {
+          "price": 135
+        },
+        "3": {
+          "price": 460
+        },
+        "4": {
+          "price": 1570
+        },
+        "5": {
+          "price": 5345
+        },
+        "6": {
+          "price": 18175
+        }
+      }
+    },
+    {
+      "id": 159,
+      "name": "Сэндвич",
+      "image": "png/items/items_159.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 45
+        },
+        "2": {
+          "price": 155
+        },
+        "3": {
+          "price": 520
+        },
+        "4": {
+          "price": 1770
+        },
+        "5": {
+          "price": 6015
+        },
+        "6": {
+          "price": 20445
+        }
+      }
+    },
+    {
+      "id": 166,
+      "name": "Чёрный Цилиндр",
+      "image": "png/items/items_166.png",
+      "category": "head",
+      "categoryLabel": "Шлемы",
+      "tiers": {
+        "1": {
+          "price": 45
+        },
+        "2": {
+          "price": 155
+        },
+        "3": {
+          "price": 520
+        },
+        "4": {
+          "price": 1770
+        },
+        "5": {
+          "price": 6015
+        },
+        "6": {
+          "price": 20445
+        }
+      }
+    },
+    {
+      "id": 170,
+      "name": "Стальной Меч",
+      "image": "png/items/items_170.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 45
+        },
+        "2": {
+          "price": 155
+        },
+        "3": {
+          "price": 520
+        },
+        "4": {
+          "price": 1770
+        },
+        "5": {
+          "price": 6015
+        },
+        "6": {
+          "price": 20445
+        }
+      }
+    },
+    {
+      "id": 171,
+      "name": "Антрацит",
+      "image": "png/items/items_171.png",
+      "category": "resources",
+      "categoryLabel": "Ресурсы",
+      "tiers": {
+        "1": {
+          "price": 45
+        },
+        "2": {
+          "price": 155
+        },
+        "3": {
+          "price": 520
+        },
+        "4": {
+          "price": 1770
+        },
+        "5": {
+          "price": 6015
+        },
+        "6": {
+          "price": 20445
+        }
+      }
+    },
+    {
+      "id": 5,
+      "name": "Мясо",
+      "image": "png/items/items_5.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 50
+        },
+        "2": {
+          "price": 170
+        },
+        "3": {
+          "price": 580
+        },
+        "4": {
+          "price": 1965
+        },
+        "5": {
+          "price": 6680
+        },
+        "6": {
+          "price": 22720
+        }
+      }
+    },
+    {
+      "id": 31,
+      "name": "Тяжёлый Бронежилет",
+      "image": "png/items/items_31.png",
+      "category": "body",
+      "categoryLabel": "Броня",
+      "tiers": {
+        "1": {
+          "price": 50
+        },
+        "2": {
+          "price": 170
+        },
+        "3": {
+          "price": 580
+        },
+        "4": {
+          "price": 1965
+        },
+        "5": {
+          "price": 6680
+        },
+        "6": {
+          "price": 22720
+        }
+      }
+    },
+    {
+      "id": 32,
+      "name": "Полевая Разгрузка",
+      "image": "png/items/items_32.png",
+      "category": "body",
+      "categoryLabel": "Броня",
+      "tiers": {
+        "1": {
+          "price": 50
+        },
+        "2": {
+          "price": 170
+        },
+        "3": {
+          "price": 580
+        },
+        "4": {
+          "price": 1965
+        },
+        "5": {
+          "price": 6680
+        },
+        "6": {
+          "price": 22720
+        }
+      }
+    },
+    {
+      "id": 38,
+      "name": "Ботинки",
+      "image": "png/items/items_38.png",
+      "category": "boots",
+      "categoryLabel": "Обувь",
+      "tiers": {
+        "1": {
+          "price": 55
+        },
+        "2": {
+          "price": 185
+        },
+        "3": {
+          "price": 635
+        },
+        "4": {
+          "price": 2160
+        },
+        "5": {
+          "price": 7350
+        },
+        "6": {
+          "price": 24990
+        }
+      }
+    },
+    {
+      "id": 49,
+      "name": "Карабин",
+      "image": "png/items/items_49.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 55
+        },
+        "2": {
+          "price": 185
+        },
+        "3": {
+          "price": 635
+        },
+        "4": {
+          "price": 2160
+        },
+        "5": {
+          "price": 7350
+        },
+        "6": {
+          "price": 24990
+        }
+      }
+    },
+    {
+      "id": 51,
+      "name": "Шкура",
+      "image": "png/items/items_51.png",
+      "category": "resources",
+      "categoryLabel": "Ресурсы",
+      "tiers": {
+        "1": {
+          "price": 55
+        },
+        "2": {
+          "price": 185
+        },
+        "3": {
+          "price": 635
+        },
+        "4": {
+          "price": 2160
+        },
+        "5": {
+          "price": 7350
+        },
+        "6": {
+          "price": 24990
+        }
+      }
+    },
+    {
+      "id": 59,
+      "name": "Патроны",
+      "image": "png/items/items_59.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 60
+        },
+        "2": {
+          "price": 205
+        },
+        "3": {
+          "price": 695
+        },
+        "4": {
+          "price": 2360
+        },
+        "5": {
+          "price": 8020
+        },
+        "6": {
+          "price": 27260
+        }
+      }
+    },
+    {
+      "id": 69,
+      "name": "Сыр",
+      "image": "png/items/items_69.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 60
+        },
+        "2": {
+          "price": 205
+        },
+        "3": {
+          "price": 695
+        },
+        "4": {
+          "price": 2360
+        },
+        "5": {
+          "price": 8020
+        },
+        "6": {
+          "price": 27260
+        }
+      }
+    },
+    {
+      "id": 75,
+      "name": "Контейнер",
+      "image": "png/items/items_75.png",
+      "tiers": {
+        "1": {
+          "price": 60
+        },
+        "2": {
+          "price": 205
+        },
+        "3": {
+          "price": 695
+        },
+        "4": {
+          "price": 2360
+        },
+        "5": {
+          "price": 8020
+        },
+        "6": {
+          "price": 27260
+        }
+      },
+      "category": "resources",
+      "categoryLabel": "Ресурсы"
+    },
+    {
+      "id": 82,
+      "name": "ПМ",
+      "image": "png/items/items_82.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 65
+        },
+        "2": {
+          "price": 220
+        },
+        "3": {
+          "price": 750
+        },
+        "4": {
+          "price": 2555
+        },
+        "5": {
+          "price": 8685
+        },
+        "6": {
+          "price": 29535
+        }
+      }
+    },
+    {
+      "id": 86,
+      "name": "Тюльпан",
+      "image": "png/items/items_86.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 65
+        },
+        "2": {
+          "price": 220
+        },
+        "3": {
+          "price": 750
+        },
+        "4": {
+          "price": 2555
+        },
+        "5": {
+          "price": 8685
+        },
+        "6": {
+          "price": 29535
+        }
+      }
+    },
+    {
+      "id": 95,
+      "name": "Штурмовик",
+      "image": "png/items/items_95.png",
+      "tiers": {
+        "1": {
+          "price": 70
+        },
+        "2": {
+          "price": 240
+        },
+        "3": {
+          "price": 810
+        },
+        "4": {
+          "price": 2750
+        },
+        "5": {
+          "price": 9355
+        },
+        "6": {
+          "price": 31805
+        }
+      },
+      "category": "weapons",
+      "categoryLabel": "Оружие"
+    },
+    {
+      "id": 96,
+      "name": "Брюки",
+      "image": "png/items/items_96.png",
+      "category": "body",
+      "categoryLabel": "Броня",
+      "tiers": {
+        "1": {
+          "price": 70
+        },
+        "2": {
+          "price": 240
+        },
+        "3": {
+          "price": 810
+        },
+        "4": {
+          "price": 2750
+        },
+        "5": {
+          "price": 9355
+        },
+        "6": {
+          "price": 31805
+        }
+      }
+    },
+    {
+      "id": 97,
+      "name": "Флакон",
+      "image": "png/items/items_97.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 75
+        },
+        "2": {
+          "price": 255
+        },
+        "3": {
+          "price": 865
+        },
+        "4": {
+          "price": 2950
+        },
+        "5": {
+          "price": 10025
+        },
+        "6": {
+          "price": 34075
+        }
+      }
+    },
+    {
+      "id": 102,
+      "name": "Жар",
+      "image": "png/items/items_102.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 75
+        },
+        "2": {
+          "price": 255
+        },
+        "3": {
+          "price": 865
+        },
+        "4": {
+          "price": 2950
+        },
+        "5": {
+          "price": 10025
+        },
+        "6": {
+          "price": 34075
+        }
+      }
+    },
+    {
+      "id": 103,
+      "name": "Шестерня",
+      "image": "png/items/items_103.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 80
+        },
+        "2": {
+          "price": 270
+        },
+        "3": {
+          "price": 925
+        },
+        "4": {
+          "price": 3145
+        },
+        "5": {
+          "price": 10690
+        },
+        "6": {
+          "price": 36350
+        }
+      }
+    },
+    {
+      "id": 105,
+      "name": "Клык",
+      "image": "png/items/items_105.png",
+      "category": "resources",
+      "categoryLabel": "Ресурсы",
+      "tiers": {
+        "1": {
+          "price": 80
+        },
+        "2": {
+          "price": 270
+        },
+        "3": {
+          "price": 925
+        },
+        "4": {
+          "price": 3145
+        },
+        "5": {
+          "price": 10690
+        },
+        "6": {
+          "price": 36350
+        }
+      }
+    },
+    {
+      "id": 110,
+      "name": "Подарок",
+      "image": "png/items/items_110.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 85
+        },
+        "2": {
+          "price": 290
+        },
+        "3": {
+          "price": 985
+        },
+        "4": {
+          "price": 3340
+        },
+        "5": {
+          "price": 11360
+        },
+        "6": {
+          "price": 38620
+        }
+      }
+    },
+    {
+      "id": 121,
+      "name": "Синяя Изолента",
+      "image": "png/items/items_121.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 85
+        },
+        "2": {
+          "price": 290
+        },
+        "3": {
+          "price": 985
+        },
+        "4": {
+          "price": 3340
+        },
+        "5": {
+          "price": 11360
+        },
+        "6": {
+          "price": 38620
+        }
+      }
+    },
+    {
+      "id": 122,
+      "name": "Карамель",
+      "image": "png/items/items_122.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 90
+        },
+        "2": {
+          "price": 305
+        },
+        "3": {
+          "price": 1040
+        },
+        "4": {
+          "price": 3535
+        },
+        "5": {
+          "price": 12025
+        },
+        "6": {
+          "price": 40890
+        }
+      }
+    },
+    {
+      "id": 130,
+      "name": "Охотничий Нож",
+      "image": "png/items/items_130.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 90
+        },
+        "2": {
+          "price": 305
+        },
+        "3": {
+          "price": 1040
+        },
+        "4": {
+          "price": 3535
+        },
+        "5": {
+          "price": 12025
+        },
+        "6": {
+          "price": 40890
+        }
+      }
+    },
+    {
+      "id": 138,
+      "name": "Гриб",
+      "image": "png/items/items_138.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 95
+        },
+        "2": {
+          "price": 325
+        },
+        "3": {
+          "price": 1100
+        },
+        "4": {
+          "price": 3735
+        },
+        "5": {
+          "price": 12695
+        },
+        "6": {
+          "price": 43165
+        }
+      }
+    },
+    {
+      "id": 141,
+      "name": "Руда",
+      "image": "png/items/items_141.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 95
+        },
+        "2": {
+          "price": 325
+        },
+        "3": {
+          "price": 1100
+        },
+        "4": {
+          "price": 3735
+        },
+        "5": {
+          "price": 12695
+        },
+        "6": {
+          "price": 43165
+        }
+      }
+    },
+    {
+      "id": 142,
+      "name": "Трость",
+      "image": "png/items/items_142.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 100
+        },
+        "2": {
+          "price": 340
+        },
+        "3": {
+          "price": 1155
+        },
+        "4": {
+          "price": 3930
+        },
+        "5": {
+          "price": 13365
+        },
+        "6": {
+          "price": 45435
+        }
+      }
+    },
+    {
+      "id": 146,
+      "name": "Пурпурный Камень",
+      "image": "png/items/items_146.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 105
+        },
+        "2": {
+          "price": 355
+        },
+        "3": {
+          "price": 1215
+        },
+        "4": {
+          "price": 4125
+        },
+        "5": {
+          "price": 14030
+        },
+        "6": {
+          "price": 47705
+        }
+      }
+    },
+    {
+      "id": 147,
+      "name": "Коралл",
+      "image": "png/items/items_147.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 105
+        },
+        "2": {
+          "price": 355
+        },
+        "3": {
+          "price": 1215
+        },
+        "4": {
+          "price": 4125
+        },
+        "5": {
+          "price": 14030
+        },
+        "6": {
+          "price": 47705
+        }
+      }
+    },
+    {
+      "id": 27,
+      "name": "Каска",
+      "image": "png/items/items_27.png",
+      "category": "head",
+      "categoryLabel": "Шлемы",
+      "tiers": {
+        "1": {
+          "price": 110
+        },
+        "2": {
+          "price": 375
+        },
+        "3": {
+          "price": 1270
+        },
+        "4": {
+          "price": 4325
+        },
+        "5": {
+          "price": 14700
+        },
+        "6": {
+          "price": 49980
+        }
+      }
+    },
+    {
+      "id": 28,
+      "name": "Тактический Бронежилет",
+      "image": "png/items/items_28.png",
+      "category": "body",
+      "categoryLabel": "Броня",
+      "tiers": {
+        "1": {
+          "price": 115
+        },
+        "2": {
+          "price": 390
+        },
+        "3": {
+          "price": 1330
+        },
+        "4": {
+          "price": 4520
+        },
+        "5": {
+          "price": 15370
+        },
+        "6": {
+          "price": 52250
+        }
+      }
+    },
+    {
+      "id": 29,
+      "name": "Разгрузка",
+      "image": "png/items/items_29.png",
+      "category": "body",
+      "categoryLabel": "Броня",
+      "tiers": {
+        "1": {
+          "price": 115
+        },
+        "2": {
+          "price": 390
+        },
+        "3": {
+          "price": 1330
+        },
+        "4": {
+          "price": 4520
+        },
+        "5": {
+          "price": 15370
+        },
+        "6": {
+          "price": 52250
+        }
+      }
+    },
+    {
+      "id": 61,
+      "name": "Стейк",
+      "image": "png/items/items_61.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 120
+        },
+        "2": {
+          "price": 410
+        },
+        "3": {
+          "price": 1385
+        },
+        "4": {
+          "price": 4715
+        },
+        "5": {
+          "price": 16035
+        },
+        "6": {
+          "price": 54525
+        }
+      }
+    },
+    {
+      "id": 71,
+      "name": "Рыба",
+      "image": "png/items/items_71.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 125
+        },
+        "2": {
+          "price": 425
+        },
+        "3": {
+          "price": 1445
+        },
+        "4": {
+          "price": 4915
+        },
+        "5": {
+          "price": 16705
+        },
+        "6": {
+          "price": 56795
+        }
+      }
+    },
+    {
+      "id": 85,
+      "name": "Синее Пламя",
+      "image": "png/items/items_85.png",
+      "tiers": {
+        "1": {
+          "price": 130
+        },
+        "2": {
+          "price": 440
+        },
+        "3": {
+          "price": 1505
+        },
+        "4": {
+          "price": 5110
+        },
+        "5": {
+          "price": 17370
+        },
+        "6": {
+          "price": 59065
+        }
+      },
+      "category": "ore",
+      "categoryLabel": "Материалы"
+    },
+    {
+      "id": 104,
+      "name": "Цветок",
+      "image": "png/items/items_104.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 135
+        },
+        "2": {
+          "price": 460
+        },
+        "3": {
+          "price": 1560
+        },
+        "4": {
+          "price": 5305
+        },
+        "5": {
+          "price": 18040
+        },
+        "6": {
+          "price": 61340
+        }
+      }
+    },
+    {
+      "id": 114,
+      "name": "Белая Раковина",
+      "image": "png/items/items_114.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 135
+        },
+        "2": {
+          "price": 460
+        },
+        "3": {
+          "price": 1560
+        },
+        "4": {
+          "price": 5305
+        },
+        "5": {
+          "price": 18040
+        },
+        "6": {
+          "price": 61340
+        }
+      }
+    },
+    {
+      "id": 145,
+      "name": "Лопата",
+      "image": "png/items/items_145.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 140
+        },
+        "2": {
+          "price": 475
+        },
+        "3": {
+          "price": 1620
+        },
+        "4": {
+          "price": 5505
+        },
+        "5": {
+          "price": 18710
+        },
+        "6": {
+          "price": 63610
+        }
+      }
+    },
+    {
+      "id": 153,
+      "name": "Красная Шапка",
+      "image": "png/items/items_153.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 145
+        },
+        "2": {
+          "price": 495
+        },
+        "3": {
+          "price": 1675
+        },
+        "4": {
+          "price": 5700
+        },
+        "5": {
+          "price": 19375
+        },
+        "6": {
+          "price": 65880
+        }
+      }
+    },
+    {
+      "id": 164,
+      "name": "Эмблема",
+      "image": "png/items/items_164.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 150
+        },
+        "2": {
+          "price": 510
+        },
+        "3": {
+          "price": 1735
+        },
+        "4": {
+          "price": 5895
+        },
+        "5": {
+          "price": 20045
+        },
+        "6": {
+          "price": 68155
+        }
+      }
+    },
+    {
+      "id": 154,
+      "name": "Синяя Рыба",
+      "image": "png/items/items_154.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 155
+        },
+        "2": {
+          "price": 525
+        },
+        "3": {
+          "price": 1790
+        },
+        "4": {
+          "price": 6090
+        },
+        "5": {
+          "price": 20715
+        },
+        "6": {
+          "price": 70425
+        }
+      }
+    },
+    {
+      "id": 3,
+      "name": "Рюкзак",
+      "image": "png/items/items_3.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 160
+        },
+        "2": {
+          "price": 545
+        },
+        "3": {
+          "price": 1850
+        },
+        "4": {
+          "price": 6290
+        },
+        "5": {
+          "price": 21380
+        },
+        "6": {
+          "price": 72695
+        }
+      }
+    },
+    {
+      "id": 10,
+      "name": "Кирка",
+      "image": "png/items/items_10.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 165
+        },
+        "2": {
+          "price": 560
+        },
+        "3": {
+          "price": 1905
+        },
+        "4": {
+          "price": 6485
+        },
+        "5": {
+          "price": 22050
+        },
+        "6": {
+          "price": 74970
+        }
+      }
+    },
+    {
+      "id": 11,
+      "name": "Молоток",
+      "image": "png/items/items_11.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 170
+        },
+        "2": {
+          "price": 580
+        },
+        "3": {
+          "price": 1965
+        },
+        "4": {
+          "price": 6680
+        },
+        "5": {
+          "price": 22720
+        },
+        "6": {
+          "price": 77240
+        }
+      }
+    },
+    {
+      "id": 14,
+      "name": "Походник",
+      "image": "png/items/items_14.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 175
+        },
+        "2": {
+          "price": 595
+        },
+        "3": {
+          "price": 2025
+        },
+        "4": {
+          "price": 6880
+        },
+        "5": {
+          "price": 23385
+        },
+        "6": {
+          "price": 79510
+        }
+      }
+    },
+    {
+      "id": 35,
+      "name": "Штурмовой Бронежилет",
+      "image": "png/items/items_35.png",
+      "category": "body",
+      "categoryLabel": "Броня",
+      "tiers": {
+        "1": {
+          "price": 180
+        },
+        "2": {
+          "price": 610
+        },
+        "3": {
+          "price": 2080
+        },
+        "4": {
+          "price": 7075
+        },
+        "5": {
+          "price": 24055
+        },
+        "6": {
+          "price": 81785
+        }
+      }
+    },
+    {
+      "id": 36,
+      "name": "Сапоги",
+      "image": "png/items/items_36.png",
+      "category": "boots",
+      "categoryLabel": "Обувь",
+      "tiers": {
+        "1": {
+          "price": 190
+        },
+        "2": {
+          "price": 645
+        },
+        "3": {
+          "price": 2195
+        },
+        "4": {
+          "price": 7470
+        },
+        "5": {
+          "price": 25390
+        },
+        "6": {
+          "price": 86325
+        }
+      }
+    },
+    {
+      "id": 65,
+      "name": "Мясной Кусок",
+      "image": "png/items/items_65.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 195
+        },
+        "2": {
+          "price": 665
+        },
+        "3": {
+          "price": 2255
+        },
+        "4": {
+          "price": 7665
+        },
+        "5": {
+          "price": 26060
+        },
+        "6": {
+          "price": 88600
+        }
+      }
+    },
+    {
+      "id": 72,
+      "name": "Охотничья Винтовка",
+      "image": "png/items/items_72.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 200
+        },
+        "2": {
+          "price": 680
+        },
+        "3": {
+          "price": 2310
+        },
+        "4": {
+          "price": 7860
+        },
+        "5": {
+          "price": 26725
+        },
+        "6": {
+          "price": 90870
+        }
+      }
+    },
+    {
+      "id": 78,
+      "name": "Гитара",
+      "image": "png/items/items_78.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 205
+        },
+        "2": {
+          "price": 695
+        },
+        "3": {
+          "price": 2370
+        },
+        "4": {
+          "price": 8055
+        },
+        "5": {
+          "price": 27395
+        },
+        "6": {
+          "price": 93145
+        }
+      }
+    },
+    {
+      "id": 98,
+      "name": "Ромашка",
+      "image": "png/items/items_98.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 215
+        },
+        "2": {
+          "price": 730
+        },
+        "3": {
+          "price": 2485
+        },
+        "4": {
+          "price": 8450
+        },
+        "5": {
+          "price": 28730
+        },
+        "6": {
+          "price": 97685
+        }
+      }
+    },
+    {
+      "id": 108,
+      "name": "Окорок",
+      "image": "png/items/items_108.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 220
+        },
+        "2": {
+          "price": 750
+        },
+        "3": {
+          "price": 2545
+        },
+        "4": {
+          "price": 8645
+        },
+        "5": {
+          "price": 29400
+        },
+        "6": {
+          "price": 99960
+        }
+      }
+    },
+    {
+      "id": 111,
+      "name": "Пустынник",
+      "image": "png/items/items_111.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 225
+        },
+        "2": {
+          "price": 765
+        },
+        "3": {
+          "price": 2600
+        },
+        "4": {
+          "price": 8845
+        },
+        "5": {
+          "price": 30070
+        },
+        "6": {
+          "price": 102230
+        }
+      }
+    },
+    {
+      "id": 128,
+      "name": "Аметист",
+      "image": "png/items/items_128.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 235
+        },
+        "2": {
+          "price": 800
+        },
+        "3": {
+          "price": 2715
+        },
+        "4": {
+          "price": 9235
+        },
+        "5": {
+          "price": 31405
+        },
+        "6": {
+          "price": 106775
+        }
+      }
+    },
+    {
+      "id": 133,
+      "name": "Василёк",
+      "image": "png/items/items_133.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 240
+        },
+        "2": {
+          "price": 815
+        },
+        "3": {
+          "price": 2775
+        },
+        "4": {
+          "price": 9435
+        },
+        "5": {
+          "price": 32070
+        },
+        "6": {
+          "price": 109045
+        }
+      }
+    },
+    {
+      "id": 136,
+      "name": "Фиолетовая Сфера",
+      "image": "png/items/items_136.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 250
+        },
+        "2": {
+          "price": 850
+        },
+        "3": {
+          "price": 2890
+        },
+        "4": {
+          "price": 9825
+        },
+        "5": {
+          "price": 33410
+        },
+        "6": {
+          "price": 113590
+        }
+      }
+    },
+    {
+      "id": 152,
+      "name": "Самородок",
+      "image": "png/items/items_152.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 255
+        },
+        "2": {
+          "price": 865
+        },
+        "3": {
+          "price": 2950
+        },
+        "4": {
+          "price": 10025
+        },
+        "5": {
+          "price": 34075
+        },
+        "6": {
+          "price": 115860
+        }
+      }
+    },
+    {
+      "id": 157,
+      "name": "Свеча",
+      "image": "png/items/items_157.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 265
+        },
+        "2": {
+          "price": 900
+        },
+        "3": {
+          "price": 3065
+        },
+        "4": {
+          "price": 10415
+        },
+        "5": {
+          "price": 35415
+        },
+        "6": {
+          "price": 120405
+        }
+      }
+    },
+    {
+      "id": 168,
+      "name": "Носок",
+      "image": "png/items/items_168.png",
+      "category": "boots",
+      "categoryLabel": "Обувь",
+      "tiers": {
+        "1": {
+          "price": 275
+        },
+        "2": {
+          "price": 935
+        },
+        "3": {
+          "price": 3180
+        },
+        "4": {
+          "price": 10810
+        },
+        "5": {
+          "price": 36750
+        },
+        "6": {
+          "price": 124945
+        }
+      }
+    },
+    {
+      "id": 39,
+      "name": "Алый Эликсир",
+      "image": "png/items/items_39.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 285
+        },
+        "2": {
+          "price": 970
+        },
+        "3": {
+          "price": 3295
+        },
+        "4": {
+          "price": 11200
+        },
+        "5": {
+          "price": 38085
+        },
+        "6": {
+          "price": 129490
+        }
+      }
+    },
+    {
+      "id": 40,
+      "name": "Мятный Эликсир",
+      "image": "png/items/items_40.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 290
+        },
+        "2": {
+          "price": 985
+        },
+        "3": {
+          "price": 3350
+        },
+        "4": {
+          "price": 11400
+        },
+        "5": {
+          "price": 38755
+        },
+        "6": {
+          "price": 131765
+        }
+      }
+    },
+    {
+      "id": 42,
+      "name": "Пистолет",
+      "image": "png/items/items_42.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 300
+        },
+        "2": {
+          "price": 1020
+        },
+        "3": {
+          "price": 3470
+        },
+        "4": {
+          "price": 11790
+        },
+        "5": {
+          "price": 40090
+        },
+        "6": {
+          "price": 136305
+        }
+      }
+    },
+    {
+      "id": 48,
+      "name": "Изолента",
+      "image": "png/items/items_48.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 310
+        },
+        "2": {
+          "price": 1055
+        },
+        "3": {
+          "price": 3585
+        },
+        "4": {
+          "price": 12185
+        },
+        "5": {
+          "price": 41425
+        },
+        "6": {
+          "price": 140850
+        }
+      }
+    },
+    {
+      "id": 54,
+      "name": "Рогатка",
+      "image": "png/items/items_54.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 320
+        },
+        "2": {
+          "price": 1090
+        },
+        "3": {
+          "price": 3700
+        },
+        "4": {
+          "price": 12575
+        },
+        "5": {
+          "price": 42765
+        },
+        "6": {
+          "price": 145395
+        }
+      }
+    },
+    {
+      "id": 55,
+      "name": "Снайперка",
+      "image": "png/items/items_55.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 330
+        },
+        "2": {
+          "price": 1120
+        },
+        "3": {
+          "price": 3815
+        },
+        "4": {
+          "price": 12970
+        },
+        "5": {
+          "price": 44100
+        },
+        "6": {
+          "price": 149935
+        }
+      }
+    },
+    {
+      "id": 57,
+      "name": "Колба",
+      "image": "png/items/items_57.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 340
+        },
+        "2": {
+          "price": 1155
+        },
+        "3": {
+          "price": 3930
+        },
+        "4": {
+          "price": 13365
+        },
+        "5": {
+          "price": 45435
+        },
+        "6": {
+          "price": 154480
+        }
+      }
+    },
+    {
+      "id": 67,
+      "name": "Призрачный Кристалл",
+      "image": "png/items/items_67.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 350
+        },
+        "2": {
+          "price": 1190
+        },
+        "3": {
+          "price": 4045
+        },
+        "4": {
+          "price": 13755
+        },
+        "5": {
+          "price": 46770
+        },
+        "6": {
+          "price": 159025
+        }
+      }
+    },
+    {
+      "id": 68,
+      "name": "Глок",
+      "image": "png/items/items_68.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 365
+        },
+        "2": {
+          "price": 1240
+        },
+        "3": {
+          "price": 4220
+        },
+        "4": {
+          "price": 14345
+        },
+        "5": {
+          "price": 48775
+        },
+        "6": {
+          "price": 165840
+        }
+      }
+    },
+    {
+      "id": 73,
+      "name": "Фиолетовый Эликсир",
+      "image": "png/items/items_73.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 375
+        },
+        "2": {
+          "price": 1275
+        },
+        "3": {
+          "price": 4335
+        },
+        "4": {
+          "price": 14740
+        },
+        "5": {
+          "price": 50115
+        },
+        "6": {
+          "price": 170385
+        }
+      }
+    },
+    {
+      "id": 87,
+      "name": "Таблетки",
+      "image": "png/items/items_87.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 385
+        },
+        "2": {
+          "price": 1310
+        },
+        "3": {
+          "price": 4450
+        },
+        "4": {
+          "price": 15130
+        },
+        "5": {
+          "price": 51450
+        },
+        "6": {
+          "price": 174925
+        }
+      }
+    },
+    {
+      "id": 88,
+      "name": "Одуванчик",
+      "image": "png/items/items_88.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 400
+        },
+        "2": {
+          "price": 1360
+        },
+        "3": {
+          "price": 4625
+        },
+        "4": {
+          "price": 15720
+        },
+        "5": {
+          "price": 53455
+        },
+        "6": {
+          "price": 181740
+        }
+      }
+    },
+    {
+      "id": 89,
+      "name": "Кастет",
+      "image": "png/items/items_89.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 415
+        },
+        "2": {
+          "price": 1410
+        },
+        "3": {
+          "price": 4795
+        },
+        "4": {
+          "price": 16310
+        },
+        "5": {
+          "price": 55460
+        },
+        "6": {
+          "price": 188555
+        }
+      }
+    },
+    {
+      "id": 90,
+      "name": "Полевой Рюкзак",
+      "image": "png/items/items_90.png",
+      "tiers": {
+        "1": {
+          "price": 425
+        },
+        "2": {
+          "price": 1445
+        },
+        "3": {
+          "price": 4915
+        },
+        "4": {
+          "price": 16705
+        },
+        "5": {
+          "price": 56795
+        },
+        "6": {
+          "price": 193100
+        }
+      },
+      "category": "details",
+      "categoryLabel": "Детали"
+    },
+    {
+      "id": 100,
+      "name": "Мутантная Рыба",
+      "image": "png/items/items_100.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 440
+        },
+        "2": {
+          "price": 1495
+        },
+        "3": {
+          "price": 5085
+        },
+        "4": {
+          "price": 17295
+        },
+        "5": {
+          "price": 58800
+        },
+        "6": {
+          "price": 199915
+        }
+      }
+    },
+    {
+      "id": 101,
+      "name": "Красный Коралл",
+      "image": "png/items/items_101.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 455
+        },
+        "2": {
+          "price": 1545
+        },
+        "3": {
+          "price": 5260
+        },
+        "4": {
+          "price": 17885
+        },
+        "5": {
+          "price": 60805
+        },
+        "6": {
+          "price": 206730
+        }
+      }
+    },
+    {
+      "id": 113,
+      "name": "Гранат",
+      "image": "png/items/items_113.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 470
+        },
+        "2": {
+          "price": 1600
+        },
+        "3": {
+          "price": 5435
+        },
+        "4": {
+          "price": 18475
+        },
+        "5": {
+          "price": 62810
+        },
+        "6": {
+          "price": 213545
+        }
+      }
+    },
+    {
+      "id": 115,
+      "name": "Филе",
+      "image": "png/items/items_115.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 485
+        },
+        "2": {
+          "price": 1650
+        },
+        "3": {
+          "price": 5605
+        },
+        "4": {
+          "price": 19060
+        },
+        "5": {
+          "price": 64810
+        },
+        "6": {
+          "price": 220360
+        }
+      }
+    },
+    {
+      "id": 116,
+      "name": "Лазурный Эликсир",
+      "image": "png/items/items_116.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 500
+        },
+        "2": {
+          "price": 1700
+        },
+        "3": {
+          "price": 5780
+        },
+        "4": {
+          "price": 19650
+        },
+        "5": {
+          "price": 66815
+        },
+        "6": {
+          "price": 227175
+        }
+      }
+    },
+    {
+      "id": 123,
+      "name": "Тактик",
+      "image": "png/items/items_123.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 515
+        },
+        "2": {
+          "price": 1750
+        },
+        "3": {
+          "price": 5955
+        },
+        "4": {
+          "price": 20240
+        },
+        "5": {
+          "price": 68820
+        },
+        "6": {
+          "price": 233990
+        }
+      }
+    },
+    {
+      "id": 124,
+      "name": "Синяя Руда",
+      "image": "png/items/items_124.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 530
+        },
+        "2": {
+          "price": 1800
+        },
+        "3": {
+          "price": 6125
+        },
+        "4": {
+          "price": 20830
+        },
+        "5": {
+          "price": 70825
+        },
+        "6": {
+          "price": 240810
+        }
+      }
+    },
+    {
+      "id": 131,
+      "name": "Радиация",
+      "image": "png/items/items_131.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 550
+        },
+        "2": {
+          "price": 1870
+        },
+        "3": {
+          "price": 6360
+        },
+        "4": {
+          "price": 21615
+        },
+        "5": {
+          "price": 73500
+        },
+        "6": {
+          "price": 249895
+        }
+      }
+    },
+    {
+      "id": 132,
+      "name": "Вантуз",
+      "image": "png/items/items_132.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 565
+        },
+        "2": {
+          "price": 1920
+        },
+        "3": {
+          "price": 6530
+        },
+        "4": {
+          "price": 22205
+        },
+        "5": {
+          "price": 75505
+        },
+        "6": {
+          "price": 256710
+        }
+      }
+    },
+    {
+      "id": 134,
+      "name": "Новогодняя Шапка",
+      "image": "png/items/items_134.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 585
+        },
+        "2": {
+          "price": 1990
+        },
+        "3": {
+          "price": 6765
+        },
+        "4": {
+          "price": 22995
+        },
+        "5": {
+          "price": 78175
+        },
+        "6": {
+          "price": 265795
+        }
+      }
+    },
+    {
+      "id": 135,
+      "name": "Зелёный Мутант",
+      "image": "png/items/items_135.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 600
+        },
+        "2": {
+          "price": 2040
+        },
+        "3": {
+          "price": 6935
+        },
+        "4": {
+          "price": 23580
+        },
+        "5": {
+          "price": 80180
+        },
+        "6": {
+          "price": 272615
+        }
+      }
+    },
+    {
+      "id": 137,
+      "name": "Ткань",
+      "image": "png/items/items_137.png",
+      "tiers": {
+        "1": {
+          "price": 620
+        },
+        "2": {
+          "price": 2110
+        },
+        "3": {
+          "price": 7165
+        },
+        "4": {
+          "price": 24370
+        },
+        "5": {
+          "price": 82855
+        },
+        "6": {
+          "price": 281700
+        }
+      },
+      "category": "resources",
+      "categoryLabel": "Ресурсы"
+    },
+    {
+      "id": 144,
+      "name": "Зелёная Сфера",
+      "image": "png/items/items_144.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 640
+        },
+        "2": {
+          "price": 2175
+        },
+        "3": {
+          "price": 7400
+        },
+        "4": {
+          "price": 25155
+        },
+        "5": {
+          "price": 85525
+        },
+        "6": {
+          "price": 290785
+        }
+      }
+    },
+    {
+      "id": 149,
+      "name": "Глубинный Эликсир",
+      "image": "png/items/items_149.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 660
+        },
+        "2": {
+          "price": 2245
+        },
+        "3": {
+          "price": 7630
+        },
+        "4": {
+          "price": 25940
+        },
+        "5": {
+          "price": 88200
+        },
+        "6": {
+          "price": 299875
+        }
+      }
+    },
+    {
+      "id": 161,
+      "name": "Черепной Артефакт",
+      "image": "png/items/items_161.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 685
+        },
+        "2": {
+          "price": 2330
+        },
+        "3": {
+          "price": 7920
+        },
+        "4": {
+          "price": 26925
+        },
+        "5": {
+          "price": 91540
+        },
+        "6": {
+          "price": 311235
+        }
+      }
+    },
+    {
+      "id": 81,
+      "name": "Настойка",
+      "image": "png/items/items_81.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 705
+        },
+        "2": {
+          "price": 2395
+        },
+        "3": {
+          "price": 8150
+        },
+        "4": {
+          "price": 27710
+        },
+        "5": {
+          "price": 94210
+        },
+        "6": {
+          "price": 320320
+        }
+      }
+    },
+    {
+      "id": 92,
+      "name": "Штаны",
+      "image": "png/items/items_92.png",
+      "category": "body",
+      "categoryLabel": "Броня",
+      "tiers": {
+        "1": {
+          "price": 725
+        },
+        "2": {
+          "price": 2465
+        },
+        "3": {
+          "price": 8380
+        },
+        "4": {
+          "price": 28495
+        },
+        "5": {
+          "price": 96885
+        },
+        "6": {
+          "price": 329405
+        }
+      }
+    },
+    {
+      "id": 119,
+      "name": "Тактические Брюки",
+      "image": "png/items/items_119.png",
+      "category": "body",
+      "categoryLabel": "Броня",
+      "tiers": {
+        "1": {
+          "price": 750
+        },
+        "2": {
+          "price": 2550
+        },
+        "3": {
+          "price": 8670
+        },
+        "4": {
+          "price": 29480
+        },
+        "5": {
+          "price": 100225
+        },
+        "6": {
+          "price": 340765
+        }
+      }
+    },
+    {
+      "id": 120,
+      "name": "Кувалда",
+      "image": "png/items/items_120.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 775
+        },
+        "2": {
+          "price": 2635
+        },
+        "3": {
+          "price": 8960
+        },
+        "4": {
+          "price": 30460
+        },
+        "5": {
+          "price": 103565
+        },
+        "6": {
+          "price": 352125
+        }
+      }
+    },
+    {
+      "id": 33,
+      "name": "Ранец",
+      "image": "png/items/items_33.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 800
+        },
+        "2": {
+          "price": 2720
+        },
+        "3": {
+          "price": 9250
+        },
+        "4": {
+          "price": 31445
+        },
+        "5": {
+          "price": 106905
+        },
+        "6": {
+          "price": 363485
+        }
+      }
+    },
+    {
+      "id": 45,
+      "name": "Медальон",
+      "image": "png/items/items_45.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 825
+        },
+        "2": {
+          "price": 2805
+        },
+        "3": {
+          "price": 9535
+        },
+        "4": {
+          "price": 32425
+        },
+        "5": {
+          "price": 110250
+        },
+        "6": {
+          "price": 374840
+        }
+      }
+    },
+    {
+      "id": 58,
+      "name": "Автомат",
+      "image": "png/items/items_58.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 850
+        },
+        "2": {
+          "price": 2890
+        },
+        "3": {
+          "price": 9825
+        },
+        "4": {
+          "price": 33410
+        },
+        "5": {
+          "price": 113590
+        },
+        "6": {
+          "price": 386200
+        }
+      }
+    },
+    {
+      "id": 109,
+      "name": "Ягоды",
+      "image": "png/items/items_109.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 880
+        },
+        "2": {
+          "price": 2990
+        },
+        "3": {
+          "price": 10175
+        },
+        "4": {
+          "price": 34590
+        },
+        "5": {
+          "price": 117600
+        },
+        "6": {
+          "price": 399830
+        }
+      }
+    },
+    {
+      "id": 140,
+      "name": "Крюк",
+      "image": "png/items/items_140.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 905
+        },
+        "2": {
+          "price": 3075
+        },
+        "3": {
+          "price": 10460
+        },
+        "4": {
+          "price": 35570
+        },
+        "5": {
+          "price": 120940
+        },
+        "6": {
+          "price": 411190
+        }
+      }
+    },
+    {
+      "id": 163,
+      "name": "Боевой Ствол",
+      "image": "png/items/items_163.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 935
+        },
+        "2": {
+          "price": 3180
+        },
+        "3": {
+          "price": 10810
+        },
+        "4": {
+          "price": 36750
+        },
+        "5": {
+          "price": 124945
+        },
+        "6": {
+          "price": 424820
+        }
+      }
+    },
+    {
+      "id": 6,
+      "name": "Нож",
+      "image": "png/items/items_6.png",
+      "tiers": {
+        "1": {
+          "price": 965
+        },
+        "2": {
+          "price": 3280
+        },
+        "3": {
+          "price": 11155
+        },
+        "4": {
+          "price": 37930
+        },
+        "5": {
+          "price": 128955
+        },
+        "6": {
+          "price": 438450
+        }
+      },
+      "category": "weapons",
+      "categoryLabel": "Оружие"
+    },
+    {
+      "id": 7,
+      "name": "Винтовка",
+      "image": "png/items/items_7.png",
+      "tiers": {
+        "1": {
+          "price": 995
+        },
+        "2": {
+          "price": 3385
+        },
+        "3": {
+          "price": 11500
+        },
+        "4": {
+          "price": 39105
+        },
+        "5": {
+          "price": 132965
+        },
+        "6": {
+          "price": 452080
+        }
+      },
+      "category": "weapons",
+      "categoryLabel": "Оружие"
+    },
+    {
+      "id": 8,
+      "name": "Лук",
+      "image": "png/items/items_8.png",
+      "tiers": {
+        "1": {
+          "price": 1030
+        },
+        "2": {
+          "price": 3500
+        },
+        "3": {
+          "price": 11905
+        },
+        "4": {
+          "price": 40485
+        },
+        "5": {
+          "price": 137645
+        },
+        "6": {
+          "price": 467985
+        }
+      },
+      "category": "weapons",
+      "categoryLabel": "Оружие"
+    },
+    {
+      "id": 9,
+      "name": "Клинок 2",
+      "image": "png/items/items_9.png",
+      "tiers": {
+        "1": {
+          "price": 1060
+        },
+        "2": {
+          "price": 3605
+        },
+        "3": {
+          "price": 12255
+        },
+        "4": {
+          "price": 41660
+        },
+        "5": {
+          "price": 141650
+        },
+        "6": {
+          "price": 481615
+        }
+      },
+      "category": "weapons",
+      "categoryLabel": "Оружие"
+    },
+    {
+      "id": 12,
+      "name": "Серп",
+      "image": "png/items/items_12.png",
+      "tiers": {
+        "1": {
+          "price": 1095
+        },
+        "2": {
+          "price": 3725
+        },
+        "3": {
+          "price": 12660
+        },
+        "4": {
+          "price": 43040
+        },
+        "5": {
+          "price": 146330
+        },
+        "6": {
+          "price": 497520
+        }
+      },
+      "category": "weapons",
+      "categoryLabel": "Оружие"
+    },
+    {
+      "id": 30,
+      "name": "Зелёный Ранец",
+      "image": "png/items/items_30.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 1130
+        },
+        "2": {
+          "price": 3840
+        },
+        "3": {
+          "price": 13065
+        },
+        "4": {
+          "price": 44415
+        },
+        "5": {
+          "price": 151005
+        },
+        "6": {
+          "price": 513420
+        }
+      }
+    },
+    {
+      "id": 37,
+      "name": "Берцы",
+      "image": "png/items/items_37.png",
+      "category": "boots",
+      "categoryLabel": "Обувь",
+      "tiers": {
+        "1": {
+          "price": 1165
+        },
+        "2": {
+          "price": 3960
+        },
+        "3": {
+          "price": 13465
+        },
+        "4": {
+          "price": 45790
+        },
+        "5": {
+          "price": 155685
+        },
+        "6": {
+          "price": 529325
+        }
+      }
+    },
+    {
+      "id": 43,
+      "name": "Красные Ягоды",
+      "image": "png/items/items_43.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 1205
+        },
+        "2": {
+          "price": 4095
+        },
+        "3": {
+          "price": 13930
+        },
+        "4": {
+          "price": 47360
+        },
+        "5": {
+          "price": 161030
+        },
+        "6": {
+          "price": 547495
+        }
+      }
+    },
+    {
+      "id": 46,
+      "name": "Большая Шестерня",
+      "image": "png/items/items_46.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 1240
+        },
+        "2": {
+          "price": 4215
+        },
+        "3": {
+          "price": 14335
+        },
+        "4": {
+          "price": 48735
+        },
+        "5": {
+          "price": 165705
+        },
+        "6": {
+          "price": 563400
+        }
+      }
+    },
+    {
+      "id": 47,
+      "name": "Ящик",
+      "image": "png/items/items_47.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 1280
+        },
+        "2": {
+          "price": 4350
+        },
+        "3": {
+          "price": 14795
+        },
+        "4": {
+          "price": 50310
+        },
+        "5": {
+          "price": 171050
+        },
+        "6": {
+          "price": 581575
+        }
+      }
+    },
+    {
+      "id": 50,
+      "name": "Факел",
+      "image": "png/items/items_50.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 1325
+        },
+        "2": {
+          "price": 4505
+        },
+        "3": {
+          "price": 15315
+        },
+        "4": {
+          "price": 52080
+        },
+        "5": {
+          "price": 177065
+        },
+        "6": {
+          "price": 602020
+        }
+      }
+    },
+    {
+      "id": 56,
+      "name": "Макаров",
+      "image": "png/items/items_56.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 1365
+        },
+        "2": {
+          "price": 4640
+        },
+        "3": {
+          "price": 15780
+        },
+        "4": {
+          "price": 53650
+        },
+        "5": {
+          "price": 182410
+        },
+        "6": {
+          "price": 620195
+        }
+      }
+    },
+    {
+      "id": 60,
+      "name": "Золотая Рыба",
+      "image": "png/items/items_60.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 1410
+        },
+        "2": {
+          "price": 4795
+        },
+        "3": {
+          "price": 16300
+        },
+        "4": {
+          "price": 55420
+        },
+        "5": {
+          "price": 188425
+        },
+        "6": {
+          "price": 640640
+        }
+      }
+    },
+    {
+      "id": 64,
+      "name": "Речная Рыба",
+      "image": "png/items/items_64.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 1455
+        },
+        "2": {
+          "price": 4945
+        },
+        "3": {
+          "price": 16820
+        },
+        "4": {
+          "price": 57185
+        },
+        "5": {
+          "price": 194435
+        },
+        "6": {
+          "price": 661085
+        }
+      }
+    },
+    {
+      "id": 66,
+      "name": "Мятная Конфета",
+      "image": "png/items/items_66.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 1500
+        },
+        "2": {
+          "price": 5100
+        },
+        "3": {
+          "price": 17340
+        },
+        "4": {
+          "price": 58955
+        },
+        "5": {
+          "price": 200450
+        },
+        "6": {
+          "price": 681530
+        }
+      }
+    },
+    {
+      "id": 70,
+      "name": "Монета",
+      "image": "png/items/items_70.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 1550
+        },
+        "2": {
+          "price": 5270
+        },
+        "3": {
+          "price": 17920
+        },
+        "4": {
+          "price": 60920
+        },
+        "5": {
+          "price": 207130
+        },
+        "6": {
+          "price": 704250
+        }
+      }
+    },
+    {
+      "id": 77,
+      "name": "Фонарик",
+      "image": "png/items/items_77.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 1600
+        },
+        "2": {
+          "price": 5440
+        },
+        "3": {
+          "price": 18495
+        },
+        "4": {
+          "price": 62885
+        },
+        "5": {
+          "price": 213815
+        },
+        "6": {
+          "price": 726965
+        }
+      }
+    },
+    {
+      "id": 83,
+      "name": "Аптечка",
+      "image": "png/items/items_83.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 1650
+        },
+        "2": {
+          "price": 5610
+        },
+        "3": {
+          "price": 19075
+        },
+        "4": {
+          "price": 64850
+        },
+        "5": {
+          "price": 220495
+        },
+        "6": {
+          "price": 749685
+        }
+      }
+    },
+    {
+      "id": 93,
+      "name": "Хищная Рыба",
+      "image": "png/items/items_93.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 1700
+        },
+        "2": {
+          "price": 5780
+        },
+        "3": {
+          "price": 19650
+        },
+        "4": {
+          "price": 66815
+        },
+        "5": {
+          "price": 227175
+        },
+        "6": {
+          "price": 772400
+        }
+      }
+    },
+    {
+      "id": 94,
+      "name": "Раковина",
+      "image": "png/items/items_94.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 1755
+        },
+        "2": {
+          "price": 5965
+        },
+        "3": {
+          "price": 20290
+        },
+        "4": {
+          "price": 68980
+        },
+        "5": {
+          "price": 234525
+        },
+        "6": {
+          "price": 797390
+        }
+      }
+    },
+    {
+      "id": 99,
+      "name": "Мех",
+      "image": "png/items/items_99.png",
+      "category": "resources",
+      "categoryLabel": "Ресурсы",
+      "tiers": {
+        "1": {
+          "price": 1815
+        },
+        "2": {
+          "price": 6170
+        },
+        "3": {
+          "price": 20980
+        },
+        "4": {
+          "price": 71335
+        },
+        "5": {
+          "price": 242545
+        },
+        "6": {
+          "price": 824655
+        }
+      }
+    },
+    {
+      "id": 106,
+      "name": "Ствол",
+      "image": "png/items/items_106.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 1870
+        },
+        "2": {
+          "price": 6360
+        },
+        "3": {
+          "price": 21615
+        },
+        "4": {
+          "price": 73500
+        },
+        "5": {
+          "price": 249895
+        },
+        "6": {
+          "price": 849640
+        }
+      }
+    },
+    {
+      "id": 117,
+      "name": "Сладкие Ягоды",
+      "image": "png/items/items_117.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 1930
+        },
+        "2": {
+          "price": 6560
+        },
+        "3": {
+          "price": 22310
+        },
+        "4": {
+          "price": 75855
+        },
+        "5": {
+          "price": 257915
+        },
+        "6": {
+          "price": 876905
+        }
+      }
+    },
+    {
+      "id": 126,
+      "name": "Рация",
+      "image": "png/items/items_126.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 1995
+        },
+        "2": {
+          "price": 6785
+        },
+        "3": {
+          "price": 23060
+        },
+        "4": {
+          "price": 78410
+        },
+        "5": {
+          "price": 266600
+        },
+        "6": {
+          "price": 906435
+        }
+      }
+    },
+    {
+      "id": 127,
+      "name": "Изумруд",
+      "image": "png/items/items_127.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 2055
+        },
+        "2": {
+          "price": 6985
+        },
+        "3": {
+          "price": 23755
+        },
+        "4": {
+          "price": 80770
+        },
+        "5": {
+          "price": 274615
+        },
+        "6": {
+          "price": 933700
+        }
+      }
+    },
+    {
+      "id": 143,
+      "name": "Ледяной Артефакт",
+      "image": "png/items/items_143.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 2120
+        },
+        "2": {
+          "price": 7210
+        },
+        "3": {
+          "price": 24505
+        },
+        "4": {
+          "price": 83325
+        },
+        "5": {
+          "price": 283305
+        },
+        "6": {
+          "price": 963230
+        }
+      }
+    },
+    {
+      "id": 148,
+      "name": "Дубина",
+      "image": "png/items/items_148.png",
+      "tiers": {
+        "1": {
+          "price": 2190
+        },
+        "2": {
+          "price": 7445
+        },
+        "3": {
+          "price": 25315
+        },
+        "4": {
+          "price": 86075
+        },
+        "5": {
+          "price": 292660
+        },
+        "6": {
+          "price": 995035
+        }
+      },
+      "category": "weapons",
+      "categoryLabel": "Оружие"
+    },
+    {
+      "id": 150,
+      "name": "Прожарка",
+      "image": "png/items/items_150.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 2260
+        },
+        "2": {
+          "price": 7685
+        },
+        "3": {
+          "price": 26125
+        },
+        "4": {
+          "price": 88825
+        },
+        "5": {
+          "price": 302010
+        },
+        "6": {
+          "price": 1026840
+        }
+      }
+    },
+    {
+      "id": 151,
+      "name": "Серая Руда",
+      "image": "png/items/items_151.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 2330
+        },
+        "2": {
+          "price": 7920
+        },
+        "3": {
+          "price": 26935
+        },
+        "4": {
+          "price": 91580
+        },
+        "5": {
+          "price": 311365
+        },
+        "6": {
+          "price": 1058645
+        }
+      }
+    },
+    {
+      "id": 158,
+      "name": "Красный Эликсир",
+      "image": "png/items/items_158.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 2405
+        },
+        "2": {
+          "price": 8175
+        },
+        "3": {
+          "price": 27800
+        },
+        "4": {
+          "price": 94525
+        },
+        "5": {
+          "price": 321390
+        },
+        "6": {
+          "price": 1092720
+        }
+      }
+    },
+    {
+      "id": 160,
+      "name": "Вальтер",
+      "image": "png/items/items_160.png",
+      "tiers": {
+        "1": {
+          "price": 2485
+        },
+        "2": {
+          "price": 8450
+        },
+        "3": {
+          "price": 28725
+        },
+        "4": {
+          "price": 97670
+        },
+        "5": {
+          "price": 332080
+        },
+        "6": {
+          "price": 1129070
+        }
+      },
+      "category": "weapons",
+      "categoryLabel": "Оружие"
+    },
+    {
+      "id": 162,
+      "name": "Свиток",
+      "image": "png/items/items_162.png",
+      "category": "resources",
+      "categoryLabel": "Ресурсы",
+      "tiers": {
+        "1": {
+          "price": 2565
+        },
+        "2": {
+          "price": 8720
+        },
+        "3": {
+          "price": 29650
+        },
+        "4": {
+          "price": 100815
+        },
+        "5": {
+          "price": 342770
+        },
+        "6": {
+          "price": 1165420
+        }
+      }
+    },
+    {
+      "id": 169,
+      "name": "Старый Рюкзак",
+      "image": "png/items/items_169.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 2645
+        },
+        "2": {
+          "price": 8995
+        },
+        "3": {
+          "price": 30575
+        },
+        "4": {
+          "price": 103960
+        },
+        "5": {
+          "price": 353460
+        },
+        "6": {
+          "price": 1201765
+        }
+      }
+    },
+    {
+      "id": 156,
+      "name": "Синяя Сфера",
+      "image": "png/items/items_156.png",
+      "category": "boots",
+      "categoryLabel": "Обувь",
+      "tiers": {
+        "1": {
+          "price": 2730
+        },
+        "2": {
+          "price": 9280
+        },
+        "3": {
+          "price": 31560
+        },
+        "4": {
+          "price": 107300
+        },
+        "5": {
+          "price": 364820
+        },
+        "6": {
+          "price": 1240385
+        }
+      }
+    },
+    {
+      "id": 13,
+      "name": "Шлем",
+      "image": "png/items/items_13.png",
+      "category": "head",
+      "categoryLabel": "Шлемы",
+      "tiers": {
+        "1": {
+          "price": 2820
+        },
+        "2": {
+          "price": 9590
+        },
+        "3": {
+          "price": 32600
+        },
+        "4": {
+          "price": 110835
+        },
+        "5": {
+          "price": 376845
+        },
+        "6": {
+          "price": 1281280
+        }
+      }
+    },
+    {
+      "id": 15,
+      "name": "Стальная Каска",
+      "image": "png/items/items_15.png",
+      "category": "head",
+      "categoryLabel": "Шлемы",
+      "tiers": {
+        "1": {
+          "price": 2910
+        },
+        "2": {
+          "price": 9895
+        },
+        "3": {
+          "price": 33640
+        },
+        "4": {
+          "price": 114375
+        },
+        "5": {
+          "price": 388875
+        },
+        "6": {
+          "price": 1322170
+        }
+      }
+    },
+    {
+      "id": 16,
+      "name": "Цилиндр",
+      "image": "png/items/items_16.png",
+      "category": "head",
+      "categoryLabel": "Шлемы",
+      "tiers": {
+        "1": {
+          "price": 3000
+        },
+        "2": {
+          "price": 10200
+        },
+        "3": {
+          "price": 34680
+        },
+        "4": {
+          "price": 117910
+        },
+        "5": {
+          "price": 400900
+        },
+        "6": {
+          "price": 1363065
+        }
+      }
+    },
+    {
+      "id": 17,
+      "name": "Шипастый",
+      "image": "png/items/items_17.png",
+      "category": "head",
+      "categoryLabel": "Шлемы",
+      "tiers": {
+        "1": {
+          "price": 3095
+        },
+        "2": {
+          "price": 10525
+        },
+        "3": {
+          "price": 35780
+        },
+        "4": {
+          "price": 121645
+        },
+        "5": {
+          "price": 413595
+        },
+        "6": {
+          "price": 1406225
+        }
+      }
+    },
+    {
+      "id": 18,
+      "name": "Бронежилет",
+      "image": "png/items/items_18.png",
+      "category": "body",
+      "categoryLabel": "Броня",
+      "tiers": {
+        "1": {
+          "price": 3195
+        },
+        "2": {
+          "price": 10865
+        },
+        "3": {
+          "price": 36935
+        },
+        "4": {
+          "price": 125575
+        },
+        "5": {
+          "price": 426960
+        },
+        "6": {
+          "price": 1451660
+        }
+      }
+    },
+    {
+      "id": 19,
+      "name": "Красный Шлем",
+      "image": "png/items/items_19.png",
+      "category": "head",
+      "categoryLabel": "Шлемы",
+      "tiers": {
+        "1": {
+          "price": 3300
+        },
+        "2": {
+          "price": 11220
+        },
+        "3": {
+          "price": 38150
+        },
+        "4": {
+          "price": 129705
+        },
+        "5": {
+          "price": 440990
+        },
+        "6": {
+          "price": 1499370
+        }
+      }
+    },
+    {
+      "id": 20,
+      "name": "Тыква",
+      "image": "png/items/items_20.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 3405
+        },
+        "2": {
+          "price": 11575
+        },
+        "3": {
+          "price": 39360
+        },
+        "4": {
+          "price": 133830
+        },
+        "5": {
+          "price": 455020
+        },
+        "6": {
+          "price": 1547075
+        }
+      }
+    },
+    {
+      "id": 21,
+      "name": "Кепка",
+      "image": "png/items/items_21.png",
+      "category": "head",
+      "categoryLabel": "Шлемы",
+      "tiers": {
+        "1": {
+          "price": 3515
+        },
+        "2": {
+          "price": 11950
+        },
+        "3": {
+          "price": 40635
+        },
+        "4": {
+          "price": 138155
+        },
+        "5": {
+          "price": 469720
+        },
+        "6": {
+          "price": 1597055
+        }
+      }
+    },
+    {
+      "id": 22,
+      "name": "Синий Шлем",
+      "image": "png/items/items_22.png",
+      "category": "head",
+      "categoryLabel": "Шлемы",
+      "tiers": {
+        "1": {
+          "price": 3625
+        },
+        "2": {
+          "price": 12325
+        },
+        "3": {
+          "price": 41905
+        },
+        "4": {
+          "price": 142475
+        },
+        "5": {
+          "price": 484420
+        },
+        "6": {
+          "price": 1647035
+        }
+      }
+    },
+    {
+      "id": 23,
+      "name": "Военная Каска",
+      "image": "png/items/items_23.png",
+      "category": "head",
+      "categoryLabel": "Шлемы",
+      "tiers": {
+        "1": {
+          "price": 3740
+        },
+        "2": {
+          "price": 12715
+        },
+        "3": {
+          "price": 43235
+        },
+        "4": {
+          "price": 146995
+        },
+        "5": {
+          "price": 499790
+        },
+        "6": {
+          "price": 1699285
+        }
+      }
+    },
+    {
+      "id": 24,
+      "name": "Зелёный Шлем",
+      "image": "png/items/items_24.png",
+      "category": "head",
+      "categoryLabel": "Шлемы",
+      "tiers": {
+        "1": {
+          "price": 3860
+        },
+        "2": {
+          "price": 13125
+        },
+        "3": {
+          "price": 44620
+        },
+        "4": {
+          "price": 151715
+        },
+        "5": {
+          "price": 515825
+        },
+        "6": {
+          "price": 1753805
+        }
+      }
+    },
+    {
+      "id": 25,
+      "name": "Полевая Кепка",
+      "image": "png/items/items_25.png",
+      "category": "head",
+      "categoryLabel": "Шлемы",
+      "tiers": {
+        "1": {
+          "price": 3985
+        },
+        "2": {
+          "price": 13550
+        },
+        "3": {
+          "price": 46065
+        },
+        "4": {
+          "price": 156625
+        },
+        "5": {
+          "price": 532530
+        },
+        "6": {
+          "price": 1810600
+        }
+      }
+    },
+    {
+      "id": 26,
+      "name": "Синяя Каска",
+      "image": "png/items/items_26.png",
+      "category": "head",
+      "categoryLabel": "Шлемы",
+      "tiers": {
+        "1": {
+          "price": 4110
+        },
+        "2": {
+          "price": 13975
+        },
+        "3": {
+          "price": 47510
+        },
+        "4": {
+          "price": 161540
+        },
+        "5": {
+          "price": 549235
+        },
+        "6": {
+          "price": 1867395
+        }
+      }
+    },
+    {
+      "id": 44,
+      "name": "Пузырёк",
+      "image": "png/items/items_44.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 4245
+        },
+        "2": {
+          "price": 14435
+        },
+        "3": {
+          "price": 49070
+        },
+        "4": {
+          "price": 166845
+        },
+        "5": {
+          "price": 567275
+        },
+        "6": {
+          "price": 1928735
+        }
+      }
+    },
+    {
+      "id": 79,
+      "name": "Мутант",
+      "image": "png/items/items_79.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 4380
+        },
+        "2": {
+          "price": 14890
+        },
+        "3": {
+          "price": 50635
+        },
+        "4": {
+          "price": 172150
+        },
+        "5": {
+          "price": 585315
+        },
+        "6": {
+          "price": 1990070
+        }
+      }
+    },
+    {
+      "id": 80,
+      "name": "Золото",
+      "image": "png/items/items_80.png",
+      "category": "ore",
+      "categoryLabel": "Материалы",
+      "tiers": {
+        "1": {
+          "price": 4520
+        },
+        "2": {
+          "price": 15370
+        },
+        "3": {
+          "price": 52250
+        },
+        "4": {
+          "price": 177655
+        },
+        "5": {
+          "price": 604025
+        },
+        "6": {
+          "price": 2053680
+        }
+      }
+    },
+    {
+      "id": 84,
+      "name": "Рулон Изоленты",
+      "image": "png/items/items_84.png",
+      "category": "details",
+      "categoryLabel": "Детали",
+      "tiers": {
+        "1": {
+          "price": 4665
+        },
+        "2": {
+          "price": 15860
+        },
+        "3": {
+          "price": 53925
+        },
+        "4": {
+          "price": 183355
+        },
+        "5": {
+          "price": 623400
+        },
+        "6": {
+          "price": 2119565
+        }
+      }
+    },
+    {
+      "id": 107,
+      "name": "Шашлык",
+      "image": "png/items/items_107.png",
+      "category": "fish",
+      "categoryLabel": "Еда",
+      "tiers": {
+        "1": {
+          "price": 4815
+        },
+        "2": {
+          "price": 16370
+        },
+        "3": {
+          "price": 55660
+        },
+        "4": {
+          "price": 189250
+        },
+        "5": {
+          "price": 643445
+        },
+        "6": {
+          "price": 2187715
+        }
+      }
+    },
+    {
+      "id": 118,
+      "name": "Револьвер",
+      "image": "png/items/items_118.png",
+      "category": "weapons",
+      "categoryLabel": "Оружие",
+      "tiers": {
+        "1": {
+          "price": 4965
+        },
+        "2": {
+          "price": 16880
+        },
+        "3": {
+          "price": 57395
+        },
+        "4": {
+          "price": 195145
+        },
+        "5": {
+          "price": 663490
+        },
+        "6": {
+          "price": 2255870
+        }
+      }
+    },
+    {
+      "id": 165,
+      "name": "Зелёный Эликсир",
+      "image": "png/items/items_165.png",
+      "category": "medic",
+      "categoryLabel": "Медицина",
+      "tiers": {
+        "1": {
+          "price": 5125
+        },
+        "2": {
+          "price": 17425
+        },
+        "3": {
+          "price": 59245
+        },
+        "4": {
+          "price": 201435
+        },
+        "5": {
+          "price": 684870
+        },
+        "6": {
+          "price": 2328565
+        }
+      }
+    },
+    {
+      "id": 167,
+      "name": "Мотоцикл",
+      "image": "png/items/items_167.png",
+      "category": "new_year",
+      "categoryLabel": "Коллекционные",
+      "tiers": {
+        "1": {
+          "price": 5290
+        },
+        "2": {
+          "price": 17985
+        },
+        "3": {
+          "price": 61150
+        },
+        "4": {
+          "price": 207920
+        },
+        "5": {
+          "price": 706920
+        },
+        "6": {
+          "price": 2403535
+        }
+      }
+    }
+  ],
+  "economyGuide": {
+    "version": 38,
+    "basePrice": "Цена T1 задаётся отдельно для каждого предмета.",
+    "tierMultiplier": "Каждый следующий тир масштабируется примерно в 3.4 раза.",
+    "tierMultipliers": {
+      "1": 1,
+      "2": 3.4,
+      "3": 11.56,
+      "4": 39.304,
+      "5": 133.634,
+      "6": 454.356
+    },
+    "rounding": "Цены округляются до ближайших 5 монет.",
+    "sellValue": "Цена предмета является его базовой стоимостью для продажи и экономических расчётов."
+  }
+}

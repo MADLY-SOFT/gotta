@@ -1,0 +1,118 @@
+/* ZOMBIX CSS MODULE: profile/avatars
+ * Edit this file, then run: npm run build:css
+ * @z-order markers preserve the original cross-module cascade.
+ */
+/* @z-order: 00000116 */
+#avatars-modal{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 550; }
+
+/* @z-order: 00000117 */
+#avatars-modal.show{ display: flex; }
+
+/* @z-order: 00000118 */
+#avatars-content{ background: var(--bg-primary); border: 3px solid var(--border-color); padding: 20px; max-width: 90%; width: 370px; max-height: 80%; overflow-y: auto; text-align: center; border-radius: var(--border-radius); }
+
+/* @z-order: 00000119 */
+.avatars-title{ color: var(--border-color); font-size: 12px; margin-bottom: 15px; }
+
+/* @z-order: 00000120 */
+#avatars-grid-modal{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+
+/* @z-order: 00000121 */
+.avatar-card-modal{ background: var(--btn-bg); border: 2px solid var(--border-color); padding: 8px; cursor: pointer; transition: all 0.2s; text-align: center; border-radius: 8px; }
+
+/* @z-order: 00000122 */
+.avatar-card-modal.owned{ border-color: #4CAF50; }
+
+/* @z-order: 00000123 */
+.avatar-card-modal.selected{ border-color: var(--border-color); box-shadow: 0 0 15px var(--glow-color); }
+
+/* @z-order: 00000124 */
+.avatar-image-modal{ width: 50px; height: 50px; object-fit: cover; image-rendering: pixelated; border-radius: 50%; margin: 0 auto 5px; display: block; }
+
+/* @z-order: 00000125 */
+.avatar-price-modal{ font-size: 6px; color: var(--border-color); }
+
+/* @z-order: 00000126 */
+.avatar-price-modal.gems{ color: #00bcd4; }
+
+/* @z-order: 00000127 */
+.avatar-status-modal{ font-size: 5px; color: #4CAF50; margin-top: 3px; }
+
+/* @z-order: 00000128 */
+.avatars-close-btn{ margin-top: 15px; padding: 10px 15px; font-size: 9px; border: 2px solid var(--border-color); cursor: pointer; font-family: "Press Start 2P", cursive; background: var(--btn-bg); color: var(--text-primary); width: 100%; border-radius: var(--border-radius); }
+
+/* @z-order: 00000261 */
+@media (hover: none){
+.avatar-card-modal:hover{
+        transform: none !important;
+        box-shadow: inherit !important;
+    }
+}
+
+/* @z-order: 00000268 */
+@media (hover: hover){
+.avatar-card-modal:hover{ transform: scale(1.05); box-shadow: 0 0 15px var(--glow-color); }
+}
+
+/* @z-order: 00000775 */
+#avatars-content{border-radius:var(--border-radius)!important}
+
+/* @z-order: 00002461 */
+.avatar-atlas {display:block;flex-shrink:0;background-image:url('png/avatars-atlas.png');background-repeat:no-repeat;background-size:1600% 700%;background-origin:padding-box;background-clip:padding-box;}
+
+/* @z-order: 00002462 */
+.avatar-atlas.avatar-image-modal{box-sizing:border-box;}
+
+/* @z-order: 00002487 */
+#avatars-modal{padding:10px;box-sizing:border-box;overscroll-behavior:contain}
+
+/* @z-order: 00002488 */
+#avatars-content{display:flex;flex-direction:column;overflow:hidden;width:min(100%,490px);max-width:490px;max-height:min(90dvh,850px);height:min(90dvh,850px);box-sizing:border-box;padding:0;background:#101712;border:2px solid #b18d45;border-radius:10px;box-shadow:0 18px 55px #000b}
+
+/* @z-order: 00002489 */
+.avatars-modal-header{flex-shrink:0;padding:17px 12px 12px;background:#202a20;border-bottom:1px solid #68734e}
+
+/* @z-order: 00002490 */
+.avatars-modal-header .avatars-title{font-size:10px;margin:0 0 7px;color:#f2c76a}
+
+/* @z-order: 00002491 */
+.avatars-modal-header>span{font-size:6px;color:#aab99f}
+
+/* @z-order: 00002492 */
+#avatars-grid-modal{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;align-content:start;padding:12px;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;scrollbar-color:#a18a4d #121b14}
+
+/* @z-order: 00002493 */
+#avatars-grid-modal .avatar-card-modal{min-width:0;padding:6px 3px;background:#1a241c;border:1px solid #55614d;border-radius:7px}
+
+/* @z-order: 00002494 */
+#avatars-grid-modal .avatar-card-modal.selected{border:2px solid #eac265;background:#33301b}
+
+/* @z-order: 00002495 */
+#avatars-grid-modal .avatar-card-modal.owned{border-color:#78a76d}
+
+/* @z-order: 00002496 */
+#avatars-grid-modal .avatar-image-modal{width:min(100%,65px);height:auto;aspect-ratio:1;margin:0 auto 6px;border-radius:6px}
+
+/* @z-order: 00002497 */
+#avatars-grid-modal .avatar-price-modal,
+#avatars-grid-modal .avatar-status-modal{font-size:5px;line-height:1.6;min-height:13px}
+
+/* @z-order: 00002498 */
+.avatars-modal-footer{flex-shrink:0;padding:10px 12px max(12px,env(safe-area-inset-bottom));background:#202a20;border-top:1px solid #68734e;box-shadow:0 -5px 15px #0005}
+
+/* @z-order: 00002499 */
+.avatars-modal-footer .avatars-close-btn{margin:0;min-height:45px;background:#d9ac50;color:#191a11;border:2px solid #f4d687;border-radius:7px;font-size:8px;box-shadow:0 3px 0 #695124}
+
+/* @z-order: 00002502 */
+@media (max-width:360px){
+#avatars-grid-modal{gap:5px;padding:8px}
+}
+
+/* @z-order: 00002504 */
+#avatars-grid-modal .avatar-image-modal{width:88%;height:auto;aspect-ratio:1;margin:3% auto 7px}
+
+/* @z-order: 00002505 */
+#avatars-content,
+.avatars-modal-footer .avatars-close-btn,
+#avatars-grid-modal .avatar-card-modal,
+#avatars-grid-modal .avatar-image-modal {border-radius:var(--border-radius);}

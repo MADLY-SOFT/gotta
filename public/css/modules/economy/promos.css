@@ -1,0 +1,350 @@
+/* ZOMBIX CSS MODULE: economy/promos
+ * Edit this file, then run: npm run build:css
+ * @z-order markers preserve the original cross-module cascade.
+ */
+/* @z-order: 00000775 */
+#promo-content{border-radius:var(--border-radius)!important}
+
+/* @z-order: 00000776 */
+.promo-activate-btn,
+.promo-close-btn{border-radius:var(--border-radius)!important}
+
+/* @z-order: 00000828 */
+#promo-modal{position:fixed;inset:0;z-index:2400;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.8);padding:14px}
+
+/* @z-order: 00000829 */
+#promo-modal.show{display:flex}
+
+/* @z-order: 00000830 */
+#promo-content{width:min(92vw,390px);padding:20px;background:var(--bg-primary);border:2px solid var(--border-color);box-shadow:0 18px 55px rgba(0,0,0,.8),0 0 25px var(--glow-color);text-align:center}
+
+/* @z-order: 00000831 */
+.promo-title{font-size:11px;color:var(--border-color);margin-bottom:6px}
+
+/* @z-order: 00000832 */
+.promo-subtitle{font-size:6px;color:var(--text-secondary);line-height:1.7;margin-bottom:14px}
+
+/* @z-order: 00000833 */
+.promo-content{}
+
+/* @z-order: 00000834 */
+#promo-input{width:100%;box-sizing:border-box;padding:13px 10px;background:#080a0c;color:#fff;border:2px solid rgba(255,255,255,.15);border-radius:var(--border-radius);font:9px "Press Start 2P",cursive;text-align:center;text-transform:uppercase;outline:none}
+
+/* @z-order: 00000835 */
+.promo-activate-btn,
+.promo-close-btn{width:100%;padding:12px;margin-top:9px;border:2px solid var(--border-color);background:var(--btn-bg);color:var(--text-primary);font:8px "Press Start 2P",cursive}
+
+/* @z-order: 00000836 */
+.promo-success,
+.promo-error{margin-top:11px;padding:10px;border:1px solid var(--border-color);border-radius:var(--border-radius);font-size:7px;line-height:1.8}
+
+/* @z-order: 00000837 */
+.promo-error{border-color:#a24b56;color:#ff9aa5}
+
+/* @z-order: 00000838 */
+.promo-success{color:#9bf2bd}
+
+/* @z-order: 00000856 */
+#promo-reward-modal{position:fixed;inset:0;z-index:2505;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.84);padding:14px}
+
+/* @z-order: 00000857 */
+#promo-reward-modal.show{display:flex}
+
+/* @z-order: 00000858 */
+#promo-reward-content{width:min(92vw,390px);padding:20px;background:var(--bg-primary);border:2px solid var(--border-color);border-radius:var(--border-radius);box-shadow:0 18px 55px rgba(0,0,0,.8),0 0 28px var(--glow-color);text-align:center}
+
+/* @z-order: 00000859 */
+.promo-reward-icon{width:48px;height:48px;margin:0 auto 10px;border:2px solid #6ee7a0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#8df5b3;font-size:24px}
+
+/* @z-order: 00000860 */
+.promo-reward-code{font-size:6px;color:var(--text-secondary);margin:-5px 0 13px;letter-spacing:.7px}
+
+/* @z-order: 00000861 */
+.promo-reward-row{display:flex;align-items:center;justify-content:center;gap:8px;padding:9px;border:1px solid rgba(255,255,255,.12);border-radius:var(--border-radius);background:rgba(0,0,0,.3);margin:5px 0}
+
+/* @z-order: 00000862 */
+.promo-reward-row img{width:22px;height:22px}
+
+/* @z-order: 00000863 */
+.promo-reward-row b{font-size:10px;color:var(--border-color)}
+
+/* @z-order: 00000864 */
+.promo-reward-row span{font-size:6px;color:var(--text-secondary)}
+
+/* @z-order: 00000865 */
+.promo-reward-item{width:100%;display:flex;align-items:center;gap:10px;text-align:left;padding:7px;border:1px solid;background:rgba(0,0,0,.3);border-radius:var(--border-radius);margin:5px 0;color:#fff;font:inherit}
+
+/* @z-order: 00000866 */
+.promo-reward-item img{width:42px;height:42px;object-fit:contain;image-rendering:pixelated}
+
+/* @z-order: 00000867 */
+.promo-reward-item span{display:flex;flex-direction:column;gap:5px}
+
+/* @z-order: 00000868 */
+.promo-reward-item b{font-size:7px}
+
+/* @z-order: 00000869 */
+.promo-reward-item small{font-size:5px}
+
+/* @z-order: 00000870 */
+.promo-reward-empty{padding:10px;color:var(--text-secondary);font-size:7px}
+
+/* @z-order: 00000958 */
+#promo-btn img{image-rendering:pixelated;filter:none}
+
+/* @z-order: 00000970 */
+.other-action-btn#promo-btn{background:linear-gradient(180deg,rgba(35,35,35,.98),rgba(11,11,11,.98))!important;border-bottom-color:var(--border-color)!important;box-shadow:0 4px 0 rgba(0,0,0,.45)!important;}
+
+/* @z-order: 00002302 */
+#promo-modal.show{align-items:center;overflow-y:auto;overscroll-behavior:contain;box-sizing:border-box;max-height:100dvh;padding:12px max(12px,env(safe-area-inset-right)) 12px max(12px,env(safe-area-inset-left));isolation:isolate}
+
+/* @z-order: 00002303 */
+#promo-content{position:relative;z-index:2401;width:min(92vw,390px);max-height:calc(100dvh - 24px);overflow-y:auto;box-sizing:border-box;flex-shrink:0;user-select:text;-webkit-user-select:text;}
+
+/* @z-order: 00002304 */
+#promo-input{position:relative;z-index:2;display:block;width:100%;min-height:46px;box-sizing:border-box;font:16px system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left;text-transform:uppercase;letter-spacing:.08em;touch-action:manipulation;user-select:text!important;-webkit-user-select:text!important;-webkit-touch-callout:default;pointer-events:auto;caret-color:var(--border-color);-webkit-appearance:none;appearance:none;}
+
+/* @z-order: 00002305 */
+#promo-input:focus{border-color:var(--border-color);box-shadow:0 0 0 2px color-mix(in srgb,var(--border-color) 20%,transparent);outline:none;}
+
+/* @z-order: 00002306 */
+#promo-modal .promo-activate-btn,
+#promo-modal .promo-close-btn{position:relative;z-index:1;touch-action:manipulation;}
+
+/* @z-order: 00002307 */
+@media (max-height:520px){
+#promo-modal.show{align-items:flex-start}
+}
+
+/* @z-order: 00002308 */
+@media (max-height:520px){
+#promo-content{margin:auto;max-height:calc(100dvh - 24px)}
+}
+
+/* @z-order: 00002353 */
+#promo-modal{z-index:8100;touch-action:auto;user-select:text;-webkit-user-select:text;}
+
+/* @z-order: 00002354 */
+#promo-modal.show{height:100dvh;max-height:100dvh;overflow:auto;align-items:safe center;}
+
+/* @z-order: 00002355 */
+#promo-content{z-index:auto;max-height:min(92dvh,650px);overscroll-behavior:contain;touch-action:auto;}
+
+/* @z-order: 00002356 */
+#promo-input,
+#promo-input:focus{user-select:text!important;-webkit-user-select:text!important;touch-action:auto!important;pointer-events:auto!important;opacity:1;-webkit-text-fill-color:#fff;}
+
+/* @z-order: 00002357 */
+#promo-modal .promo-activate-btn,
+#promo-modal .promo-close-btn{touch-action:manipulation;}
+
+/* @z-order: 00002358 */
+@media (max-height:560px){
+#promo-modal.show{align-items:flex-start;}
+}
+
+/* @z-order: 00002359 */
+@media (max-height:560px){
+#promo-content{margin:auto;max-height:calc(100dvh - 24px)}
+}
+
+/* @z-order: 00002366 */
+body>#promo-modal{position:fixed!important;inset:0!important;z-index:100000!important;touch-action:auto!important;overscroll-behavior:contain}
+
+/* @z-order: 00002367 */
+body>#promo-modal #promo-content{position:relative;max-height:min(86dvh,650px);overflow-y:auto;overscroll-behavior:contain;touch-action:auto}
+
+/* @z-order: 00002368 */
+body>#promo-modal #promo-input{font-size:16px!important;line-height:1.4!important;min-height:48px!important;user-select:text!important;-webkit-user-select:text!important;touch-action:auto!important;pointer-events:auto!important;transform:none!important;animation:none!important}
+
+/* @z-order: 00002719 */
+.promo-reward-artifact-image{display:block!important;width:42px;height:42px;flex:none}
+
+/* @z-order: 00002720 */
+.promo-reward-artifact-image .artifact-sprite{width:100%;height:100%}
+
+/* @z-order: 00002721 */
+.promo-reward-artifact>span:last-child{min-width:0}
+
+/* @z-order: 00003309 */
+#promo-content,
+#promo-reward-content{box-sizing:border-box;max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 20px);overflow:auto;overscroll-behavior:contain;border-radius:var(--border-radius);padding:clamp(14px,4vw,22px);}
+
+/* @z-order: 00003310 */
+#promo-content{font-family:var(--z-font-game);}
+
+/* @z-order: 00003311 */
+.promo-title{font:10px/1.6 "Press Start 2P",cursive;}
+
+/* @z-order: 00003312 */
+.promo-subtitle{font:6px/1.8 var(--z-font-game);}
+
+/* @z-order: 00003313 */
+#promo-input{font:700 16px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:48px;}
+
+/* @z-order: 00003314 */
+.promo-activate-btn,
+.promo-close-btn{min-height:44px;font:6px/1.8 var(--z-font-game);border-radius:var(--border-radius);}
+
+/* @z-order: 00003315 */
+#promo-result{font:6px/1.8 var(--z-font-game);}
+
+/* @z-order: 00003316 */
+#promo-result .promo-error,
+#promo-result .promo-success{font-size:13px;}
+
+/* @z-order: 00003337 */
+#promo-modal button:focus-visible{outline:2px solid var(--border-color);outline-offset:3px;}
+
+/* @z-order: 00003344 */
+@media (prefers-reduced-motion:reduce){
+#promo-modal *{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important;}
+}
+
+/* @z-order: 00003346 */
+#promo-content,
+#promo-reward-content{display:flex;flex-direction:column;overflow:hidden;max-height:min(86dvh,650px);padding:0;}
+
+/* @z-order: 00003347 */
+#promo-content .promo-modal-body,
+#promo-reward-content .promo-reward-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:clamp(14px,4vw,22px);}
+
+/* @z-order: 00003348 */
+#promo-content .promo-close-btn,
+#promo-reward-content .promo-close-btn{position:sticky;bottom:0;flex:0 0 auto;width:calc(100% - 28px);min-height:44px;margin:8px 14px max(10px,env(safe-area-inset-bottom));}
+
+/* @z-order: 00003349 */
+#promo-modal,
+#promo-reward-modal{padding:max(10px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));}
+
+/* @z-order: 00003400 */
+#promo-content,
+#promo-reward-content{border:2px solid var(--border-color);border-radius:var(--border-radius);background:var(--bg-primary);color:var(--text-primary);box-shadow:0 18px 55px #000b,0 0 25px var(--glow-color);}
+
+/* @z-order: 00003401 */
+#promo-content .promo-title,
+#promo-reward-content .promo-title{color:var(--border-color);font:10px/1.7 "Press Start 2P",cursive;}
+
+/* @z-order: 00003402 */
+#promo-content .promo-subtitle{color:var(--text-secondary);font:6px/1.8 var(--z-font-game);}
+
+/* @z-order: 00003403 */
+#promo-input{border:2px solid color-mix(in srgb,var(--border-color) 65%,transparent);border-radius:var(--border-radius);background:var(--bg-tertiary);color:var(--text-primary);}
+
+/* @z-order: 00003404 */
+#promo-input:focus{border-color:var(--border-color);box-shadow:0 0 0 3px color-mix(in srgb,var(--glow-color) 45%,transparent);}
+
+/* @z-order: 00003405 */
+#promo-content .promo-activate-btn,
+#promo-content .promo-close-btn,
+#promo-reward-content .promo-close-btn{border:1px solid var(--border-color);border-radius:var(--border-radius);background:var(--btn-bg);color:var(--text-primary);}
+
+/* @z-order: 00003406 */
+#promo-reward-content .promo-reward-row,
+#promo-reward-content .promo-reward-item{border-color:color-mix(in srgb,var(--border-color) 30%,transparent);border-radius:var(--border-radius);background:var(--bg-secondary);color:var(--text-primary);}
+
+/* @z-order: 00003407 */
+#promo-reward-content .promo-reward-row b{color:var(--border-color);}
+
+/* @z-order: 00003408 */
+#promo-reward-content .promo-reward-row span,
+#promo-reward-content .promo-reward-code{color:var(--text-secondary);}
+
+/* @z-order: 00003409 */
+#promo-reward-content .promo-reward-item b{color:var(--text-primary);}
+
+/* @z-order: 00003470 */
+#promo-modal,
+#promo-reward-modal,
+#promo-content,
+#promo-reward-content{font-family:var(--z-font-game)!important;}
+
+/* @z-order: 00003471 */
+#promo-content .promo-title,
+#promo-reward-content .promo-title{font:8px/1.8 var(--z-font-game)!important;letter-spacing:0;}
+
+/* @z-order: 00003472 */
+#promo-content .promo-subtitle{font:6px/1.8 var(--z-font-game)!important;}
+
+/* @z-order: 00003473 */
+#promo-content .promo-activate-btn,
+#promo-content .promo-close-btn,
+#promo-reward-content .promo-close-btn{font:6px/1.8 var(--z-font-game)!important;letter-spacing:0;}
+
+/* @z-order: 00003474 */
+#promo-input{font:600 16px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif!important;letter-spacing:.08em;}
+
+/* @z-order: 00003475 */
+#promo-result,
+#promo-reward-list,
+.promo-reward-row,
+.promo-reward-item{font-family:var(--z-font-game)!important;}
+
+/* v1.03 promo-code modal visual polish */
+#promo-modal,
+#promo-reward-modal {
+  background: rgba(3,7,10,.86) !important;
+  backdrop-filter: blur(12px) saturate(1.12);
+}
+#promo-content,
+#promo-reward-content {
+  width: min(92vw,430px) !important; max-height: min(88dvh,680px) !important;
+  border: 1px solid color-mix(in srgb,var(--border-color) 76%,transparent) !important;
+  border-radius: 18px !important;
+  background: radial-gradient(ellipse at 50% 0%,color-mix(in srgb,var(--border-color) 14%,transparent),transparent 48%),var(--bg-primary) !important;
+  box-shadow: 0 24px 70px #000c,0 0 30px color-mix(in srgb,var(--glow-color) 48%,transparent) !important;
+}
+#promo-content .promo-modal-body,
+#promo-reward-content .promo-reward-body { padding: 22px 20px 18px !important; }
+#promo-content .promo-title,
+#promo-reward-content .promo-title {
+  color: var(--text-primary) !important; font: 8px/1.8 var(--z-font-game) !important;
+  letter-spacing: -.02em; text-align: center;
+}
+#promo-content .promo-subtitle {
+  margin: 7px 0 18px !important; color: var(--text-secondary) !important;
+  font: 6px/1.8 var(--z-font-game) !important; text-align: center;
+}
+#promo-input {
+  min-height: 54px !important; padding: 13px 14px !important;
+  border: 1px solid color-mix(in srgb,var(--border-color) 65%,transparent) !important;
+  border-radius: 12px !important; background: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important; font: 7px/1.8 var(--z-font-game) !important;
+  text-align: center !important; letter-spacing: .1em !important;
+}
+#promo-input::placeholder { color: var(--text-secondary); opacity: .55; font-weight: 600; letter-spacing: .04em; }
+#promo-modal .promo-activate-btn,
+#promo-modal .promo-close-btn,
+#promo-reward-modal .promo-close-btn {
+  min-height: 46px !important; border: 1px solid var(--border-color) !important;
+  border-radius: 11px !important; background: var(--btn-bg) !important;
+  color: var(--text-primary) !important; font: 6px/1.8 var(--z-font-game) !important;
+}
+#promo-modal .promo-activate-btn {
+  background: linear-gradient(135deg,color-mix(in srgb,var(--border-color) 25%,var(--btn-bg)),var(--btn-bg)) !important;
+}
+#promo-result { color: var(--text-primary); font: 6px/1.8 var(--z-font-game) !important; }
+#promo-result .promo-success,
+#promo-result .promo-error { font: 6px/1.8 var(--z-font-game) !important; }
+#promo-reward-content .promo-reward-icon {
+  width: 54px; height: 54px; margin: 0 auto 12px;
+  border: 1px solid rgba(110,231,160,.6); background: rgba(60,170,100,.12);
+  box-shadow: 0 0 24px rgba(80,210,130,.13);
+}
+#promo-reward-content .promo-reward-code { color: var(--text-secondary); font: 5.5px/1.8 var(--z-font-game) !important; }
+#promo-reward-content .promo-reward-row,
+#promo-reward-content .promo-reward-item {
+  border-color: var(--z-border-soft) !important; border-radius: 11px !important;
+  background: var(--z-surface-soft) !important; color: var(--text-primary) !important;
+}
+#promo-reward-content .promo-reward-row b,
+#promo-reward-content .promo-reward-item b { color: var(--text-primary) !important; font: 6px/1.8 var(--z-font-game) !important; }
+#promo-reward-content .promo-reward-row span,
+#promo-reward-content .promo-reward-item small { color: var(--text-secondary) !important; font: 5px/1.8 var(--z-font-game) !important; }
+@media (max-width:380px) {
+  #promo-content .promo-modal-body,
+  #promo-reward-content .promo-reward-body { padding: 18px 14px 14px !important; }
+}
+
+#promo-content .promo-title::before { content: "✦"; display: block; margin: 0 auto 9px; color: var(--border-color); font: 25px/1 Arial,sans-serif; text-shadow: 0 0 18px var(--glow-color); }
+.promo-reward-item .item-atlas{width:42px;height:42px;display:block;object-fit:contain}
