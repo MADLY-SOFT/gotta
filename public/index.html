@@ -3,7 +3,8 @@
 <head>
 <link rel="manifest" href="manifest.json">
 <link rel="preload" href="fonts/PressStart2P-Regular.ttf" as="font" type="font/ttf" crossorigin>
-<meta name="theme-color" content="#0b0f13">
+<link rel="preload" href="fonts/Rubik-Cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#05070a">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
     <meta charset="UTF-8">
@@ -89,7 +90,7 @@
             
             <div id="content">
                 <div class="content-panel active" id="panel-shop" data-index="0">
-                    <h3 style="color:var(--text-primary); margin-bottom:10px; font-size:9px; text-align:center;">ВЫБЕРИТЕ КЕЙС:</h3>
+                    <h3>ВЫБЕРИТЕ КЕЙС</h3>
                     <div id="cases-filter"></div>
                     <div id="cases-grid"></div>
                 </div>
@@ -283,18 +284,36 @@
 
         <!-- РЕЗУЛЬТАТ КЕЙСА -->
         <div id="result-overlay">
-            <div id="result-content">
-                <span id="result-image" class="item-atlas modal-image" style="display:none;" aria-hidden="true"></span>
-                <div id="result-name"></div>
+            <div class="result-rays" aria-hidden="true"></div>
+            <div id="result-content" role="dialog" aria-modal="true" aria-labelledby="result-name">
+                <div class="result-kicker" id="result-kicker">НОВАЯ НАХОДКА</div>
+                <div class="result-item-stage" id="result-item-stage"><span class="result-item-glow" aria-hidden="true"></span><span id="result-image" class="item-atlas modal-image" style="display:none;" aria-hidden="true"></span></div>
                 <div id="result-tier"></div>
-                <button id="result-close" onclick="playClick(); closeResult();">ЗАБРАТЬ</button>
+                <div id="result-name"></div>
+                <div id="result-stats"></div>
+                <div id="bulk-result-grid" hidden></div>
+                <div class="result-actions">
+                    <button id="result-again" type="button" onclick="playClick(); openCaseAgain();">ЕЩЁ РАЗ</button>
+                    <button id="result-close" type="button" onclick="playClick(); closeResult();">ЗАБРАТЬ</button>
+                </div>
             </div>
         </div>
 
         <!-- РУЛЕТКА -->
-        <div id="roulette-overlay">
-            <div class="roulette-heading"><span class="roulette-kicker">ZOMBIX / CASE OPENING</span><h2>ОТКРЫТИЕ КЕЙСА</h2></div>
+        <div id="roulette-overlay" data-stage="idle">
+            <div class="roulette-ambient" aria-hidden="true"><i class="roulette-rays"></i></div>
+            <div class="roulette-heading">
+                <img id="roulette-case-thumb" src="png/cases/case_1.png" alt="" onerror="this.style.visibility='hidden'">
+                <div><span class="roulette-kicker">ОТКРЫТИЕ КЕЙСА</span><h2 id="roulette-case-name">ОТКРЫТИЕ КЕЙСА</h2></div>
+            </div>
+            <div class="roulette-case-stage" id="roulette-case-stage" aria-hidden="true">
+                <span class="case-stage-halo"></span>
+                <img id="roulette-case-image" src="png/cases/case_1.png" alt="" onerror="this.style.visibility='hidden'">
+                <span class="case-stage-crack"></span>
+            </div>
             <div id="roulette-container" aria-live="polite"><div id="roulette-strip"></div></div>
+            <div class="roulette-odds" id="roulette-odds" aria-label="Шансы по редкости"></div>
+            <div class="roulette-flash" id="roulette-flash" aria-hidden="true"></div>
             <div class="roulette-actions">
                 <button class="roulette-btn" id="back-roulette-btn" onclick="playClick(); goBackFromRoulette();">НАЗАД</button>
                 <div class="case-open-quantity" id="case-open-quantity" aria-label="Количество кейсов">
