@@ -75,11 +75,11 @@ test('achievements are reachable from the quest hub, not duplicated in the profi
   assert.match(profile, /openQuestsModal\('achievements'\)/);
 });
 
-test('history item wells remain gray, square and five columns wide on small screens', () => {
-  const css = read('public/css/modules/zz/progression-theme.css');
-  assert.match(css, /#case-history-entries#case-history-entries \.case-history-drops[\s\S]*?repeat\(5,minmax\(0,1fr\)\)/);
-  assert.match(css, /aspect-ratio:1\/1 !important/);
-  assert.match(css, /linear-gradient\(145deg,#3c434b,#292f36\)/);
+test('history item wells remain square, tier-tinted and five columns wide on small screens', () => {
+  const css = read('public/css/modules/cases/history.css');
+  assert.match(css, /#case-history-entries \.case-history-drops\{[^}]*repeat\(5,minmax\(0,1fr\)\)/);
+  assert.match(css, /\.case-history-drop\{[^}]*aspect-ratio:1\/1/);
+  assert.match(css, /\.case-history-drop\{[^}]*var\(--drop-tier\)/);
 });
 
 
@@ -99,7 +99,7 @@ test('progress tabs are a single three-way segmented control and quest cards omi
 test('roulette lanes are prepared before opening and winner replaces only the target placeholder', () => {
   const cases = read('public/js/cases.js');
   const audio = read('public/js/audio.js');
-  const css = read('public/css/modules/zz/progression-theme.css');
+  const css = read('public/css/modules/cases/roulette.css');
   assert.match(cases, /renderRouletteLanes\(1\)/);
   assert.match(cases, /renderRouletteLanes\(selectedOpenQuantity\)/);
   assert.match(cases, /applyRouletteRewards\(rewards\)/);
@@ -107,9 +107,9 @@ test('roulette lanes are prepared before opening and winner replaces only the ta
   assert.match(cases, /const duration = reducedMotion \? 1 : 4650/);
   assert.match(cases, /if \(currentSlot > lastSlot\)[\s\S]*?passed <= currentSlot/);
   assert.match(audio, /soundKey === 'roulette' \? 55/);
-  assert.match(css, /\.reel-target-frame/);
-  assert.match(css, /single-reel-container \.horizontal-reel \{ --roulette-target-size/);
-  assert.match(css, /aspect-ratio:1\/1 !important/);
+  assert.match(css, /\.reel-target-frame\{/);
+  assert.match(css, /#roulette-container\{[^}]*--roulette-target-size:/);
+  assert.match(css, /\.reel-card\{[^}]*aspect-ratio:1\/1/);
   assert.match(cases, /function rouletteCardMarkup[\s\S]*?itemSprite\(image, \'reel-item-atlas\'\)/);
   assert.doesNotMatch(cases.slice(cases.indexOf('function rouletteCardMarkup'), cases.indexOf('function renderRouletteLanes')), /item\?\.name|reel-card-copy/);
 });
