@@ -6,6 +6,14 @@ let isCollecting = false;
 let isUpgrading = false;
 let houseAnimationsAdded = false;
 
+// Inline SVG glyphs for house buttons (inherit currentColor).
+const HOUSE_ICONS = {
+    up: '<svg class="house-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 8h-5v9H9v-9H4z"/></svg>',
+    image: '<svg class="house-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M3 5h18v14H3zm2 2v8.5l4.5-5 3.5 4 2.5-2.5L19 16V7zm11 1.5a2 2 0 110 4 2 2 0 010-4z"/></svg>',
+    cycle: '<svg class="house-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a8 8 0 017.7 6H22l-3.5 4-3.5-4h2.6A5.5 5.5 0 006.6 9.3L4.4 8A8 8 0 0112 4zm-7.5 6L8 14H5.4a5.5 5.5 0 0010.9 1.7l2.2 1.3A8 8 0 014.3 14H2z"/></svg>'
+};
+function houseCoinIcon() { return `<img class="house-coin" src="${PATHS.coin}" alt="" onerror="this.style.display='none';">`; }
+
 // ==================== РАСЧЁТ ДОХОДА ====================
 
 function calculateHouseIncome() { 
@@ -89,38 +97,29 @@ function openHouseBackgroundModal() {
     if (!modal) {
         modal = document.createElement('div');
         modal.id = 'house-background-modal';
-        modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:1400;';
-        modal.innerHTML = `<div id="house-background-content" style="background:var(--bg-primary);border:3px solid var(--border-color);border-radius:15px;padding:20px;width:95%;max-width:450px;max-height:85%;overflow-y:auto;text-align:center;box-shadow:0 0 40px var(--glow-color);position:relative;"></div>`;
+        modal.className = 'house-modal';
+        modal.innerHTML = `<div id="house-background-content" class="house-modal-card" role="dialog" aria-modal="true" aria-label="Фон убежища"></div>`;
         app.appendChild(modal);
     }
     
     const content = document.getElementById('house-background-content');
     if (!content) return;
     
-    let backgroundsHTML = '<div style="font-size:16px;margin-bottom:10px;color:var(--border-color);">ФОН ДОМА</div>';
-    backgroundsHTML += '<div style="font-size:8px;color:var(--text-secondary);margin-bottom:15px;">СМЕНА ФОНА РАЗ В 5 СЕКУНД</div>';
-    backgroundsHTML += '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;">';
+    const cards = (HOUSE_DATABASE.backgrounds || []).map(bg => {
+        const isOwned = GameState.ownedHouseBackgrounds.includes(bg.id);
+        const isSelected = GameState.selectedHouseBackground === bg.id;
+        const currencyIcon = bg.currency === 'gems' ? PATHS.gem : PATHS.coin;
+        const badge = isSelected
+            ? '<span class="house-bg-badge selected">✓ ВЫБРАН</span>'
+            : isOwned ? '<span class="house-bg-badge">КУПЛЕН</span>'
+            : `<span class="house-bg-price"><img src="${currencyIcon}" alt="" onerror="this.style.display='none';">${bg.price}</span>`;
+        return `<button type="button" class="house-bg-card${isSelected ? ' selected' : ''}${isOwned ? ' owned' : ''}" style="background:${bg.css}" onclick="playClick(); selectHouseBackground('${bg.id}');"><span class="house-bg-name">${escapeHtml(bg.name)}</span>${badge}</button>`;
+    }).join('');
     
-    if (HOUSE_DATABASE.backgrounds) {
-        HOUSE_DATABASE.backgrounds.forEach(bg => {
-            const isOwned = GameState.ownedHouseBackgrounds.includes(bg.id);
-            const isSelected = GameState.selectedHouseBackground === bg.id;
-            const currencyIcon = bg.currency === 'gems' ? PATHS.gem : PATHS.coin;
-            
-            backgroundsHTML += `
-                <div onclick="playClick(); selectHouseBackground('${bg.id}');" style="cursor:pointer;border:2px solid ${isSelected ? 'var(--border-color)' : '#444'};border-radius:10px;padding:12px;background:${bg.css};min-height:100px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;position:relative;overflow:hidden;">
-                    <div style="position:relative;color:#fff;font-size:10px;text-shadow:1px 1px 3px #000;margin-bottom:5px;">${escapeHtml(bg.name)}</div>
-                    ${!isOwned ? `<div style="position:relative;display:flex;align-items:center;gap:4px;color:#ffd700;font-size:9px;text-shadow:1px 1px 2px #000;"><img src="${currencyIcon}" style="width:14px;height:14px;" onerror="this.style.display='none';"> ${bg.price}</div>` : ''}
-                    ${isSelected ? '<div style="position:absolute;top:8px;right:8px;color:#4CAF50;font-size:14px;">✓</div>' : ''}
-                </div>
-            `;
-        });
-    }
-    
-    backgroundsHTML += '</div>';
-    backgroundsHTML += '<button class="house-close-btn" style="padding:14px;font-size:11px;" onclick="playClick(); closeHouseBackgroundModal();">ЗАКРЫТЬ</button>';
-    
-    content.innerHTML = backgroundsHTML;
+    content.innerHTML = `
+        <header class="house-modal-head"><span class="house-modal-kicker">ОФОРМЛЕНИЕ</span><div class="house-modal-title">ФОН УБЕЖИЩА</div><p class="house-modal-desc">Смена фона — не чаще раза в 5 секунд</p></header>
+        <div class="house-modal-body"><div class="house-bg-grid">${cards}</div></div>
+        <footer class="house-modal-actions"><button class="house-close-btn" onclick="playClick(); closeHouseBackgroundModal();">ЗАКРЫТЬ</button></footer>`;
     modal.style.display = 'flex';
 }
 
@@ -150,30 +149,19 @@ function openHouseIncomeModal() {
     const maxIncome = getMaxIncomeForCurrentLevel();
     const maxHours = Math.floor(MAX_COLLECT_MINUTES / 60);
     
+    const coin = houseCoinIcon();
+    const fill = maxIncome ? Math.min(100, Math.round(pendingIncome / maxIncome * 100)) : 0;
     content.innerHTML = `
-        <div class="house-modal-title" style="font-size:18px;">ДОХОД ДОМА</div>
-        <div style="color: var(--text-primary); font-size: 14px; margin-bottom: 10px;">${escapeHtml(currentHouseData.name)}</div>
-        <div style="color: var(--text-secondary); font-size: 8px; margin-bottom: 15px; line-height: 1.5;">${escapeHtml(currentHouseData.description || '')}</div>
-        <div style="background:rgba(0,0,0,0.3);border-radius:10px;padding:20px;margin-bottom:20px;border:1px solid var(--border-color);">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:15px;font-size:11px;color:var(--text-primary);">
-                <span>ДОХОД:</span>
-                <img src="${PATHS.coin}" style="width:20px;height:20px;" onerror="this.style.display='none';">
-                <span>${currentHouseData.incomePerMinute || 0}</span>
-                <span style="color:var(--text-secondary);">/ 1 МИН</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:11px;color:var(--text-primary);">
-                <span>НАКОПЛЕНО:</span>
-                <img src="${PATHS.coin}" style="width:20px;height:20px;" onerror="this.style.display='none';">
-                <span>${pendingIncome}</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;margin-top:10px;font-size:11px;color:var(--text-secondary);">
-                <span>МАКСИМУМ (${maxHours} ЧАСА):</span>
-                <img src="${PATHS.coin}" style="width:20px;height:20px;" onerror="this.style.display='none';">
-                <span>${maxIncome}</span>
-            </div>
+        <header class="house-modal-head"><span class="house-modal-kicker">ДОХОД УБЕЖИЩА</span><div class="house-modal-title">${escapeHtml(currentHouseData.name)}</div><p class="house-modal-desc">${escapeHtml(currentHouseData.description || '')}</p></header>
+        <div class="house-modal-body">
+            <div class="house-income-hero"><small>НАКОПЛЕНО</small><b>${coin}${pendingIncome}</b><div class="house-meter"><i style="width:${fill}%"></i></div><span>${fill}% хранилища заполнено</span></div>
+            <div class="house-kv"><span>Доход в минуту</span><b>${coin}${currentHouseData.incomePerMinute || 0}</b></div>
+            <div class="house-kv"><span>Лимит хранилища · ${maxHours} ч</span><b>${coin}${maxIncome}</b></div>
         </div>
-        <button class="menu-btn" style="width:100%; margin: 10px auto; padding: 18px; font-size: 13px; background: linear-gradient(135deg, #4CAF50, #8BC34A);" onclick="playClick(); collectHouseIncome(); closeHouseIncomeModal();">ЗАБРАТЬ ${pendingIncome}</button>
-        <button class="house-close-btn" onclick="playClick(); closeHouseIncomeModal();">ЗАКРЫТЬ</button>
+        <footer class="house-modal-actions">
+            <button class="house-btn house-btn-primary" onclick="playClick(); collectHouseIncome(); closeHouseIncomeModal();">${coin}ЗАБРАТЬ ${pendingIncome}</button>
+            <button class="house-close-btn" onclick="playClick(); closeHouseIncomeModal();">ЗАКРЫТЬ</button>
+        </footer>
     `;
     modal.classList.add('show');
 }
@@ -195,9 +183,8 @@ function openHouseUpgradeModal() {
     
     if (isMaxLevel) {
         content.innerHTML = `
-            <div class="house-modal-title" style="font-size:18px;">УЛУЧШЕНИЕ ДОМА</div>
-            <div style="color: #4CAF50; font-size: 14px; margin-bottom: 15px;">МАКСИМАЛЬНЫЙ УРОВЕНЬ!</div>
-            <button class="house-close-btn" onclick="playClick(); closeHouseUpgradeModal();">ЗАКРЫТЬ</button>
+            <header class="house-modal-head"><span class="house-modal-kicker">УЛУЧШЕНИЕ</span><div class="house-modal-title">МАКСИМАЛЬНЫЙ УРОВЕНЬ!</div><p class="house-modal-desc">${escapeHtml(currentHouseData.name)}</p></header>
+            <footer class="house-modal-actions"><button class="house-close-btn" onclick="playClick(); closeHouseUpgradeModal();">ЗАКРЫТЬ</button></footer>
         `;
         modal.classList.add('show');
         return;
@@ -207,71 +194,50 @@ function openHouseUpgradeModal() {
     const costGems = currentHouseData.upgradeCostGems || 0;
     const requiredItems = currentHouseData.requiredItems || [];
     
-    let requirementsHTML = '<div style="background:rgba(0,0,0,0.3);border-radius:10px;padding:20px;margin-bottom:20px;border:1px solid var(--border-color);">';
-    requirementsHTML += '<div style="color:var(--border-color);font-size:11px;margin-bottom:15px;text-align:center;">ТРЕБУЕТСЯ</div>';
+    const reqRow = (ok, icon, name, value, extra = '') => `<div class="house-req ${ok ? 'ok' : 'missing'}${extra}"><span class="house-req-icon">${icon}</span><span class="house-req-name">${name}</span><b>${value}</b></div>`;
+    let requirementsHTML = '';
     
     if (costCoins > 0) {
         const hasCoins = totalCoinsAvailable >= costCoins;
-        requirementsHTML += `
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;color:${hasCoins ? '#4CAF50' : '#ff6b6b'};font-size:10px;border:2px solid var(--border-color);border-radius:8px;padding:10px;background:rgba(0,0,0,0.2);">
-                <img src="${PATHS.coin}" style="width:30px;height:30px;" onerror="this.style.display='none';">
-                <span>${costCoins}</span>
-                <span style="margin-left:auto;">${GameState.coins}${pendingIncome > 0 ? ' + ' + pendingIncome : ''}/${costCoins}</span>
-            </div>
-        `;
+        requirementsHTML += reqRow(hasCoins, houseCoinIcon(), `Монеты<small>${costCoins}</small>`, `${GameState.coins}${pendingIncome > 0 ? ' + ' + pendingIncome : ''}/${costCoins}`);
     }
     
     if (costGems > 0) {
         const hasGems = GameState.gems >= costGems;
-        requirementsHTML += `
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;color:${hasGems ? '#4CAF50' : '#ff6b6b'};font-size:10px;border:2px solid #00bcd4;border-radius:8px;padding:10px;background:rgba(0,0,0,0.2);">
-                <img src="${PATHS.gem}" style="width:30px;height:30px;" onerror="this.style.display='none';">
-                <span>${costGems}</span>
-                <span style="margin-left:auto;">${GameState.gems}/${costGems}</span>
-            </div>
-        `;
+        requirementsHTML += reqRow(hasGems, `<img src="${PATHS.gem}" alt="" onerror="this.style.display='none';">`, `Гемы<small>${costGems}</small>`, `${GameState.gems}/${costGems}`);
     }
     
-    if (requiredItems.length > 0) {
-        requirementsHTML += '<div style="color:var(--border-color);font-size:10px;margin:15px 0 10px;text-align:center;">ПРЕДМЕТЫ</div>';
-        requiredItems.forEach(req => {
-            const itemData = getItemById(req.itemId);
-            const countInInventory = GameState.inventory.filter(item => item.id === req.itemId && item.tier === req.tier).length;
-            const isEnough = countInInventory >= req.count;
-            const color = isEnough ? '#4CAF50' : '#ff6b6b';
-            requirementsHTML += `
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;color:${color};font-size:9px;border:2px solid ${tierColors[req.tier]};border-radius:8px;padding:10px;background:rgba(0,0,0,0.2);">
-                    ${itemSprite(itemData?.image, `house-required-item tier-${req.tier}`)}
-                    <div style="flex:1;text-align:left;">
-                        <div>${escapeHtml(itemData ? itemData.name : 'Предмет')}</div>
-                        <div style="font-size:7px;color:${tierColors[req.tier]};margin-top:3px;">${tierNames[req.tier]}</div>
-                    </div>
-                    <span>${countInInventory}/${req.count}</span>
-                </div>
-            `;
-        });
-    }
-    requirementsHTML += '</div>';
+    requiredItems.forEach(req => {
+        const itemData = getItemById(req.itemId);
+        const countInInventory = GameState.inventory.filter(item => item.id === req.itemId && item.tier === req.tier).length;
+        const isEnough = countInInventory >= req.count;
+        requirementsHTML += reqRow(isEnough, itemSprite(itemData?.image, `house-required-item tier-${req.tier}`), `${escapeHtml(itemData ? itemData.name : 'Предмет')}<small>${tierNames[req.tier]}</small>`, `${countInInventory}/${req.count}`, ` house-req-item tier-${req.tier}`);
+    });
     
-    let autoCollectHTML = '';
-    if (pendingIncome > 0) {
-        autoCollectHTML = `
-            <div style="background:rgba(76,175,80,0.2);border:1px solid #4CAF50;border-radius:8px;padding:10px;margin-bottom:15px;font-size:8px;color:#4CAF50;">
-                💰 ПРИ УЛУЧШЕНИИ БУДЕТ СОБРАН ДОХОД: ${pendingIncome} МОНЕТ
-            </div>
-        `;
-    }
+    const autoCollectHTML = pendingIncome > 0
+        ? `<div class="house-note">${houseCoinIcon()}<span>При улучшении будет собран доход: <b>${pendingIncome}</b> монет</span></div>`
+        : '';
     
     const nextHouseData = getHouseLevelData(GameState.houseLevel + 1);
+    // Same clamp the server applies when granting upgrade rating.
+    const rewardRating = Math.max(5, Math.min(15, Math.floor(Number(currentHouseData.upgradeRating) || 5)));
     
     content.innerHTML = `
-        <div class="house-modal-title" style="font-size:18px;">УЛУЧШЕНИЕ ДОМА</div>
-        <div style="color: var(--text-primary); font-size: 12px; margin-bottom: 10px;">${escapeHtml(currentHouseData.name)} → ${escapeHtml(nextHouseData.name)}</div>
-        <div style="color: var(--text-secondary); font-size: 8px; margin-bottom: 20px; line-height: 1.5;">${escapeHtml(nextHouseData.description || '')}</div>
-        ${autoCollectHTML}
-        ${requirementsHTML}
-        <button class="menu-btn" style="width:100%; margin: 15px auto; padding: 18px; font-size: 13px;" onclick="playClick(); upgradeHouse(); closeHouseUpgradeModal();">УЛУЧШИТЬ</button>
-        <button class="house-close-btn" onclick="playClick(); closeHouseUpgradeModal();">ЗАКРЫТЬ</button>
+        <header class="house-modal-head"><span class="house-modal-kicker">УЛУЧШЕНИЕ · УР. ${GameState.houseLevel} → ${GameState.houseLevel + 1}</span><div class="house-modal-title">${escapeHtml(nextHouseData.name)}</div><p class="house-modal-desc">${escapeHtml(nextHouseData.description || '')}</p></header>
+        <div class="house-modal-body">
+            <div class="house-upgrade-compare">
+                <div><small>СЕЙЧАС</small><b>${houseCoinIcon()}${currentHouseData.incomePerMinute || 0}</b><span>в минуту</span></div>
+                <i aria-hidden="true"></i>
+                <div class="next"><small>ПОСЛЕ</small><b>${houseCoinIcon()}${nextHouseData.incomePerMinute || 0}</b><span>в минуту</span></div>
+            </div>
+            ${rewardRating ? `<div class="house-note house-note-accent"><span>Награда за улучшение: <b>+${rewardRating} рейтинга</b></span></div>` : ''}
+            ${autoCollectHTML}
+            ${requirementsHTML ? `<div class="house-section-label">ТРЕБУЕТСЯ</div><div class="house-req-list">${requirementsHTML}</div>` : ''}
+        </div>
+        <footer class="house-modal-actions">
+            <button class="house-btn house-btn-primary" onclick="playClick(); upgradeHouse(); closeHouseUpgradeModal();">${HOUSE_ICONS.up}УЛУЧШИТЬ</button>
+            <button class="house-close-btn" onclick="playClick(); closeHouseUpgradeModal();">ЗАКРЫТЬ</button>
+        </footer>
     `;
     modal.classList.add('show');
 }
@@ -287,25 +253,25 @@ function openHouseResetModal() {
     const app=document.getElementById('app'); if(!app)return;
     let modal=document.getElementById('house-reset-modal');
     if(!modal){
-        modal=document.createElement('div'); modal.id='house-reset-modal';
-        modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:1500;padding:16px;box-sizing:border-box;';
-        modal.innerHTML='<div id="house-reset-content" style="width:95%;max-width:430px;background:var(--bg-primary);border:3px solid #d6a84f;border-radius:12px;padding:20px;text-align:center;box-shadow:0 0 35px rgba(214,168,79,.25);"></div>';
+        modal=document.createElement('div'); modal.id='house-reset-modal'; modal.className='house-modal';
+        modal.innerHTML='<div id="house-reset-content" class="house-modal-card" role="dialog" aria-modal="true" aria-label="Продажа убежища"></div>';
         app.appendChild(modal);
     }
     const c=document.getElementById('house-reset-content');
     c.innerHTML=`
-      <div style="font-size:18px;color:var(--border-color);margin-bottom:12px;">ПРОДАТЬ УБЕЖИЩЕ?</div>
-      <div style="font-size:10px;color:var(--text-primary);line-height:1.8;margin-bottom:14px;">Ваше убежище достигло 30 уровня. Его можно продать и начать развитие заново.</div>
-      <div style="background:rgba(0,0,0,.3);border:1px solid var(--border-color);border-radius:8px;padding:12px;margin-bottom:14px;text-align:left;font-size:9px;line-height:1.9;">
-        <div>• Уровень базы: <b>30 → 1</b></div>
-        <div>• Награда: <b style="color:#ffd86a;">+50 💎</b></div>
-        <div>• Награда: <b style="color:#ffd86a;">+500 рейтинга</b></div>
-        <div>• Предметы и другие ресурсы <b>не сбрасываются</b></div>
-        <div>• Фоны дома <b>не сбрасываются</b></div>
+      <header class="house-modal-head"><span class="house-modal-kicker">НОВЫЙ ЦИКЛ</span><div class="house-modal-title">ПРОДАТЬ УБЕЖИЩЕ?</div><p class="house-modal-desc">Ваше убежище достигло 30 уровня. Его можно продать и начать развитие заново.</p></header>
+      <div class="house-modal-body">
+        <div class="house-kv"><span>Уровень базы</span><b>30 → 1</b></div>
+        <div class="house-kv"><span>Награда</span><b class="accent">+50 <img src="${PATHS.gem}" alt="гемы"></b></div>
+        <div class="house-kv"><span>Награда</span><b class="accent">+500 рейтинга</b></div>
+        <div class="house-kv"><span>Предметы и ресурсы</span><b>не сбрасываются</b></div>
+        <div class="house-kv"><span>Фоны дома</span><b>не сбрасываются</b></div>
+        <div class="house-note house-note-bad"><span>После продажи снова понадобится собирать материалы и монеты для улучшений.</span></div>
       </div>
-      <div style="font-size:8px;color:#ff8b8b;line-height:1.6;margin-bottom:14px;">После продажи снова понадобится собирать материалы и монеты для улучшений.</div>
-      <button class="menu-btn" style="width:100%;padding:15px;font-size:11px;background:linear-gradient(135deg,#b33,#e05252);" onclick="playClick(); sellHouse();">ПРОДАТЬ И НАЧАТЬ ЗАНОВО</button>
-      <button class="house-close-btn" style="margin-top:10px;" onclick="playClick(); closeHouseResetModal();">ОТМЕНА</button>`;
+      <footer class="house-modal-actions">
+        <button class="house-btn house-btn-danger" onclick="playClick(); sellHouse();">${HOUSE_ICONS.cycle}ПРОДАТЬ И НАЧАТЬ ЗАНОВО</button>
+        <button class="house-close-btn" onclick="playClick(); closeHouseResetModal();">ОТМЕНА</button>
+      </footer>`;
     modal.style.display='flex';
 }
 function closeHouseResetModal(){document.getElementById('house-reset-modal')?.style.setProperty('display','none');}
@@ -334,44 +300,38 @@ function renderHouse() {
     const bg = getSelectedBackground();
     const bgCss = bg ? bg.css : 'linear-gradient(180deg, #1a1a2e, #0a0a1a)';
     const bgId = bg?.id || 'day';
+    const level = GameState.houseLevel;
+    const maxLevel = HOUSE_DATABASE.maxLevel || 30;
+    const maxHours = Math.floor(MAX_COLLECT_MINUTES / 60);
+    const fill = maxIncome ? Math.min(100, pendingIncome / maxIncome * 100) : 0;
+    const coin = houseCoinIcon();
     
     container.innerHTML = `
-        <div class="house-scene bg-${bgId}" style="background: ${bgCss}; border: 3px solid var(--border-color); border-radius: var(--border-radius); padding: 25px; text-align: center; box-shadow: 0 8px 0 rgba(0,0,0,0.5), 0 0 30px var(--glow-color); position: relative; overflow: hidden; min-height: 400px;">
-            <button id="house-ambience-button" type="button" class="house-ambience-button" onclick="cycleHouseAmbience()" aria-label="Громкость звука фона" title="Громкость звука фона"><span aria-hidden="true">🔊</span><b id="house-ambience-level">50%</b></button>
-            <div id="bg-effects" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:hidden;"></div>
-            
-            <div class="house-sprite-wrap">
-                <img class="house-sprite" src="${currentHouseData.image || 'png/houses/house_5.png'}" onerror="this.onerror=null;this.src='png/houses/house_5.png';" style="width:220px;height:160px;object-fit:contain;image-rendering:pixelated;" onerror="this.style.display='none';">
-            </div>
-            
-            <div style="position:relative;z-index:10;background:rgba(0,0,0,0.5);border-radius:var(--border-radius);padding:12px;margin-bottom:15px;border:2px solid var(--border-color);">
-                <div style="color: var(--border-color); font-size: 14px; margin-bottom:5px;">${escapeHtml(currentHouseData.name)}</div>
-                <div style="color: var(--text-secondary); font-size: 9px;">УРОВЕНЬ ${GameState.houseLevel} · ЦИКЛ ${GameState.houseCycle||1}</div>
-                <div style="color: var(--text-secondary); font-size: 7px; margin-top:8px; line-height: 1.5;">${escapeHtml(currentHouseData.description || '')}</div>
-            </div>
-            
-            <div style="position:relative;z-index:10;background:rgba(0,0,0,0.5);border-radius:var(--border-radius);padding:12px;margin-bottom:15px;border:2px solid var(--border-color);">
-                <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;font-size:8px;color:var(--text-primary);">
-                    <span>ДОХОД:</span>
-                    <img src="${PATHS.coin}" style="width:16px;height:16px;" onerror="this.style.display='none';">
-                    <span>${currentHouseData.incomePerMinute || 0}</span>
-                    <span style="color:var(--text-secondary);">/ 1 МИН</span>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:8px;color:var(--text-primary);">
-                    <span>НАКОПЛЕНО:</span>
-                    <img src="${PATHS.coin}" style="width:16px;height:16px;" onerror="this.style.display='none';">
-                    <span id="live-income-display">${pendingIncome}</span>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;font-size:7px;color:var(--text-secondary);">
-                    <span>МАКС:</span>
-                    <img src="${PATHS.coin}" style="width:14px;height:14px;" onerror="this.style.display='none';">
-                    <span>${maxIncome}</span>
+        <div class="house-scene bg-${bgId}">
+            <div class="house-stage" style="background:${bgCss}">
+                <div id="bg-effects" class="house-effects"></div>
+                <div class="house-ground" aria-hidden="true"></div>
+                <button id="house-ambience-button" type="button" class="house-ambience-button" onclick="cycleHouseAmbience()" aria-label="Громкость звука фона" title="Громкость звука фона"><span aria-hidden="true">🔊</span><b id="house-ambience-level">50%</b></button>
+                <span class="house-level-chip">УР. <b>${level}</b>/${maxLevel}</span>
+                <div class="house-sprite-wrap">
+                    <img class="house-sprite" src="${currentHouseData.image || 'png/houses/house_5.png'}" alt="${escapeHtml(currentHouseData.name)}" onerror="this.onerror=null;this.src='png/houses/house_5.png';">
                 </div>
             </div>
-            
-            <button class="menu-btn" style="position:relative;z-index:10;width:100%; margin: 8px auto; padding: 13px; font-size: 10px; background: linear-gradient(135deg, #4CAF50, #8BC34A);" onclick="playClick(); openHouseIncomeModal();">ДОХОД</button>
-            ${GameState.houseLevel < 30 ? `<button class="menu-btn" style="position:relative;z-index:10;width:100%; margin: 8px auto; padding: 13px; font-size: 10px; background: linear-gradient(135deg, #ff9800, #f57c00);" onclick="playClick(); openHouseUpgradeModal();">УЛУЧШЕНИЕ</button>` : `<button class="menu-btn" style="position:relative;z-index:10;width:100%; margin: 8px auto; padding: 13px; font-size: 10px; background: linear-gradient(135deg, #a43b3b, #d05a4a);" onclick="playClick(); openHouseResetModal();">ПРОДАТЬ УБЕЖИЩЕ</button>`}
-            <button class="menu-btn" style="position:relative;z-index:10;width:100%; margin: 8px auto; padding: 13px; font-size: 10px; background: linear-gradient(135deg, #2196F3, #1976D2);" onclick="playClick(); openHouseBackgroundModal();">ФОН</button>
+            <div class="house-info">
+                <div class="house-title-row"><b class="house-name">${escapeHtml(currentHouseData.name)}</b><span class="house-cycle-badge">ЦИКЛ ${GameState.houseCycle||1}</span></div>
+                <p class="house-desc">${escapeHtml(currentHouseData.description || '')}</p>
+                <div class="house-level-track" role="progressbar" aria-label="Уровень убежища" aria-valuemin="1" aria-valuemax="${maxLevel}" aria-valuenow="${level}"><i style="width:${Math.min(100, level / maxLevel * 100)}%"></i></div>
+            </div>
+            <div class="house-stats">
+                <div class="house-stat"><small>ДОХОД</small><b>${coin}${formatNumber(currentHouseData.incomePerMinute || 0)}</b><span>в минуту</span></div>
+                <div class="house-stat house-stat-live"><small>НАКОПЛЕНО</small><b>${coin}<span id="live-income-display">${formatNumber(pendingIncome)}</span></b><div class="house-meter"><i id="house-income-fill" style="width:${fill}%"></i></div></div>
+                <div class="house-stat"><small>ЛИМИТ</small><b>${coin}${formatNumber(maxIncome)}</b><span>за ${maxHours} ч</span></div>
+            </div>
+            <div class="house-actions">
+                <button class="house-btn house-btn-primary house-btn-wide" onclick="playClick(); openHouseIncomeModal();">${coin}СОБРАТЬ ДОХОД</button>
+                ${level < 30 ? `<button class="house-btn" onclick="playClick(); openHouseUpgradeModal();">${HOUSE_ICONS.up}УЛУЧШИТЬ</button>` : `<button class="house-btn house-btn-danger" onclick="playClick(); openHouseResetModal();">${HOUSE_ICONS.cycle}ПРОДАТЬ</button>`}
+                <button class="house-btn" onclick="playClick(); openHouseBackgroundModal();">${HOUSE_ICONS.image}ФОН</button>
+            </div>
         </div>
     `;
     
@@ -569,7 +529,10 @@ function startLiveIncome() {
     liveIncomeInterval = setInterval(() => {
         const display = document.getElementById('live-income-display');
         if (display) {
-            display.textContent = calculateHouseIncome();
+            const income = calculateHouseIncome(), max = getMaxIncomeForCurrentLevel();
+            display.textContent = formatNumber(income);
+            const fill = document.getElementById('house-income-fill');
+            if (fill) fill.style.width = (max ? Math.min(100, income / max * 100) : 0) + '%';
         } else {
             clearInterval(liveIncomeInterval);
             liveIncomeInterval = null;
