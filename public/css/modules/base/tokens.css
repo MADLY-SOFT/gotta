@@ -1,0 +1,83 @@
+/* ZOMBIX design tokens — the only place colours, radii, type and depth are defined.
+ * Skins only swap the accent ramp; every module reads these variables.
+ * Legacy names (--border-color, --bg-primary, …) stay mapped because JS templates use them inline. */
+:root{
+  color-scheme:dark;
+
+  --z-font-ui:"Rubik",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --z-font-game:var(--z-font-ui);
+  --z-font-pixel:"Press Start 2P",ui-monospace,monospace;
+
+  --fs-2xs:10px;--fs-xs:11px;--fs-sm:12px;--fs-md:14px;--fs-lg:16px;--fs-xl:20px;--fs-2xl:26px;--fs-3xl:34px;
+
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;
+
+  --bg-0:#05070a;
+  --bg-1:#0a0e13;
+  --surface-1:#11161d;
+  --surface-2:#171e27;
+  --surface-3:#202a35;
+  --surface-4:#2a3644;
+  --line:rgba(255,255,255,.08);
+  --line-strong:rgba(255,255,255,.16);
+  --text:#eef2f6;
+  --text-2:#a3adba;
+  --text-3:#6c7786;
+
+  --accent:#ffc531;
+  --accent-2:#ff9a1f;
+  --accent-ink:#1d1300;
+  --accent-soft:color-mix(in srgb,var(--accent) 14%,transparent);
+  --accent-line:color-mix(in srgb,var(--accent) 42%,transparent);
+  --accent-glow:color-mix(in srgb,var(--accent) 45%,transparent);
+
+  --ok:#3ddc84;--warn:#ffb020;--bad:#ff4d5e;--info:#4db3ff;
+  --coin:#ffc531;--gem:#38e1f0;--shard:#b77dff;
+
+  --t1:#c7ced6;--t2:#4fd36b;--t3:#3c9dff;--t4:#b65cff;--t5:#ff8a1f;--t6:#ff2d4b;
+
+  --r-xs:6px;--r-sm:9px;--r-md:13px;--r-lg:18px;--r-xl:24px;--r-pill:999px;
+
+  --shadow-1:0 1px 0 rgba(255,255,255,.04) inset,0 6px 16px rgba(0,0,0,.35);
+  --shadow-2:0 1px 0 rgba(255,255,255,.06) inset,0 18px 48px rgba(0,0,0,.55);
+  --shadow-press:0 4px 0 rgba(0,0,0,.45);
+
+  --panel-bg:linear-gradient(180deg,var(--surface-2),var(--surface-1));
+  --panel-border:1px solid var(--line);
+  --card-bg:linear-gradient(180deg,color-mix(in srgb,var(--surface-3) 70%,transparent),color-mix(in srgb,var(--surface-2) 80%,transparent));
+  --btn-primary-bg:linear-gradient(180deg,var(--accent),var(--accent-2));
+  --btn-secondary-bg:linear-gradient(180deg,var(--surface-4),var(--surface-3));
+  --overlay-bg:rgba(3,5,8,.78);
+  --ease-out:cubic-bezier(.2,.8,.2,1);
+  --ease-spring:cubic-bezier(.34,1.56,.64,1);
+
+  /* Legacy aliases used by JavaScript templates and inline styles. */
+  --border-color:var(--accent);
+  --glow-color:var(--accent-glow);
+  --btn-bg:var(--surface-3);
+  --btn-hover:var(--surface-4);
+  --bg-primary:var(--surface-1);
+  --bg-secondary:var(--surface-2);
+  --bg-tertiary:var(--bg-1);
+  --text-primary:var(--text);
+  --text-secondary:var(--text-2);
+  --muted:var(--text-3);
+  --panel:var(--surface-2);
+  --panel2:var(--surface-3);
+  --bg:var(--bg-1);
+  --roulette-bg:radial-gradient(ellipse at center,var(--surface-2),var(--bg-0));
+  --border-radius:var(--r-md);
+  --radius:var(--r-md);
+}
+
+[data-corners="square"]{--r-xs:2px;--r-sm:2px;--r-md:3px;--r-lg:4px;--r-xl:4px;--r-pill:4px}
+
+[data-skin="gold"]{--accent:#ffc531;--accent-2:#ff9a1f;--accent-ink:#1d1300}
+[data-skin="ice"]{--accent:#7fdcff;--accent-2:#3c9dff;--accent-ink:#021627}
+[data-skin="fire"]{--accent:#ff8a4c;--accent-2:#ff3d2e;--accent-ink:#250500}
+[data-skin="toxic"]{--accent:#b8f15a;--accent-2:#4fd36b;--accent-ink:#0d1a00}
+[data-skin="violet"]{--accent:#c9a4ff;--accent-2:#8f5cff;--accent-ink:#14062b}
+[data-skin="ocean"]{--accent:#4fe3e0;--accent-2:#1aa6c9;--accent-ink:#002124}
+[data-skin="sand"]{--accent:#ead6a4;--accent-2:#c9a46a;--accent-ink:#231a08}
+[data-skin="neon"]{--accent:#5dff6a;--accent-2:#00d1a0;--accent-ink:#002a08}
+[data-skin="cyber"]{--accent:#ff5cf0;--accent-2:#7a5cff;--accent-ink:#22002a}
