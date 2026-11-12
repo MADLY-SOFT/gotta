@@ -3,7 +3,8 @@
 <head>
 <link rel="manifest" href="manifest.json">
 <link rel="preload" href="fonts/PressStart2P-Regular.ttf" as="font" type="font/ttf" crossorigin>
-<meta name="theme-color" content="#0b0f13">
+<link rel="preload" href="fonts/Rubik-Cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#05070a">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
     <meta charset="UTF-8">
@@ -89,7 +90,7 @@
             
             <div id="content">
                 <div class="content-panel active" id="panel-shop" data-index="0">
-                    <h3 style="color:var(--text-primary); margin-bottom:10px; font-size:9px; text-align:center;">ВЫБЕРИТЕ КЕЙС:</h3>
+                    <h3>ВЫБЕРИТЕ КЕЙС</h3>
                     <div id="cases-filter"></div>
                     <div id="cases-grid"></div>
                 </div>
@@ -103,16 +104,16 @@
                 </div>
                 
                 <div class="content-panel" id="panel-other" data-index="3">
-                    <h3 style="color:var(--text-primary); margin-bottom:15px; font-size:9px; text-align:center;">ПРОЧЕЕ</h3>
-                    <div id="other-actions" style="text-align:center; margin-top:18px; display:flex; flex-direction:column; gap:15px; align-items:center;">
-                        <button class="other-action-btn" id="promo-btn" onclick="playClick(); openPromoModal();"><img src="png/ui/promo.png" alt=""><span>ПРОМОКОД</span></button>
-                        <button class="other-action-btn" id="daily-rewards-btn" onclick="playClick(); openDailyRewards();"><img src="png/ui/daily_rewards.png" alt=""><span>ЕЖЕДНЕВНЫЕ НАГРАДЫ</span></button>
-                        <button class="other-action-btn" id="open-contract-btn"><img src="png/ui/contracts.png" alt=""><span>КОНТРАКТЫ</span></button>
-                        <button class="other-action-btn" onclick="playClick(); openZoneCenter();"><img src="png/ui/leaderboard.png" alt=""><span>РЕЙТИНГ</span></button>
-                        <button class="other-action-btn" id="quests-other-btn" onclick="playClick(); openQuestsModal();"><img src="png/ui/quests.png" alt=""><span>ЗАДАНИЯ</span></button>
-                        <button class="other-action-btn" id="mail-other-btn" onclick="playClick();openMailbox();"><img src="png/ui/mail.png" alt=""><span>ПОЧТА</span></button>
-                        <button class="other-action-btn" onclick="playClick();openPlane();"><img src="png/ui/cargo-plane-icon.png" alt=""><span>ГРУЗОВОЙ РЕЙС</span></button>
-                        <button class="other-action-btn market-open-btn" onclick="playClick(); openMarket();"><img src="png/ui/market-artifacts.png" alt=""><span>РЫНОК АРТЕФАКТОВ</span></button>
+                    <header class="other-head"><h3 class="other-title">ПРОЧЕЕ</h3><p class="other-sub">Награды, события и сервисы убежища</p></header>
+                    <div id="other-actions" class="other-grid">
+                        <button class="other-action-btn other-action-featured" data-other="market" onclick="playClick(); openMarket();"><img src="png/ui/market-artifacts.png" alt=""><span>РЫНОК АРТЕФАКТОВ</span><small>Покупай и продавай находки игроков</small></button>
+                        <button class="other-action-btn" id="promo-btn" onclick="playClick(); openPromoModal();"><img src="png/ui/promo.png" alt=""><span>ПРОМОКОД</span><small>Введи код — получи награду</small></button>
+                        <button class="other-action-btn" id="daily-rewards-btn" onclick="playClick(); openDailyRewards();"><img src="png/ui/daily_rewards.png" alt=""><span>НАГРАДЫ ДНЯ</span><small>30 дней подарков подряд</small></button>
+                        <button class="other-action-btn" id="open-contract-btn"><img src="png/ui/contracts.png" alt=""><span>КОНТРАКТЫ</span><small>Обменяй предметы на лучшие</small></button>
+                        <button class="other-action-btn" onclick="playClick(); openZoneCenter();"><img src="png/ui/leaderboard.png" alt=""><span>РЕЙТИНГ</span><small>Зал славы выживших</small></button>
+                        <button class="other-action-btn" id="quests-other-btn" onclick="playClick(); openQuestsModal();"><img src="png/ui/quests.png" alt=""><span>ЗАДАНИЯ</span><small>Цели дня и недели</small></button>
+                        <button class="other-action-btn" id="mail-other-btn" onclick="playClick();openMailbox();"><img src="png/ui/mail.png" alt=""><span>ПОЧТА</span><small>Посылки и сообщения</small></button>
+                        <button class="other-action-btn other-action-featured" data-other="plane" onclick="playClick();openPlane();"><img src="png/ui/cargo-plane-icon.png" alt=""><span>ГРУЗОВОЙ РЕЙС</span><small>Общий фонд · артефакты в почту</small></button>
                     </div>
                 </div>
                 
@@ -143,37 +144,43 @@
         </div>
 
         <!-- КОНТРАКТЫ -->
-        <div id="contract-modal">
+        <div id="contract-modal" role="dialog" aria-modal="true" aria-labelledby="contract-name">
             <div id="contract-content">
-                <div class="contract-title" id="contract-name">КОНТРАКТ</div>
-                <div class="contract-inventory-panel"><div class="contract-inventory-toolbar"><span>ПРЕДМЕТЫ</span><div id="contract-tier-filters"></div></div><div class="contract-inventory" id="contract-inventory"></div></div>
+                <header class="contract-head">
+                    <div class="contract-head-copy"><small class="contract-kicker">РИТУАЛ ОБМЕНА · 3–9 ПРЕДМЕТОВ</small><div class="contract-title" id="contract-name">КОНТРАКТ</div></div>
+                    <div class="contract-info">
+                        <span class="contract-count"><small>ВЫБРАНО</small><b><span id="contract-count">0</span>/9</b></span>
+                        <span class="contract-total"><small>СТОИМОСТЬ</small><b><span id="contract-total">0</span><img src="png/ui/coin.png" alt="" class="contract-coin-icon"></b></span>
+                    </div>
+                </header>
                 <div class="contract-selected-area">
+                    <div class="contract-sigil" aria-hidden="true"><i></i></div>
                     <div class="contract-fan" id="contract-fan"></div>
+                    <div class="contract-expected" id="contract-expected"></div>
                 </div>
-                <div class="contract-info">
-                    <span>ВЫБРАНО: <span id="contract-count">0</span>/9</span>
-                    <span class="contract-total">СТОИМОСТЬ: <span id="contract-total">0</span></span>
-                </div>
-                <div class="contract-expected" id="contract-expected">ВОЗМОЖНЫЙ ВЫИГРЫШ: 0 - 0 <img src="png/ui/coin.png" alt="" style="width:12px;height:12px;vertical-align:-2px"></div>
-                <button class="contract-btn" id="contract-start-btn" disabled onclick="playClick(); startContract();">ВЫПОЛНИТЬ КОНТРАКТ</button>
-                <button class="contract-close-btn" onclick="playClick(); closeContractModal();">← ЗАКРЫТЬ</button>
+                <div class="contract-inventory-panel"><div class="contract-inventory-toolbar"><span>ИНВЕНТАРЬ</span><div id="contract-tier-filters"></div></div><div class="contract-inventory" id="contract-inventory"></div></div>
+                <footer class="contract-actions">
+                    <button class="contract-close-btn" onclick="playClick(); closeContractModal();">← ЗАКРЫТЬ</button>
+                    <button class="contract-btn" id="contract-start-btn" disabled onclick="playClick(); startContract();">ВЫПОЛНИТЬ КОНТРАКТ</button>
+                </footer>
             </div>
         </div>
 
         <div class="contract-prepare-overlay" id="contract-prepare-overlay">
-            <div class="contract-prepare-text">ВЫПОЛНЕНИЕ КОНТРАКТА...</div>
             <div class="contract-prepare-cards">
                 <div class="contract-prepare-card"></div>
-                <div class="contract-prepare-card" style="animation-delay:0.2s;"></div>
-                <div class="contract-prepare-card" style="animation-delay:0.4s;"></div>
+                <div class="contract-prepare-card"></div>
+                <div class="contract-prepare-card"></div>
             </div>
+            <div class="contract-prepare-text">ВЫПОЛНЕНИЕ КОНТРАКТА...</div>
         </div>
 
         <div class="contract-explosion" id="contract-explosion"></div>
 
         <div class="contract-result-overlay" id="contract-result-overlay">
             <div class="contract-result-card" id="contract-result-card">
-                <span id="contract-result-img" class="item-atlas contract-result-img" aria-hidden="true"></span>
+                <div class="contract-result-kicker">КОНТРАКТ ВЫПОЛНЕН</div>
+                <div class="contract-result-well"><span id="contract-result-img" class="item-atlas contract-result-img" aria-hidden="true"></span></div>
                 <div class="contract-result-name" id="contract-result-name"></div>
                 <div class="contract-result-tier" id="contract-result-tier"></div>
                 <div class="contract-result-price" id="contract-result-price"></div>
@@ -186,19 +193,20 @@
         <div id="market-modal" aria-hidden="true">
             <div id="market-content">
                 <div class="market-head">
-                    <div><div class="market-title">РЫНОК АРТЕФАКТОВ</div><div class="market-subtitle">ЦЕНА ОПРЕДЕЛЯЕТСЯ ИГРОКАМИ</div></div>
-                    <button class="market-close" onclick="playClick(); closeMarket();">×</button>
+                    <div class="market-head-copy"><div class="market-title">РЫНОК АРТЕФАКТОВ</div><div class="market-subtitle">ЦЕНА ОПРЕДЕЛЯЕТСЯ ИГРОКАМИ</div></div>
+                    <button class="market-close" aria-label="Закрыть" onclick="playClick(); closeMarket();"><i class="pixel-close-icon" aria-hidden="true"></i></button>
                 </div>
                 <div id="market-body"></div>
             </div>
         </div>
 
         <div id="market-price-modal" aria-hidden="true">
-            <div class="market-price-dialog">
+            <div class="market-price-dialog" role="dialog" aria-modal="true" aria-label="Выставить артефакт">
                 <div class="market-price-title">ВЫСТАВИТЬ АРТЕФАКТ</div>
                 <div id="market-price-artifact"></div>
-                <label>ЦЕНА В ОСКОЛКАХ<input id="market-price-input" type="number" min="1" max="1000000" inputmode="numeric"></label>
-                <div class="market-price-actions"><button onclick="playClick();submitMarketSell()">ВЫСТАВИТЬ</button><button onclick="playClick();closeMarketSellPrompt()">ОТМЕНА</button></div>
+                <label>ЦЕНА В ОСКОЛКАХ<span class="market-price-field"><img src="png/ui/shards.png" alt=""><input id="market-price-input" type="number" min="1" max="1000000" inputmode="numeric"></span></label>
+                <div class="market-price-hint">ОТ 1 ДО 1 000 000 · ОСКОЛКИ ПРИДУТ ПОСЛЕ ПРОДАЖИ</div>
+                <div class="market-price-actions"><button class="market-price-cancel" onclick="playClick();closeMarketSellPrompt()">ОТМЕНА</button><button class="market-price-submit" onclick="playClick();submitMarketSell()">ВЫСТАВИТЬ</button></div>
             </div>
         </div>
         <!-- АККАУНТ -->
@@ -283,18 +291,36 @@
 
         <!-- РЕЗУЛЬТАТ КЕЙСА -->
         <div id="result-overlay">
-            <div id="result-content">
-                <span id="result-image" class="item-atlas modal-image" style="display:none;" aria-hidden="true"></span>
-                <div id="result-name"></div>
+            <div class="result-rays" aria-hidden="true"></div>
+            <div id="result-content" role="dialog" aria-modal="true" aria-labelledby="result-name">
+                <div class="result-kicker" id="result-kicker">НОВАЯ НАХОДКА</div>
+                <div class="result-item-stage" id="result-item-stage"><span class="result-item-glow" aria-hidden="true"></span><span id="result-image" class="item-atlas modal-image" style="display:none;" aria-hidden="true"></span></div>
                 <div id="result-tier"></div>
-                <button id="result-close" onclick="playClick(); closeResult();">ЗАБРАТЬ</button>
+                <div id="result-name"></div>
+                <div id="result-stats"></div>
+                <div id="bulk-result-grid" hidden></div>
+                <div class="result-actions">
+                    <button id="result-again" type="button" onclick="playClick(); openCaseAgain();">ЕЩЁ РАЗ</button>
+                    <button id="result-close" type="button" onclick="playClick(); closeResult();">ЗАБРАТЬ</button>
+                </div>
             </div>
         </div>
 
         <!-- РУЛЕТКА -->
-        <div id="roulette-overlay">
-            <div class="roulette-heading"><span class="roulette-kicker">ZOMBIX / CASE OPENING</span><h2>ОТКРЫТИЕ КЕЙСА</h2></div>
+        <div id="roulette-overlay" data-stage="idle">
+            <div class="roulette-ambient" aria-hidden="true"><i class="roulette-rays"></i></div>
+            <div class="roulette-heading">
+                <img id="roulette-case-thumb" src="png/cases/case_1.png" alt="" onerror="this.style.visibility='hidden'">
+                <div><span class="roulette-kicker">ОТКРЫТИЕ КЕЙСА</span><h2 id="roulette-case-name">ОТКРЫТИЕ КЕЙСА</h2></div>
+            </div>
+            <div class="roulette-case-stage" id="roulette-case-stage" aria-hidden="true">
+                <span class="case-stage-halo"></span>
+                <img id="roulette-case-image" src="png/cases/case_1.png" alt="" onerror="this.style.visibility='hidden'">
+                <span class="case-stage-crack"></span>
+            </div>
             <div id="roulette-container" aria-live="polite"><div id="roulette-strip"></div></div>
+            <div class="roulette-odds" id="roulette-odds" aria-label="Шансы по редкости"></div>
+            <div class="roulette-flash" id="roulette-flash" aria-hidden="true"></div>
             <div class="roulette-actions">
                 <button class="roulette-btn" id="back-roulette-btn" onclick="playClick(); goBackFromRoulette();">НАЗАД</button>
                 <div class="case-open-quantity" id="case-open-quantity" aria-label="Количество кейсов">
