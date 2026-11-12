@@ -35,6 +35,7 @@ function setMarketSort(v){playClick();marketSort=['price_asc','price_desc','newe
 function setMarketFilter(v){playClick();marketFilter=['all','listed'].includes(v)?v:'all';renderMarket();}
 function setMarketDetailTab(v){playClick();marketDetailTab=['listings','about'].includes(v)?v:'listings';renderMarket();}
 function marketGem(n){return `<span class="market-gem"><img src="png/ui/shards.png" class="market-shard-icon" alt="осколки"><b class="market-gem-value">${marketFormatPrice(n)}</b></span>`;}
+function marketWallet(){return `<div class="market-v4-wallet">${marketGem(GameState.shards||0)}<button class="market-refresh" onclick="playClick();refreshMarket()" aria-label="Обновить">↻</button></div>`;}
 function marketShortName(name){return String(name||'').trim().split(/\s+/).map(w=>w[0]||'').join('.').toLocaleUpperCase('ru-RU')+'.';}
 function marketFormatPrice(n){return formatNumberFull(Number.isFinite(Number(n))?Math.max(0,Math.floor(Number(n))):0);}
 function marketArtifactStats(id){return marketData.stats?.[id]||null;}
@@ -73,17 +74,16 @@ function renderMarket(){
   // Это убирает каталог с экрана покупки и не смешивает разные предметы.
   if(marketMobileDetail&&selected){
     b.innerHTML=`<div class="market-v4 market-detail-screen">
-      <header class="market-v4-head"><button class="market-v4-back" onclick="playClick();marketBackToArtifacts()">← <span>АРТЕФАКТЫ</span></button><div class="market-v4-wallet">${marketGem(GameState.shards||0)}<button onclick="playClick();refreshMarket()" aria-label="Обновить">↻</button></div></header>
+      <header class="market-v4-head"><button class="market-v4-back" onclick="playClick();marketBackToArtifacts()"><span aria-hidden="true">←</span> АРТЕФАКТЫ</button>${marketWallet()}</header>
       ${renderMarketDetail(selected,rows,cheap,stats)}
     </div>`;
     return;
   }
 
-  b.innerHTML=`<div class="market-v4 market-catalog-screen market-catalog-clean">
-    <header class="market-v4-head"><div><h2>АРТЕФАКТЫ</h2></div><div class="market-v4-wallet">${marketGem(GameState.shards||0)}<button onclick="playClick();refreshMarket()" aria-label="Обновить">↻</button></div></header>
-    <div class="market-trade-nav"><button onclick="setMarketMode('${marketMode==='mine'?'browse':'mine'}')">${marketMode==='mine'?'← К РЫНКУ':'МОИ ПРОДАЖИ · '+mine}</button></div>
+  b.innerHTML=`<div class="market-v4 market-catalog-screen">
+    <header class="market-v4-head"><nav class="market-trade-nav" aria-label="Разделы рынка"><button class="${marketMode==='browse'?'active':''}" onclick="setMarketMode('browse')">РЫНОК</button><button class="${marketMode==='mine'?'active':''}" onclick="setMarketMode('mine')">МОИ ЛОТЫ${mine?`<span class="market-tab-badge">${mine}</span>`:''}</button></nav>${marketWallet()}</header>
     ${marketMode==='mine'?renderMyMarket(ARTIFACTS_DATABASE.artifacts||[]):`<section class="market-v4-browser">
-      <div class="market-v4-filters"><button class="${marketFilter==='all'?'active':''}" onclick="setMarketFilter('all')">ВСЕ</button><button class="${marketFilter==='listed'?'active':''}" onclick="setMarketFilter('listed')">В ПРОДАЖЕ</button><select aria-label="Сортировка" onchange="setMarketSort(this.value)"><option value="price_asc" ${marketSort==='price_asc'?'selected':''}>ДЕШЕВЛЕ</option><option value="price_desc" ${marketSort==='price_desc'?'selected':''}>ДОРОЖЕ</option><option value="newest" ${marketSort==='newest'?'selected':''}>НОВЫЕ</option></select></div>
+      <div class="market-v4-filters"><label class="market-search market-v4-search"><input type="search" value="${escapeHtml(marketSearchTerm)}" placeholder="Поиск артефакта" aria-label="Поиск артефакта" autocomplete="off" enterkeyhint="search" oninput="marketSearch(this.value)"></label><div class="market-chips"><button class="${marketFilter==='all'?'active':''}" onclick="setMarketFilter('all')">ВСЕ</button><button class="${marketFilter==='listed'?'active':''}" onclick="setMarketFilter('listed')">В ПРОДАЖЕ · ${total}</button></div><select aria-label="Сортировка" onchange="setMarketSort(this.value)"><option value="price_asc" ${marketSort==='price_asc'?'selected':''}>ДЕШЕВЛЕ</option><option value="price_desc" ${marketSort==='price_desc'?'selected':''}>ДОРОЖЕ</option><option value="newest" ${marketSort==='newest'?'selected':''}>НОВЫЕ</option></select></div>
       <div class="market-v4-artifacts">${defs.map(a=>renderMarketArtifactCard(a)).join('')}</div>
     </section>`}
   </div>`;
@@ -91,24 +91,24 @@ function renderMarket(){
 function renderMarketArtifactCard(a){
   const rows=(marketData.listings||[]).filter(x=>x.currency!=='gems'&&Number(x.artifactId)===Number(a.id));
   const cheap=marketCheapest(rows),owned=artifactInventoryCount(a.id),book=marketData.book?.[a.id]||{};
-  return `<button type="button" class="market-v4-artifact" data-name="${escapeHtml(String(a.name||'').toLowerCase())}" aria-label="${escapeHtml(a.name)}. ${book.count?'Цена '+marketFormatPrice(book.minPrice)+' осколков':'Нет лотов'}" onclick="playClick();selectMarketArtifact(${Number(a.id)})">
-    <span class="market-v4-artifact-img">${artifactSprite(a.id)}</span><span class="market-v4-artifact-short">${escapeHtml(a.name).trim().split(/\s+/).join('<br>')}</span>
+  return `<button type="button" class="market-v4-artifact${book.count?'':' is-empty'}" data-name="${escapeHtml(String(a.name||'').toLowerCase())}" aria-label="${escapeHtml(a.name)}. ${book.count?'Цена '+marketFormatPrice(book.minPrice)+' осколков':'Нет лотов'}" onclick="playClick();selectMarketArtifact(${Number(a.id)})">
+    <span class="market-v4-artifact-img">${artifactSprite(a.id)}</span><span class="market-v4-artifact-short">${escapeHtml(a.name)}</span>
     <span class="market-v4-artifact-price">${book.count?marketGem(book.minPrice):'<small>НЕТ ЛОТОВ</small>'}</span>
-    ${book.count?`<span class="market-v4-owned">×${book.count}</span>`:''}
+    ${book.count?`<span class="market-v4-owned">×${book.count}</span>`:''}${owned?`<span class="market-v4-mine-badge" title="У тебя">${owned}</span>`:''}
   </button>`;
 }
 function renderMarketDetail(a,rows,cheap,stats){
  const inv=artifactInventoryCount(a.id);
  return `<main class="market-v4-detail">
-   <section class="market-v4-artifact-hero"><div class="market-v4-hero-img">${artifactSprite(a.id)}</div><div class="market-v4-hero-copy"><h1>${escapeHtml(a.name)}</h1><div class="market-v4-best">${cheap?marketGem(cheap.price):'<b>НЕТ ЛОТОВ</b>'}</div><span class="market-v4-count">НА РЫНКЕ ×${Number(marketData.book?.[a.id]?.count||0)}</span></div></section>
-   <div class="market-v4-detail-tabs"><button class="${marketDetailTab==='listings'?'active':''}" onclick="setMarketDetailTab('listings')">ЛОТЫ</button><button class="${marketDetailTab==='about'?'active':''}" onclick="setMarketDetailTab('about')">ИНФО</button></div>
+   <section class="market-v4-artifact-hero"><div class="market-v4-hero-img">${artifactSprite(a.id)}</div><div class="market-v4-hero-copy"><small>АРТЕФАКТ</small><h1>${escapeHtml(a.name)}</h1><div class="market-v4-hero-meta"><span class="market-v4-count">НА РЫНКЕ <b>×${Number(marketData.book?.[a.id]?.count||0)}</b></span><span class="market-v4-count">У ТЕБЯ <b>×${inv}</b></span></div></div></section>
+   <div class="market-v4-detail-tabs" role="tablist"><button class="${marketDetailTab==='listings'?'active':''}" onclick="setMarketDetailTab('listings')">ЛОТЫ</button><button class="${marketDetailTab==='about'?'active':''}" onclick="setMarketDetailTab('about')">ИНФО</button></div>
    ${marketDetailTab==='listings'?renderMarketListings(a.id,rows,cheap):renderMarketAbout(a,inv,stats)}
    <div class="market-v4-sellbar"><button ${inv<1?'disabled':''} onclick="playClick();openMarketSellPrompt(${a.id})">+ ПРОДАТЬ</button></div>
  </main>`;
 }
 function renderMarketListings(id,rows,cheap){
  const count=Number(marketData.book?.[id]?.count||0), available=marketCheapest(rows.filter(x=>!x.isMine)),buying=!!available;
- return `<section class="market-simple-trade"><div class="market-simple-quote"><small>ЛУЧШАЯ ЦЕНА</small><strong>${available?marketGem(available.price):'НЕТ ДОСТУПНЫХ ЛОТОВ'}</strong><span>НА РЫНКЕ ×${count}${count&&!available?' · ТОЛЬКО ВАШИ ЛОТЫ':''}</span></div>
+ return `<section class="market-simple-trade"><div class="market-simple-quote${available?'':' is-empty'}"><small>ЛУЧШАЯ ЦЕНА</small><strong>${available?marketGem(available.price):'НЕТ ДОСТУПНЫХ ЛОТОВ'}</strong><span>ЛОТОВ НА РЫНКЕ ×${count}${count&&!available?' · ТОЛЬКО ВАШИ':''}</span></div>
  <button class="market-simple-buy" ${!buying||marketBusy?'disabled':''} onclick="playClick();buyCheapestArtifact(${Number(id)})">${buying?'КУПИТЬ':'НЕТ ДОСТУПНЫХ ЛОТОВ'}</button>
  <div id="market-transaction-status" class="market-transaction-status" role="status" aria-live="polite"></div>
  ${renderMarketChart(id)}</section>`;
@@ -118,14 +118,14 @@ function renderMarketChart(id){
  const points=marketData.depth?.[id]||[];
  if(!points.length)return '<div class="market-v4-empty market-chart-empty">АКТИВНЫХ ЛОТОВ НЕТ</div>';
  const max=Math.max(1,...points.map(p=>Number(p.quantity)||0));
- return `<div class="market-v4-chart market-depth-chart"><b>ЦЕНЫ НА РЫНКЕ</b><div class="market-depth-legend">СТОЛБЕЦ — КОЛИЧЕСТВО ЛОТОВ · СНИЗУ — ЦЕНА В ОСКОЛКАХ</div><section>${points.map(p=>`<div class="market-depth-column" title="${marketFormatPrice(p.price)} осколков · ${p.quantity} лотов"><small>${p.quantity} шт.</small><i style="height:${Math.max(8,Math.round(p.quantity/max*100))}%"></i><em>${marketFormatPrice(p.price)}</em></div>`).join('')}</section></div>`;
+ return `<div class="market-v4-chart market-depth-chart"><header><b>ЦЕНЫ НА РЫНКЕ</b><div class="market-depth-legend">ВЫСОТА — ЛОТЫ · ПОДПИСЬ — ЦЕНА</div></header><section>${points.map(p=>`<div class="market-depth-column" title="${marketFormatPrice(p.price)} осколков · ${p.quantity} лотов"><small>${p.quantity} шт.</small><i style="height:${Math.max(8,Math.round(p.quantity/max*100))}%"></i><em>${marketFormatPrice(p.price)}</em></div>`).join('')}</section></div>`;
 }
 function renderMyMarket(defs){
  const mine=(marketData.listings||[]).filter(x=>x.isMine),grouped=new Map();
  for(const x of mine){if(!grouped.has(x.artifactId))grouped.set(x.artifactId,[]);grouped.get(x.artifactId).push(x);}
- const cards=[...grouped.entries()].map(([id,rows])=>{const a=marketArtifact(id);if(!a)return '';return `<article class="market-my-grid-card"><div class="market-my-grid-visual">${artifactSprite(a.id)}</div><b>${escapeHtml(a.name).trim().split(/\s+/).join('<br>')}</b><small>ЛОТОВ ×${rows.length}</small>${marketSortRows(rows).map(x=>`<div class="market-my-grid-line">${x.currency==='gems'?`<span class="market-legacy-price">СТАРЫЙ ЛОТ · ТОЛЬКО СНЯТИЕ</span>`:marketGem(x.price)}<button onclick="playClick();cancelMarketListing(${Number(x.id)})">СНЯТЬ</button></div>`).join('')}</article>`;}).join('');
- const inventory=(defs||[]).filter(a=>artifactInventoryCount(a.id)>0).map(a=>`<button class="market-my-grid-card market-my-sell" onclick="playClick();openMarketSellPrompt(${Number(a.id)})"><div class="market-my-grid-visual">${artifactSprite(a.id)}</div><b>${escapeHtml(a.name).trim().split(/\s+/).join('<br>')}</b><small>×${artifactInventoryCount(a.id)} В НАЛИЧИИ</small><strong>+ ВЫСТАВИТЬ</strong></button>`).join('');
- return `<section class="market-my-screen"><h3>НА ПРОДАЖЕ · ${mine.length}</h3><div class="market-my-grid">${cards||'<div class="market-r-empty">АКТИВНЫХ ЛОТОВ НЕТ</div>'}</div><h3>ИЗ ИНВЕНТАРЯ</h3><div class="market-my-grid">${inventory||'<div class="market-r-empty">АРТЕФАКТОВ НЕТ</div>'}</div></section>`;
+ const cards=[...grouped.entries()].map(([id,rows])=>{const a=marketArtifact(id);if(!a)return '';return `<article class="market-my-grid-card"><div class="market-my-grid-visual">${artifactSprite(a.id)}</div><div class="market-my-grid-info"><b>${escapeHtml(a.name)}</b><small>ЛОТОВ ×${rows.length}</small></div>${marketSortRows(rows).map(x=>`<div class="market-my-grid-line market-v4-listing">${x.currency==='gems'?`<span class="market-legacy-price">СТАРЫЙ ЛОТ · ТОЛЬКО СНЯТИЕ</span>`:marketGem(x.price)}<button class="market-cancel-btn" onclick="playClick();cancelMarketListing(${Number(x.id)})">СНЯТЬ</button></div>`).join('')}</article>`;}).join('');
+ const inventory=(defs||[]).filter(a=>artifactInventoryCount(a.id)>0).map(a=>`<button class="market-my-grid-card market-my-sell" onclick="playClick();openMarketSellPrompt(${Number(a.id)})"><div class="market-my-grid-visual">${artifactSprite(a.id)}</div><b>${escapeHtml(a.name)}</b><small>×${artifactInventoryCount(a.id)} В НАЛИЧИИ</small><strong>+ ВЫСТАВИТЬ</strong></button>`).join('');
+ return `<section class="market-my-screen"><h3>НА ПРОДАЖЕ <span>${mine.length}</span></h3><div class="market-my-grid market-my-listings">${cards||'<div class="market-r-empty">АКТИВНЫХ ЛОТОВ НЕТ</div>'}</div><h3>ВЫСТАВИТЬ ИЗ ИНВЕНТАРЯ</h3><div class="market-my-grid market-my-inventory">${inventory||'<div class="market-r-empty">АРТЕФАКТОВ НЕТ</div>'}</div></section>`;
 }
 async function refreshMarket(){if(marketBusy)return;marketBusy=true;try{await loadMarket(marketMobileDetail?marketSelectedArtifact:0);renderMarket();}catch(e){showNotification(e.message||'ОШИБКА РЫНКА',2800);}finally{marketBusy=false;}}
 function openMarketSellPrompt(id){const a=marketArtifact(id);if(!a||artifactInventoryCount(id)<1){showNotification('НЕТ ЭТОГО АРТЕФАКТА',2500);return;}const m=document.getElementById('market-price-modal'),box=document.getElementById('market-price-artifact'),input=document.getElementById('market-price-input');if(!m||!box||!input)return;const rows=marketRowsFor(id),cheap=marketCheapest(rows);box.innerHTML=`${artifactSprite(a.id)}<div><b>${escapeHtml(a.name)}</b><small>ДОСТУПНО ×${artifactInventoryCount(id)}</small></div>`;input.value='';input.placeholder=cheap?`СЕЙЧАС ${marketFormatPrice(cheap.price)} ОСКОЛКОВ`:'ВВЕДИ ЦЕНУ';input.dataset.artifactId=String(id);m.classList.add('show');m.setAttribute('aria-hidden','false');setTimeout(()=>input.focus(),50);}

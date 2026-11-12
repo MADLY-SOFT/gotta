@@ -22,7 +22,8 @@ function renderProfile() {
             <div class="profile-hub-identity">
                 <button class="profile-hub-avatar-button" type="button" onclick="playClick();openAvatarsModal()" aria-label="Выбрать аватар">
                     ${avatarMarkup(avatarSrc, 'profile-avatar-sprite', 'id="profile-avatar"')}
-                    <span class="profile-hub-avatar-edit">✎</span>
+                    <span class="profile-hub-avatar-edit" aria-hidden="true">✎</span>
+                    <span class="profile-hub-level" aria-label="Уровень ${GameState.level}"><small>УР.</small>${GameState.level}</span>
                 </button>
                 <div class="profile-hub-persona">
                     <span class="profile-hub-caption">ВЫЖИВШИЙ · УР. ${GameState.level}</span>
@@ -36,7 +37,7 @@ function renderProfile() {
                 <div id="profile-exp-text"><span>УР. ${GameState.level} → УР. ${GameState.level + 1}</span><span>${formatNumber(GameState.experience)} / ${formatNumber(GameState.expToNext)} XP</span></div>
             </div>
             <div class="profile-hub-stats profile-stats-grid profile-stats-compact">
-                <div class="profile-stat-card"><span>ОТКРЫТО КЕЙСОВ</span><b>${formatNumber(GameState.totalCasesOpened||0)}</b><small>ВСЕГО</small></div>
+                <div class="profile-stat-card cases"><span>ОТКРЫТО КЕЙСОВ</span><b>${formatNumber(GameState.totalCasesOpened||0)}</b><small>ВСЕГО</small></div>
                 <div class="profile-stat-card rating"><span>РЕЙТИНГ</span><b>${formatNumber(GameState.rating||0)}</b><small>ОЧКОВ</small></div>
             </div>
         </section>
@@ -442,7 +443,7 @@ function renderAvatarsModal() {
             statusHTML = '<div class="avatar-status-modal">В НАЛИЧИИ</div>'; 
         } else { 
             const currencyImg = avatar.currency === 'gems' ? 'png/ui/gem.png' : 'png/ui/coin.png'; 
-            statusHTML = `<div class="avatar-price-modal ${avatar.currency === 'gems' ? 'gems' : ''}"><img src="${currencyImg}" style="width:10px;height:10px;vertical-align:middle;" onerror="this.style.display='none';"> ${avatar.price}</div>`; 
+            statusHTML = `<div class="avatar-price-modal ${avatar.currency === 'gems' ? 'gems' : ''}"><img src="${currencyImg}" alt="" onerror="this.style.display='none';"> ${avatar.price}</div>`; 
         } 
         
         const div = document.createElement('div'); 
