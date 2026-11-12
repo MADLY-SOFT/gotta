@@ -89,38 +89,29 @@ function openHouseBackgroundModal() {
     if (!modal) {
         modal = document.createElement('div');
         modal.id = 'house-background-modal';
-        modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:1400;';
-        modal.innerHTML = `<div id="house-background-content" style="background:var(--bg-primary);border:3px solid var(--border-color);border-radius:15px;padding:20px;width:95%;max-width:450px;max-height:85%;overflow-y:auto;text-align:center;box-shadow:0 0 40px var(--glow-color);position:relative;"></div>`;
+        modal.className = 'house-modal';
+        modal.innerHTML = `<div id="house-background-content" class="house-modal-card" role="dialog" aria-modal="true" aria-label="Фон убежища"></div>`;
         app.appendChild(modal);
     }
     
     const content = document.getElementById('house-background-content');
     if (!content) return;
     
-    let backgroundsHTML = '<div style="font-size:16px;margin-bottom:10px;color:var(--border-color);">ФОН ДОМА</div>';
-    backgroundsHTML += '<div style="font-size:8px;color:var(--text-secondary);margin-bottom:15px;">СМЕНА ФОНА РАЗ В 5 СЕКУНД</div>';
-    backgroundsHTML += '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;">';
+    const cards = (HOUSE_DATABASE.backgrounds || []).map(bg => {
+        const isOwned = GameState.ownedHouseBackgrounds.includes(bg.id);
+        const isSelected = GameState.selectedHouseBackground === bg.id;
+        const currencyIcon = bg.currency === 'gems' ? PATHS.gem : PATHS.coin;
+        const badge = isSelected
+            ? '<span class="house-bg-badge selected">✓ ВЫБРАН</span>'
+            : isOwned ? '<span class="house-bg-badge">КУПЛЕН</span>'
+            : `<span class="house-bg-price"><img src="${currencyIcon}" alt="" onerror="this.style.display='none';">${bg.price}</span>`;
+        return `<button type="button" class="house-bg-card${isSelected ? ' selected' : ''}${isOwned ? ' owned' : ''}" style="background:${bg.css}" onclick="playClick(); selectHouseBackground('${bg.id}');"><span class="house-bg-name">${escapeHtml(bg.name)}</span>${badge}</button>`;
+    }).join('');
     
-    if (HOUSE_DATABASE.backgrounds) {
-        HOUSE_DATABASE.backgrounds.forEach(bg => {
-            const isOwned = GameState.ownedHouseBackgrounds.includes(bg.id);
-            const isSelected = GameState.selectedHouseBackground === bg.id;
-            const currencyIcon = bg.currency === 'gems' ? PATHS.gem : PATHS.coin;
-            
-            backgroundsHTML += `
-                <div onclick="playClick(); selectHouseBackground('${bg.id}');" style="cursor:pointer;border:2px solid ${isSelected ? 'var(--border-color)' : '#444'};border-radius:10px;padding:12px;background:${bg.css};min-height:100px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;position:relative;overflow:hidden;">
-                    <div style="position:relative;color:#fff;font-size:10px;text-shadow:1px 1px 3px #000;margin-bottom:5px;">${escapeHtml(bg.name)}</div>
-                    ${!isOwned ? `<div style="position:relative;display:flex;align-items:center;gap:4px;color:#ffd700;font-size:9px;text-shadow:1px 1px 2px #000;"><img src="${currencyIcon}" style="width:14px;height:14px;" onerror="this.style.display='none';"> ${bg.price}</div>` : ''}
-                    ${isSelected ? '<div style="position:absolute;top:8px;right:8px;color:#4CAF50;font-size:14px;">✓</div>' : ''}
-                </div>
-            `;
-        });
-    }
-    
-    backgroundsHTML += '</div>';
-    backgroundsHTML += '<button class="house-close-btn" style="padding:14px;font-size:11px;" onclick="playClick(); closeHouseBackgroundModal();">ЗАКРЫТЬ</button>';
-    
-    content.innerHTML = backgroundsHTML;
+    content.innerHTML = `
+        <header class="house-modal-head"><span class="house-modal-kicker">ОФОРМЛЕНИЕ</span><div class="house-modal-title">ФОН УБЕЖИЩА</div><p class="house-modal-desc">Смена фона — не чаще раза в 5 секунд</p></header>
+        <div class="house-modal-body"><div class="house-bg-grid">${cards}</div></div>
+        <footer class="house-modal-actions"><button class="house-close-btn" onclick="playClick(); closeHouseBackgroundModal();">ЗАКРЫТЬ</button></footer>`;
     modal.style.display = 'flex';
 }
 
@@ -150,30 +141,19 @@ function openHouseIncomeModal() {
     const maxIncome = getMaxIncomeForCurrentLevel();
     const maxHours = Math.floor(MAX_COLLECT_MINUTES / 60);
     
+    const coin = houseCoinIcon();
+    const fill = maxIncome ? Math.min(100, Math.round(pendingIncome / maxIncome * 100)) : 0;
     content.innerHTML = `
-        <div class="house-modal-title" style="font-size:18px;">ДОХОД ДОМА</div>
-        <div style="color: var(--text-primary); font-size: 14px; margin-bottom: 10px;">${escapeHtml(currentHouseData.name)}</div>
-        <div style="color: var(--text-secondary); font-size: 8px; margin-bottom: 15px; line-height: 1.5;">${escapeHtml(currentHouseData.description || '')}</div>
-        <div style="background:rgba(0,0,0,0.3);border-radius:10px;padding:20px;margin-bottom:20px;border:1px solid var(--border-color);">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:15px;font-size:11px;color:var(--text-primary);">
-                <span>ДОХОД:</span>
-                <img src="${PATHS.coin}" style="width:20px;height:20px;" onerror="this.style.display='none';">
-                <span>${currentHouseData.incomePerMinute || 0}</span>
-                <span style="color:var(--text-secondary);">/ 1 МИН</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:11px;color:var(--text-primary);">
-                <span>НАКОПЛЕНО:</span>
-                <img src="${PATHS.coin}" style="width:20px;height:20px;" onerror="this.style.display='none';">
-                <span>${pendingIncome}</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;margin-top:10px;font-size:11px;color:var(--text-secondary);">
-                <span>МАКСИМУМ (${maxHours} ЧАСА):</span>
-                <img src="${PATHS.coin}" style="width:20px;height:20px;" onerror="this.style.display='none';">
-                <span>${maxIncome}</span>
-            </div>
+        <header class="house-modal-head"><span class="house-modal-kicker">ДОХОД УБЕЖИЩА</span><div class="house-modal-title">${escapeHtml(currentHouseData.name)}</div><p class="house-modal-desc">${escapeHtml(currentHouseData.description || '')}</p></header>
+        <div class="house-modal-body">
+            <div class="house-income-hero"><small>НАКОПЛЕНО</small><b>${coin}${pendingIncome}</b><div class="house-meter"><i style="width:${fill}%"></i></div><span>${fill}% хранилища заполнено</span></div>
+            <div class="house-kv"><span>Доход в минуту</span><b>${coin}${currentHouseData.incomePerMinute || 0}</b></div>
+            <div class="house-kv"><span>Лимит хранилища · ${maxHours} ч</span><b>${coin}${maxIncome}</b></div>
         </div>
-        <button class="menu-btn" style="width:100%; margin: 10px auto; padding: 18px; font-size: 13px; background: linear-gradient(135deg, #4CAF50, #8BC34A);" onclick="playClick(); collectHouseIncome(); closeHouseIncomeModal();">ЗАБРАТЬ ${pendingIncome}</button>
-        <button class="house-close-btn" onclick="playClick(); closeHouseIncomeModal();">ЗАКРЫТЬ</button>
+        <footer class="house-modal-actions">
+            <button class="house-btn house-btn-primary" onclick="playClick(); collectHouseIncome(); closeHouseIncomeModal();">${coin}ЗАБРАТЬ ${pendingIncome}</button>
+            <button class="house-close-btn" onclick="playClick(); closeHouseIncomeModal();">ЗАКРЫТЬ</button>
+        </footer>
     `;
     modal.classList.add('show');
 }
