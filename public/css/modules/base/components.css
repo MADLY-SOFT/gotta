@@ -1,0 +1,60 @@
+/* Shared building blocks: the generic modal shell, item sprites, rarity tiers, controls and icons.
+ * Feature modules compose these instead of redefining them. */
+
+/* Rarity: any element with .tier-N exposes --tier for borders, glows and labels. */
+.tier-1{--tier:var(--t1)}.tier-2{--tier:var(--t2)}.tier-3{--tier:var(--t3)}
+.tier-4{--tier:var(--t4)}.tier-5{--tier:var(--t5)}.tier-6{--tier:var(--t6)}
+
+/* Item and artifact atlases (single texture each, pixel-perfect scaling). */
+.item-atlas{display:inline-block;flex:none;width:100%;height:100%;background:url("../../png/items-atlas.png") no-repeat;background-size:1600% 1100%;background-position:var(--item-x) var(--item-y);image-rendering:pixelated}
+.item-atlas-missing{background-image:none}
+.artifact-sprite{display:block;flex:none;width:100%;height:100%;background:url("../../png/artifacts-atlas.png") no-repeat;background-size:700% 600%;background-position:var(--artifact-x) var(--artifact-y);image-rendering:pixelated}
+.artifact-sprite-missing{background-image:none}
+.item-atlas.modal-image{display:block;width:96px;height:96px;margin:0 auto}
+
+/* Generic modal shell (#simple-game-modal is created by profile.js and reused by many features). */
+#simple-game-modal{position:absolute;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;padding:var(--space-4);padding-bottom:max(var(--space-4),env(safe-area-inset-bottom));background:var(--overlay-bg);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+#simple-game-modal.show{display:flex;animation:z-fade-in .18s}
+.simple-game-card{
+  position:relative;width:min(440px,100%);max-height:min(86dvh,760px);display:flex;flex-direction:column;overflow:hidden;
+  border-radius:var(--r-xl);background:var(--panel-bg);border:var(--panel-border);box-shadow:var(--shadow-2);animation:z-pop-in .25s var(--ease-out);
+}
+.simple-game-card::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--btn-primary-bg);opacity:.85}
+.simple-game-title{flex:none;padding:var(--space-5) var(--space-5) var(--space-3);font:800 var(--fs-xl)/1.15 var(--z-font-ui);letter-spacing:.03em;text-transform:uppercase;color:var(--text)}
+.simple-game-modal-body{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 var(--space-5) var(--space-4);font-size:var(--fs-md);color:var(--text-2);scrollbar-width:thin;scrollbar-color:var(--surface-4) transparent}
+.simple-game-close{flex:none;margin:0 var(--space-5) var(--space-5);height:48px;border-radius:var(--r-md);background:var(--btn-secondary-bg);border:1px solid var(--line);color:var(--text);font:800 var(--fs-md)/1 var(--z-font-ui);letter-spacing:.08em;transition:transform .12s,border-color .15s}
+.simple-game-close:hover{border-color:var(--accent-line)}
+.simple-game-close:active{transform:scale(.98)}
+.simple-game-modal-body input,.simple-game-modal-body select{width:100%;height:46px;padding:0 14px;margin:6px 0 12px;border-radius:var(--r-md);background:var(--bg-1);border:1px solid var(--line-strong);color:var(--text);font:500 var(--fs-md) var(--z-font-ui)}
+.simple-game-modal-body input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+.simple-game-modal-body label{display:block;font:700 var(--fs-xs)/1.2 var(--z-font-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--text-3)}
+
+/* Shared button recipes (opt-in classes). */
+.z-btn,.menu-btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;
+  border-radius:var(--r-md);font:800 var(--fs-md)/1 var(--z-font-ui);letter-spacing:.08em;text-transform:uppercase;
+  background:var(--btn-primary-bg);color:var(--accent-ink);box-shadow:var(--shadow-press),0 0 24px var(--accent-soft);
+  transition:transform .12s,box-shadow .15s,filter .15s;
+}
+.z-btn:hover,.menu-btn:hover{filter:brightness(1.06)}
+.z-btn:active,.menu-btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.45)}
+.z-btn:disabled,.menu-btn:disabled{filter:grayscale(.8) brightness(.6);box-shadow:none}
+.z-btn-secondary{background:var(--btn-secondary-bg);color:var(--text);border:1px solid var(--line)}
+
+/* Pixel icons drawn in CSS (used by JS templates). */
+.pixel-lock-icon{display:inline-block;width:10px;height:12px;vertical-align:-1px;margin-right:4px;position:relative;background:currentColor;border-radius:2px;clip-path:polygon(0 45%,100% 45%,100% 100%,0 100%);}
+.pixel-lock-icon::before{content:"";position:absolute;left:2px;right:2px;top:0;height:7px;border:2px solid currentColor;border-bottom:0;border-radius:4px 4px 0 0}
+.pixel-lock-icon{clip-path:none;background:linear-gradient(currentColor,currentColor) 0 100%/100% 55% no-repeat}
+.pixel-close-icon{display:inline-block;width:12px;height:12px;position:relative;vertical-align:-1px}
+.pixel-close-icon::before,.pixel-close-icon::after{content:"";position:absolute;left:50%;top:0;width:2px;height:100%;background:currentColor;border-radius:1px}
+.pixel-close-icon::before{transform:translateX(-50%) rotate(45deg)}
+.pixel-close-icon::after{transform:translateX(-50%) rotate(-45deg)}
+.favorite-star-icon{width:20px;height:20px;fill:currentColor}
+
+/* Thin scrollbars everywhere. */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-thumb{background:var(--surface-4);border-radius:6px}
+::-webkit-scrollbar-track{background:transparent}
+
+input::placeholder,textarea::placeholder{color:var(--text-3);opacity:1}
+select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--text-2) 50%),linear-gradient(135deg,var(--text-2) 50%,transparent 50%);background-position:calc(100% - 17px) 50%,calc(100% - 12px) 50%;background-size:5px 5px;background-repeat:no-repeat}
