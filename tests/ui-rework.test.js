@@ -213,7 +213,8 @@ test('case history is moved inside the fullscreen root and constrained to its pa
 
 test('promo modal uses readable non-pixel typography', () => {
   const css = read('public/css/app.css');
-  assert.match(css, /#promo-modal,[\s\S]*?#promo-reward-content\{font-family:var\(--z-font-game\)!important/);
+  assert.match(css, /#promo-modal,#promo-reward-modal\{[^}]*font-family:var\(--z-font-game\)/s);
+  assert.match(css, /--z-font-game:var\(--z-font-ui\)/, 'the game font token resolves to the readable UI font');
   assert.match(css, /#promo-input\{font:600 16px/);
 });
 
@@ -227,10 +228,10 @@ test('case history keeps accessible item metadata while visual tiles stay image-
   assert.match(source, /toLocaleString\('ru-RU'/);
 });
 
-test('UI quality layer styles quest slots and achievement game typography', () => {
+test('UI quality layer styles quest cards and achievement typography with the UI font', () => {
   const css = fs.readFileSync(path.join(__dirname, '../public/css/app.css'), 'utf8');
-  assert.match(css, /#quests-body \.zone-quest-main b\s*\{[^}]*var\(--z-font-game\)/s);
-  assert.match(css, /\.achievement-card-heading b\s*\{[^}]*var\(--z-font-game\)/s);
+  assert.match(css, /\.quest-cards-grid\{[^}]*repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(css, /\.achievement-card-heading b\{[^}]*var\(--z-font-ui\)/);
   assert.match(css, /\.case-history-drop>b/);
 });
 
@@ -268,19 +269,17 @@ test('history uses compact date-only entries with independently scrolling conten
   assert.match(css, /#case-history-entries\s*\{[^}]*overflow:\s*auto/s);
 });
 
-test('quest modal has a bounded shell and explicit typography for every mission region', () => {
+test('quest modal has a bounded shell with an independently scrolling body', () => {
   const css = read('public/css/app.css');
-  assert.match(css, /#quests-content\s*\{[^}]*height:\s*min\(88dvh, 820px\)!important/s);
-  assert.match(css, /#quests-body \.quest-card-tag\s*\{[^}]*var\(--z-font-game\)/s);
-  assert.match(css, /#quests-body \.quest-card-status\s*\{[^}]*font-size:\s*4\.5px/s);
-  assert.match(css, /#quests-body \.quest-card-foot button\s*\{[^}]*var\(--z-font-game\)/s);
+  assert.match(css, /#quests-content\{[^}]*height:min\(86dvh,780px\)/);
+  assert.match(css, /#quests-body\{[^}]*overflow-y:auto/);
+  assert.match(css, /\.quest-claim-button\{[^}]*width:100%/);
 });
 
-test('achievement headings and labels explicitly use the game font after legacy CSS overrides', () => {
+test('achievement cards use the UI font token and a full-width claim action', () => {
   const css = read('public/css/app.css');
-  assert.match(css, /#simple-game-modal \.achievement-card-heading>div>b[^}]*font-family:\s*var\(--z-font-game\)!important/s);
-  assert.match(css, /achievement-modal \.achievement-state\s*\{[^}]*font-size:\s*4\.5px/s);
-  assert.match(css, /#simple-game-modal \.progress-achievement-claim[^}]*var\(--z-font-game\)!important/s);
+  assert.match(css, /\.progress-achievement-claim\{[^}]*var\(--z-font-ui\)/);
+  assert.match(css, /simple-game-card\.achievement-modal/);
 });
 
 
@@ -313,7 +312,10 @@ test('v1.13 roulette uses compact suspense timing and rarity-framed result cards
   assert.match(js, /data-server-result=/);
   assert.doesNotMatch(js, /<small>\$\{escapeHtml\(rarity\)\}<\/small>/);
   assert.match(js, /mainNote\.hidden = !mainNote\.textContent/);
-  assert.match(css, /roulette-reels\.horizontal-reels\.multi-lane/);
+  assert.match(css, /\.multi-lane \.horizontal-reel/);
+  assert.match(css, /\[data-stage="reveal"\] \.reel-card-winner/);
+  assert.match(js, /setRouletteStage\('charging'\)/);
+  assert.match(js, /function rouletteLanding/);
   assert.match(css, /\.reel-card-winner/);
 });
 
@@ -356,34 +358,31 @@ test('v1.05 main-menu relic taps cross-fade and deliberate throws travel farther
   assert.match(js, /Math\.min\(1\.05/);
   assert.match(js, /Math\.pow\(\.972/);
   assert.match(js, /elapsed \/ 820/);
-  assert.match(css, /relic-changing img\{[^}]*opacity:0/s);
-  assert.match(css, /relic-arriving img\{[^}]*opacity:1/s);
-  assert.match(css, /#main-menu #play-btn span[^}]*15\.5px/s);
+  assert.match(css, /\.floating-relic\.relic-changing\{[^}]*opacity:0/);
+  assert.match(css, /relic-arriving \.item-atlas\{[^}]*menu-relic-arrive/);
+  assert.match(css, /#main-menu #play-btn span\{[^}]*var\(--fs-xl\)/);
 });
 
-test('v1.09 progression windows use game typography and active theme tokens', () => {
-  const css = read('public/css/modules/zz/progression-theme.css');
-  assert.match(css, /achievement-modal \*/, 'achievement descendants use the game font');
-  assert.match(css, /#quests-content \*/, 'quest descendants use the game font');
-  assert.match(css, /\.case-history-panel \*/, 'history descendants use the game font');
-  assert.match(css, /font-family: var\(--z-font-game\) !important/);
-  assert.match(css, /border-radius: var\(--border-radius\) !important/);
-  assert.match(css, /background: linear-gradient\(155deg, var\(--bg-primary\), color-mix/);
-  assert.match(css, /color: var\(--text-primary\) !important/);
-  assert.match(css, /case-history-drop > b/);
-  assert.match(css, /display: -webkit-box !important/);
-});
-
-test('v1.06 modal polish keeps pixel typography readable and dialogs inside the game frame', () => {
+test('v2.0 design system: one token source, skins swap the accent and no override layer remains', () => {
+  const tokens = read('public/css/modules/base/tokens.css');
+  for (const skin of ['gold', 'ice', 'fire', 'toxic', 'violet', 'ocean', 'sand', 'neon', 'cyber']) assert.match(tokens, new RegExp(`\\[data-skin="${skin}"\\]\\{--accent:`));
+  assert.match(tokens, /:root,\[data-skin\],\[data-corners\]\{/, 'derived tokens follow the active skin');
+  assert.match(tokens, /--border-color:var\(--accent\)/, 'legacy aliases used by JS templates stay mapped');
+  assert.match(tokens, /--z-font-pixel:"Press Start 2P"/);
+  assert.equal(fs.existsSync(path.join(root, 'public/css/modules/zz/progression-theme.css')), false);
   const css = read('public/css/app.css');
-  assert.match(css, /max-height: min\(80dvh, 700px\)/);
-  assert.match(css, /howto-guide-copy p \{[^}]*font-size: 7\.2px/s);
-  assert.match(css, /case-history-date>b \{[^}]*font-size: 7px/s);
-  assert.match(css, /case-history-drop>b \{[^}]*font: 6px\/1\.65 var\(--z-font-game\)/s);
-  assert.match(css, /max-height: min\(80dvh, 720px\)/);
-  assert.match(css, /achievement-card-heading>div>b \{[^}]*font-size: 7\.5px/s);
-  assert.match(css, /quest-card-foot button \{[^}]*width: 100% !important/s);
-  assert.match(css, /#quests-content \{[^}]*height: min\(80dvh, 720px\)/s);
+  assert.ok(Buffer.byteLength(css) < 260_000, `bundle should stay compact, got ${Buffer.byteLength(css)} bytes`);
+  assert.doesNotMatch(css, /@z-order/);
+});
+
+test('modal polish keeps typography readable and dialogs bounded inside the game frame', () => {
+  const css = read('public/css/app.css');
+  assert.match(css, /\.simple-game-card\{[^}]*max-height:min\(86dvh,760px\)/);
+  assert.match(css, /\.simple-game-modal-body\{[^}]*overflow-y:auto/);
+  assert.match(css, /\.howto-guide-copy p\{[^}]*var\(--fs-sm\)/);
+  assert.match(css, /\.case-history-date\{[^}]*var\(--fs-2xs\)/);
+  assert.match(css, /--fs-2xs:10px/, 'smallest type step stays readable');
+  assert.doesNotMatch(css, /font(?:-size)?:[^;}]*\b[0-8](?:\.\d+)?px/, 'no sub-9px text');
 });
 
 test('v1.06 case history resolves item names/images and formats dates as dd.mm.yyyy', () => {
