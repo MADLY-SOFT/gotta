@@ -117,7 +117,7 @@ function renderCases() {
         return Number(a.requiredLevel||0)-Number(b.requiredLevel||0) || Number(a.id)-Number(b.id);
     });
     if (filteredCases.length === 0) {
-        grid.innerHTML = '<p style="color:var(--text-secondary);text-align:center;font-size:8px;">НЕТ КЕЙСОВ</p>';
+        grid.innerHTML = '<p class="cases-empty">НЕТ КЕЙСОВ</p>';
         return;
     }
     
@@ -132,24 +132,22 @@ function renderCases() {
         if (caseData.currency === 'gems') card.classList.add('gem-case'); 
         if (isLocked) card.classList.add('locked'); 
         
-        let borderColor = caseData.borderColor || '#ffd700'; 
-        if (isLocked) borderColor = '#666'; 
-        
-        card.style.borderColor = borderColor; 
-        const darkBg = darkenColor(borderColor, 0.25); 
-        card.style.background = `linear-gradient(145deg, ${darkBg}, ${darkenColor(borderColor, 0.15)})`; 
-        card.style.boxShadow = `0 6px 0 rgba(0,0,0,0.5), 0 0 25px ${hexToRgba(borderColor, 0.5)}, inset 0 0 20px rgba(0,0,0,0.3)`; 
+        card.style.setProperty('--case-color', isLocked ? '#5b6470' : getCaseFrameColor(caseData));
+        card.setAttribute('role', 'button');
+        card.tabIndex = 0;
         
         const priceDisplay = caseData.isAd ? 'БЕСПЛАТНО' : ''; 
         const currencyIcon = caseData.currency === 'gems' ? PATHS.gem : PATHS.coin; 
+        const topTier = Math.max(1, ...getDropTable(caseData.id).map(d => Number(d.tier) || 1));
         
         let lockLabel = ''; 
         if (isLocked) {
-            lockLabel = `<div class="case-lock-label"><span class="pixel-lock-icon" aria-hidden="true"></span> ДОСТУПНО С ${caseData.requiredLevel} УРОВНЯ</div>`; 
+            lockLabel = `<div class="case-lock-label"><span class="pixel-lock-icon" aria-hidden="true"></span> С ${caseData.requiredLevel} УРОВНЯ</div>`; 
         }
         
         card.innerHTML = `
-            <img class="case-icon" src="${caseData.image}" loading="eager" decoding="async" alt="${escapeHtml(caseData.name)}" onerror="this.style.display='none';">
+            <span class="case-card-tier tier-${topTier}" title="Максимальная редкость: ${escapeHtml(tierNames[topTier] || '')}">${'◆'.repeat(Math.min(6, topTier))}</span>
+            <div class="case-art"><img class="case-icon" src="${caseData.image}" loading="eager" decoding="async" alt="${escapeHtml(caseData.name)}" onerror="this.style.display='none';"></div>
             <div class="case-name">${escapeHtml(caseData.name)}</div>
             ${priceDisplay ? 
                 `<div class="case-price"><span class="case-price-text">${priceDisplay}</span></div>` : 
@@ -163,6 +161,7 @@ function renderCases() {
             playClick(); 
             showCaseDetail(caseData); 
         }; 
+        card.onkeydown = event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); card.click(); } };
         
         fragment.appendChild(card); 
     }); 
@@ -220,64 +219,72 @@ function showCaseDetail(caseData) {
     
     const isLocked = caseData.requiredLevel && GameState.level < caseData.requiredLevel; 
     const dropTable = getDropTable(caseData.id);
-    
-    let itemsHTML = '<div class="case-drop-grid">';
     const totalChance = Math.max(1, dropTable.reduce((a,d)=>a+Number(d.chance||0),0));
-    dropTable.forEach(drop => {
+    // Rarest drops first: the case page should tease what could be inside.
+    const sortedDrops = [...dropTable].sort((a,b)=>(Number(b.tier)||1)-(Number(a.tier)||1) || Number(a.chance||0)-Number(b.chance||0));
+    const itemsHTML = `<div class="case-drop-grid">${sortedDrops.map(drop => {
         const item = getItemById(drop.itemId);
-        if (!item) return;
-        const tier = Number(drop.tier)||1;
-        const tierColor = tierColors[tier] || '#fff';
+        if (!item) return '';
+        const tier = Math.max(1, Math.min(6, Number(drop.tier)||1));
         const chance = ((Number(drop.chance||0) / totalChance) * 100).toFixed(2);
-        itemsHTML += `
-            <button class="case-drop-item tier-${tier}" type="button" onclick="playClick(); showItemInfo(${item.id}, false);" style="--drop-tier:${tierColor};">
+        return `<button class="case-drop-item tier-${tier}" type="button" onclick="playClick(); showItemInfo(${item.id}, false);" style="--drop-tier:${tierColors[tier] || '#fff'};" aria-label="${escapeHtml(item.name)} · ${escapeHtml(tierNames[tier] || '')} · ${chance}%">
                 <span class="case-drop-image">${itemSprite(item.image, 'case-drop-atlas')}</span>
                 <span class="case-drop-chance">${chance}%</span>
-            </button>
-        `;
-    });
-    itemsHTML += '</div>';
+            </button>`;
+    }).join('')}</div>`;
 
     const currencyIcon = caseData.currency === 'gems' ? PATHS.gem : PATHS.coin;
-    const priceDisplay = caseData.isAd ? 'РЕКЛАМА' : `<img src="${currencyIcon}" style="width:16px;height:16px;vertical-align:middle;" onerror="this.style.display='none';"> ${caseData.price}`; 
-    let borderColor = isLocked ? '#666' : (caseData.borderColor || '#ffd700');
-    const caseFrameColor = isLocked ? '#666' : getCaseFrameColor(caseData); 
-    
+    const priceDisplay = caseData.isAd
+        ? '<span class="case-detail-price is-free">БЕСПЛАТНО · ЗА РЕКЛАМУ</span>'
+        : `<span class="case-detail-price ${caseData.currency === 'gems' ? 'is-gem' : ''}"><img src="${currencyIcon}" alt="" onerror="this.style.display='none';">${Number(caseData.price).toLocaleString('ru-RU')}</span>`;
+    const caseFrameColor = isLocked ? '#5b6470' : getCaseFrameColor(caseData);
+
     const expRange = Array.isArray(caseData.exp) ? `${Math.min(...caseData.exp)}–${Math.max(...caseData.exp)}` : String(caseData.exp||20);
     const ratingRange = Array.isArray(caseData.rating) ? `${Math.min(...caseData.rating)}–${Math.max(...caseData.rating)}` : String(caseData.rating||1);
-    const rewardHTML = `<div class="case-reward-strip"><div><span>ОПЫТ</span><b>${escapeHtml(expRange)}</b></div><div><span>РЕЙТИНГ</span><b>${escapeHtml(ratingRange)}</b></div></div>`;
-    let buttonHTML = ''; 
-    if (isLocked) {
-        buttonHTML = `
-            <div style="color:#ff9800;font-size:9px;padding:15px;border:2px solid #ff9800;border-radius:8px;margin-bottom:20px;">
-                <span class="pixel-lock-icon" aria-hidden="true"></span> ДОСТУПНО С ${caseData.requiredLevel} УРОВНЯ<br>
-                <span style="font-size:7px;color:#aaa;">ВАШ УРОВЕНЬ: ${GameState.level}</span>
-            </div>
-        `; 
-    } else {
-        buttonHTML = `
-            <button onclick="playClick(); openCasePreview(${caseData.id});" class="case-detail-open">
-                ${caseData.isAd ? 'СМОТРЕТЬ РЕКЛАМУ' : 'ОТКРЫТЬ'}
-            </button>
-        `; 
-    }
-    
+    const rewardHTML = `<div class="case-reward-strip"><div><span>ОПЫТ</span><b>+${escapeHtml(expRange)}</b></div><div><span>РЕЙТИНГ</span><b>+${escapeHtml(ratingRange)}</b></div><div><span>ПРЕДМЕТОВ</span><b>${sortedDrops.length}</b></div></div>`;
+    const buttonHTML = isLocked
+        ? `<div class="case-detail-locked"><span class="pixel-lock-icon" aria-hidden="true"></span> ДОСТУПНО С ${Number(caseData.requiredLevel)} УРОВНЯ<small>ВАШ УРОВЕНЬ: ${Number(GameState.level)||1}</small></div>`
+        : `<button onclick="playClick(); openCasePreview(${caseData.id});" class="case-detail-open"><span>${caseData.isAd ? 'СМОТРЕТЬ РЕКЛАМУ' : 'ОТКРЫТЬ КЕЙС'}</span></button>`;
+
     detailPanel.innerHTML = `
         <div class="case-detail-toolbar"><button class="case-detail-top-back" type="button" onclick="playClick(); backToCaseList();">← К КЕЙСАМ</button><button class="case-detail-favorite ${isFavoriteCase(caseData.id)?'active':''}" data-case-id="${Number(caseData.id)}" type="button" aria-label="${isFavoriteCase(caseData.id)?'Убрать из избранного':'Добавить в избранное'}" aria-pressed="${isFavoriteCase(caseData.id)}" onclick="toggleFavoriteCase(${Number(caseData.id)},event)">${favoriteStarSvg()}</button></div>
-        <div class="case-detail-main">
-            <div style="text-align:center;">
-                <div class="case-detail-image-frame" style="display:inline-block;border:3px solid ${caseFrameColor};padding:10px;border-radius:var(--border-radius);background:rgba(0,0,0,0.3);box-shadow:0 0 14px ${hexToRgba(caseFrameColor,0.38)},inset 0 0 10px ${hexToRgba(caseFrameColor,0.12)};">
-                    <img src="${caseData.image}" style="width:80px;height:80px;object-fit:contain;" onerror="this.style.display='none';">
-                </div>
-                <div style="color:var(--text-primary);font-size:14px;margin-top:10px;">${escapeHtml(caseData.name)}</div>
-                <div style="color:${caseData.currency === 'gems' ? '#00bcd4' : 'var(--border-color)'};font-size:12px;margin:10px 0;">${priceDisplay}</div>
+        <div class="case-detail-main ${isLocked ? 'is-locked' : ''}" style="--case-color:${caseFrameColor}">
+            <div class="case-detail-hero">
+                <div class="case-detail-image-frame"><span class="case-hero-rays" aria-hidden="true"></span><img src="${caseData.image}" alt="" onerror="this.style.display='none';"></div>
+                <div class="case-detail-name">${escapeHtml(caseData.name)}</div>
+                ${priceDisplay}
                 ${buttonHTML}
-                ${rewardHTML}
-                <div class="case-drop-title"><span>ВОЗМОЖНЫЕ ПРЕДМЕТЫ</span></div>
-                ${itemsHTML}
             </div>
+            ${rewardHTML}
+            <div class="case-drop-title"><span>ШАНСЫ ПО РЕДКОСТИ</span></div>
+            ${caseOddsMarkup(dropTable, 'case-odds')}
+            <div class="case-drop-title"><span>ВОЗМОЖНЫЕ ПРЕДМЕТЫ</span><small>СНАЧАЛА САМЫЕ РЕДКИЕ</small></div>
+            ${itemsHTML}
         </div>
     `; 
+}
+
+// Aggregated chance per rarity tier, used by the case page and the opening screen.
+function caseTierOdds(dropTable) {
+    const total = Math.max(1e-9, dropTable.reduce((sum, d) => sum + Number(d.chance || 0), 0));
+    const byTier = new Map();
+    dropTable.forEach(d => {
+        const tier = Math.max(1, Math.min(6, Number(d.tier) || 1));
+        byTier.set(tier, (byTier.get(tier) || 0) + Number(d.chance || 0));
+    });
+    return [...byTier.entries()].sort((a, b) => a[0] - b[0]).map(([tier, chance]) => ({ tier, pct: chance / total * 100 }));
+}
+
+function formatOdds(pct) {
+    return pct >= 10 ? pct.toFixed(1) : pct >= 1 ? pct.toFixed(2) : pct.toFixed(pct >= .1 ? 2 : 3);
+}
+
+function caseOddsMarkup(dropTable, className) {
+    const odds = caseTierOdds(dropTable);
+    if (!odds.length) return '';
+    const bar = odds.map(o => `<i class="tier-${o.tier}" style="flex-grow:${Math.max(o.pct, 1.5).toFixed(3)}"></i>`).join('');
+    const legend = odds.map(o => `<span class="tier-${o.tier}"><em>${escapeHtml(tierNames[o.tier] || '')}</em><b>${formatOdds(o.pct)}%</b></span>`).join('');
+    return `<div class="${className}"><div class="odds-bar" aria-hidden="true">${bar}</div><div class="odds-legend">${legend}</div></div>`;
 }
 
 // ==================== ОТКРЫТИЕ КЕЙСА ====================
@@ -496,7 +503,20 @@ function showRoulette(caseData) {
     isSpinning = false;
 
     const overlay = document.getElementById('roulette-overlay');
-    if (overlay) overlay.classList.add('show');
+    if (overlay) {
+        overlay.classList.add('show');
+        setRouletteStage('idle');
+        overlay.style.setProperty('--case-color', getCaseFrameColor(caseData));
+        overlay.style.removeProperty('--live-tier');
+    }
+    const caseName = document.getElementById('roulette-case-name');
+    if (caseName) caseName.textContent = caseData.name || 'КЕЙС';
+    for (const id of ['roulette-case-image', 'roulette-case-thumb']) {
+        const image = document.getElementById(id);
+        if (image) { image.style.visibility = ''; image.src = caseData.image; }
+    }
+    const odds = document.getElementById('roulette-odds');
+    if (odds) odds.innerHTML = caseOddsMarkup(getDropTable(caseData.id), 'roulette-odds-inner');
     const backBtn = document.getElementById('back-roulette-btn');
     if (backBtn) backBtn.disabled = false;
     const spinBtn = document.getElementById('spin-btn');
