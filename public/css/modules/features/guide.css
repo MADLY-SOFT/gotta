@@ -1,239 +1,43 @@
-/* ZOMBIX CSS MODULE: features/guide
- * Edit this file, then run: npm run build:css
- * @z-order markers preserve the original cross-module cascade.
- */
-/* @z-order: 00001098 */
-.
+/* "КАК ИГРАТЬ?" guide rendered by ui.js showHowTo() inside the shared #simple-game-modal card. */
 
-.welcome-guide{display:grid;gap:8px;text-align:left;margin-bottom:12px}
-
-/* @z-order: 00001099 */
-.welcome-guide-step{display:grid;gap:4px;padding:9px 10px;border:1px solid rgba(255,255,255,.1);border-radius:var(--border-radius);background:rgba(255,255,255,.025)}
-
-/* @z-order: 00001100 */
-.welcome-guide-step b{font-size:7px;color:var(--border-color)}
-
-/* @z-order: 00001101 */
-.welcome-guide-step span{font-size:6px;line-height:1.55;color:var(--text-secondary)}
-
-/* @z-order: 00003459 */
-.howto-guide-intro{margin:0 0 13px;padding:12px;border:1px solid color-mix(in srgb,var(--border-color) 38%,transparent);border-radius:var(--border-radius);background:color-mix(in srgb,var(--border-color) 8%,var(--bg-secondary));color:var(--text-secondary);font:13px/1.55 var(--z-font-game);}
-
-/* @z-order: 00003460 */
-.howto-guide-grid{display:grid;gap:9px;}
-
-/* @z-order: 00003461 */
-.howto-guide-card{display:grid;grid-template-columns:76px minmax(0,1fr);gap:11px;align-items:center;min-width:0;padding:10px;border:1px solid color-mix(in srgb,var(--border-color) 28%,transparent);border-left:3px solid var(--border-color);border-radius:var(--border-radius);background:var(--bg-secondary);}
-
-/* @z-order: 00003462 */
-.howto-guide-image{width:72px;height:72px;display:grid;place-items:center;border-radius:var(--border-radius);background:color-mix(in srgb,var(--border-color) 10%,var(--bg-tertiary));overflow:hidden;}
-
-/* @z-order: 00003463 */
-.howto-guide-image img{width:100%;height:100%;object-fit:contain;image-rendering:pixelated;padding:7px;box-sizing:border-box;}
-
-/* @z-order: 00003464 */
-.howto-guide-copy{min-width:0;}
-
-/* @z-order: 00003465 */
-.howto-guide-copy b{display:block;margin-bottom:5px;color:var(--border-color);font:8px/1.5 "Press Start 2P",cursive;}
-
-/* @z-order: 00003466 */
-.howto-guide-copy p{margin:0;color:var(--text-primary);font:12px/1.5 var(--z-font-game);overflow-wrap:anywhere;}
-
-/* @z-order: 00003500 */
-@media (max-width:360px){
-.howto-guide-card{grid-template-columns:60px minmax(0,1fr);gap:8px;padding:8px;}
+.howto-guide-modal{width:min(460px,100%)}
+.howto-guide-modal .simple-game-title{display:flex;align-items:center;gap:10px}
+.howto-guide-modal .simple-game-title::before{
+  content:"?";flex:none;width:32px;height:32px;display:grid;place-items:center;border-radius:var(--r-sm);
+  background:var(--btn-primary-bg);color:var(--accent-ink);font:400 14px/1 var(--z-font-pixel);padding-top:2px;
+  box-shadow:0 0 14px var(--accent-soft);
 }
 
-/* @z-order: 00003501 */
-@media (max-width:360px){
-.howto-guide-image{width:58px;height:58px;}
+.howto-guide-intro{
+  position:relative;margin-bottom:var(--space-4);padding:var(--space-3) var(--space-4);overflow:hidden;
+  border-radius:var(--r-lg);border:1px solid var(--accent-line);
+  background:radial-gradient(120% 140% at 0 0,color-mix(in srgb,var(--accent) 22%,transparent),transparent 60%),var(--surface-1);
+  font:400 var(--fs-md)/1.5 var(--z-font-ui);color:var(--text);
+}
+.howto-guide-intro::before{
+  content:"ДОБРО ПОЖАЛОВАТЬ В ЗОНУ";display:block;margin-bottom:6px;
+  font:800 var(--fs-2xs)/1 var(--z-font-ui);letter-spacing:.2em;color:var(--accent);
 }
 
-/* @z-order: 00003502 */
-@media (max-width:360px){
-.howto-guide-copy b{font-size:7px;}
+/* Steps form a numbered timeline; the dashed spine shows between cards. */
+.howto-guide-grid{position:relative;display:flex;flex-direction:column;gap:var(--space-2);counter-reset:howto}
+.howto-guide-grid::before{content:"";position:absolute;left:41px;top:20px;bottom:20px;border-left:1px dashed var(--accent-line)}
+.howto-guide-card{
+  position:relative;display:grid;grid-template-columns:58px 1fr;align-items:center;gap:var(--space-3);
+  padding:var(--space-3);border-radius:var(--r-lg);counter-increment:howto;
+  background:var(--card-bg);border:1px solid var(--line);box-shadow:var(--shadow-1);
 }
-
-/* @z-order: 00003503 */
-@media (max-width:360px){
-.howto-guide-copy p{font-size:11px;}
+.howto-guide-image{
+  position:relative;width:58px;height:58px;display:grid;place-items:center;padding:7px;border-radius:var(--r-md);
+  background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--accent) 26%,transparent),transparent 70%),var(--bg-1);
+  border:1px solid var(--accent-line);
 }
-
-/* @z-order: 00003505 */
-@media (prefers-reduced-motion:reduce){
-.howto-guide-card{scroll-behavior:auto;}
+.howto-guide-image::after{
+  content:counter(howto,decimal-leading-zero);position:absolute;top:-7px;left:-7px;min-width:22px;height:20px;padding:0 4px;
+  display:grid;place-items:center;border-radius:var(--r-pill);background:var(--accent);color:var(--accent-ink);
+  font:800 var(--fs-2xs)/1 var(--z-font-ui);box-shadow:0 0 0 2px var(--surface-3);
 }
-
-/* @z-order: 00003525 */
-.howto-guide-intro {
-  margin-bottom:10px;
-  padding:10px 12px;
-  border-color:var(--z-border-soft);
-  background:var(--z-surface-soft);
-  border-radius:var(--border-radius);
-  font:12px/1.55 var(--z-font-game);
-}
-
-/* @z-order: 00003526 */
-.howto-guide-grid { gap:8px; }
-
-/* @z-order: 00003527 */
-.howto-guide-card {
-  grid-template-columns:62px minmax(0,1fr);
-  gap:10px;
-  padding:9px;
-  border-color:var(--z-border-soft);
-  border-left:3px solid var(--border-color);
-  border-radius:var(--border-radius);
-  background:linear-gradient(135deg,var(--bg-secondary),color-mix(in srgb,var(--bg-primary) 88%,var(--border-color)));
-  transition:transform .18s ease,border-color .18s ease,background .18s ease;
-}
-
-/* @z-order: 00003528 */
-.howto-guide-card:active { transform:scale(.99); }
-
-/* @z-order: 00003529 */
-.howto-guide-image { width:60px;height:60px;border-radius:var(--border-radius); }
-
-/* @z-order: 00003530 */
-.howto-guide-copy b { margin-bottom:4px;font:7px/1.65 var(--z-font-game); }
-
-/* @z-order: 00003531 */
-.howto-guide-copy p { font:11.5px/1.5 var(--z-font-game); }
-
-/* @z-order: 00003628 */
-@media (prefers-reduced-motion:reduce){
-.howto-guide-card { animation:none!important;transition:none!important; }
-}
-
-/* v1.03 guide typography: pixel font only for the game's decorative identity. */
-#simple-game-modal .simple-game-card.howto-guide-modal {
-  width: min(94vw,560px) !important; max-height: min(90dvh,820px) !important;
-  border-radius: 18px !important; padding: 0 !important;
-  background: radial-gradient(ellipse at 92% 0%,color-mix(in srgb,var(--border-color) 12%,transparent),transparent 42%),var(--bg-primary) !important;
-  text-align: left !important;
-}
-#simple-game-modal .howto-guide-modal .simple-game-title {
-  flex: 0 0 auto; margin: 0 !important; padding: 17px 17px 13px !important;
-  border-bottom: 1px solid var(--z-border-soft);
-  color: var(--text-primary) !important; font: 800 17px/1.3 var(--z-font-game) !important;
-}
-#simple-game-modal .howto-guide-modal .simple-game-modal-body {
-  padding: 13px 15px 16px !important; font: 13px/1.5 var(--z-font-game) !important;
-}
-#simple-game-modal .howto-guide-modal .howto-guide-intro {
-  padding: 12px 13px !important; border-radius: 12px !important;
-  color: var(--text-secondary) !important; font: 13px/1.55 var(--z-font-game) !important;
-}
-#simple-game-modal .howto-guide-modal .howto-guide-grid { gap: 9px !important; }
-#simple-game-modal .howto-guide-modal .howto-guide-card {
-  grid-template-columns: 64px minmax(0,1fr) !important; gap: 11px !important;
-  padding: 10px !important; border: 1px solid var(--z-border-soft) !important;
-  border-left: 3px solid var(--border-color) !important; border-radius: 12px !important;
-  background: linear-gradient(145deg,var(--bg-secondary),var(--bg-tertiary)) !important;
-}
-#simple-game-modal .howto-guide-modal .howto-guide-image {
-  width: 62px !important; height: 62px !important; border-radius: 10px !important;
-  background: var(--z-surface-soft) !important;
-}
-#simple-game-modal .howto-guide-modal .howto-guide-copy b {
-  margin: 0 0 5px !important; color: var(--border-color) !important;
-  font: 800 13px/1.3 var(--z-font-game) !important;
-}
-#simple-game-modal .howto-guide-modal .howto-guide-copy p {
-  color: var(--text-primary) !important; font: 12px/1.5 var(--z-font-game) !important;
-}
-#simple-game-modal .howto-guide-modal .simple-game-close {
-  flex: 0 0 auto; min-height: 44px; margin: 0 15px max(13px,env(safe-area-inset-bottom));
-  border-radius: 11px; font: 800 12px/1.2 var(--z-font-game) !important;
-}
-@media (max-width:380px) {
-  #simple-game-modal .howto-guide-modal .howto-guide-card { grid-template-columns: 54px minmax(0,1fr) !important; gap: 8px !important; padding: 8px !important; }
-  #simple-game-modal .howto-guide-modal .howto-guide-image { width: 52px !important; height: 52px !important; }
-  #simple-game-modal .howto-guide-modal .howto-guide-copy b { font-size: 12px !important; }
-  #simple-game-modal .howto-guide-modal .howto-guide-copy p { font-size: 11px !important; }
-}
-
-/* v1.05: the complete guide uses the in-game pixel typeface, not mixed UI fonts. */
-#simple-game-modal .simple-game-card.howto-guide-modal .simple-game-title,
-#simple-game-modal .howto-guide-modal .simple-game-modal-body,
-#simple-game-modal .howto-guide-modal .howto-guide-intro,
-#simple-game-modal .howto-guide-modal .howto-guide-copy,
-#simple-game-modal .howto-guide-modal .howto-guide-copy b,
-#simple-game-modal .howto-guide-modal .howto-guide-copy p,
-#simple-game-modal .howto-guide-modal .simple-game-close {
-  font-family:var(--z-font-game) !important;
-}
-#simple-game-modal .howto-guide-modal .simple-game-title { font-size:8px !important; line-height:1.9 !important; }
-#simple-game-modal .howto-guide-modal .simple-game-modal-body { font-size:6px !important; line-height:2 !important; }
-#simple-game-modal .howto-guide-modal .howto-guide-intro { font-size:6px !important; line-height:2 !important; }
-#simple-game-modal .howto-guide-modal .howto-guide-copy b { font-size:7px !important; line-height:1.9 !important; }
-#simple-game-modal .howto-guide-modal .howto-guide-copy p { font-size:5.5px !important; line-height:2.05 !important; }
-#simple-game-modal .howto-guide-modal .simple-game-close { font-size:7px !important; line-height:1.8 !important; }
-
-/* v1.06: compact, readable guide dialog with one consistent in-game typeface. */
-#simple-game-modal .simple-game-card.howto-guide-modal {
-  width: min(90vw, 440px) !important;
-  max-height: min(80dvh, 700px) !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-}
-#simple-game-modal .howto-guide-modal,
-#simple-game-modal .howto-guide-modal *,
-#simple-game-modal .howto-guide-modal button {
-  font-family: var(--z-font-game) !important;
-}
-#simple-game-modal .howto-guide-modal .simple-game-title {
-  padding: 14px 14px 11px !important;
-  font-size: 9px !important;
-  line-height: 1.9 !important;
-}
-#simple-game-modal .howto-guide-modal .simple-game-modal-body {
-  flex: 1 1 auto !important;
-  min-height: 0 !important;
-  overflow-y: auto !important;
-  overscroll-behavior: contain;
-  padding: 11px 13px 14px !important;
-  font-size: 7.5px !important;
-  line-height: 1.85 !important;
-}
-#simple-game-modal .howto-guide-modal .howto-guide-intro {
-  margin-bottom: 9px !important;
-  padding: 10px !important;
-  font-size: 7.5px !important;
-  line-height: 1.85 !important;
-  overflow-wrap: anywhere;
-}
-#simple-game-modal .howto-guide-modal .howto-guide-grid { gap: 8px !important; }
-#simple-game-modal .howto-guide-modal .howto-guide-card {
-  grid-template-columns: 54px minmax(0,1fr) !important;
-  gap: 9px !important;
-  padding: 8px !important;
-  border-radius: 10px !important;
-}
-#simple-game-modal .howto-guide-modal .howto-guide-image {
-  width: 52px !important; height: 52px !important;
-}
-#simple-game-modal .howto-guide-modal .howto-guide-copy b {
-  margin-bottom: 5px !important;
-  font-size: 8px !important;
-  line-height: 1.8 !important;
-}
-#simple-game-modal .howto-guide-modal .howto-guide-copy p {
-  margin: 0 !important;
-  font-size: 7.2px !important;
-  line-height: 1.85 !important;
-  overflow-wrap: anywhere;
-}
-#simple-game-modal .howto-guide-modal .simple-game-close {
-  min-height: 42px !important;
-  margin: 0 13px max(11px,env(safe-area-inset-bottom)) !important;
-  font-size: 8px !important;
-  line-height: 1.8 !important;
-}
-@media (max-width: 360px) {
-  #simple-game-modal .simple-game-card.howto-guide-modal { width: 92vw !important; max-height: 78dvh !important; }
-  #simple-game-modal .howto-guide-modal .howto-guide-copy p { font-size: 6.8px !important; }
-}
-.howto-guide-image .item-atlas{width:100%;height:100%;display:block;object-fit:contain;padding:7px;box-sizing:border-box}
+.howto-guide-image img,.howto-guide-image .item-atlas{width:100%;height:100%;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(0 4px 6px rgba(0,0,0,.55))}
+.howto-guide-copy{min-width:0}
+.howto-guide-modal .howto-guide-copy b{display:block;margin-bottom:4px;font:800 var(--fs-md)/1.2 var(--z-font-ui);letter-spacing:.06em;color:var(--text)}
+.howto-guide-copy p{font:400 var(--fs-sm)/1.5 var(--z-font-ui);color:var(--text-2)}
