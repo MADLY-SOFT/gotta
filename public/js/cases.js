@@ -117,7 +117,7 @@ function renderCases() {
         return Number(a.requiredLevel||0)-Number(b.requiredLevel||0) || Number(a.id)-Number(b.id);
     });
     if (filteredCases.length === 0) {
-        grid.innerHTML = '<p style="color:var(--text-secondary);text-align:center;font-size:8px;">НЕТ КЕЙСОВ</p>';
+        grid.innerHTML = '<p class="cases-empty">НЕТ КЕЙСОВ</p>';
         return;
     }
     
@@ -132,24 +132,22 @@ function renderCases() {
         if (caseData.currency === 'gems') card.classList.add('gem-case'); 
         if (isLocked) card.classList.add('locked'); 
         
-        let borderColor = caseData.borderColor || '#ffd700'; 
-        if (isLocked) borderColor = '#666'; 
-        
-        card.style.borderColor = borderColor; 
-        const darkBg = darkenColor(borderColor, 0.25); 
-        card.style.background = `linear-gradient(145deg, ${darkBg}, ${darkenColor(borderColor, 0.15)})`; 
-        card.style.boxShadow = `0 6px 0 rgba(0,0,0,0.5), 0 0 25px ${hexToRgba(borderColor, 0.5)}, inset 0 0 20px rgba(0,0,0,0.3)`; 
+        card.style.setProperty('--case-color', isLocked ? '#5b6470' : getCaseFrameColor(caseData));
+        card.setAttribute('role', 'button');
+        card.tabIndex = 0;
         
         const priceDisplay = caseData.isAd ? 'БЕСПЛАТНО' : ''; 
         const currencyIcon = caseData.currency === 'gems' ? PATHS.gem : PATHS.coin; 
+        const topTier = Math.max(1, ...getDropTable(caseData.id).map(d => Number(d.tier) || 1));
         
         let lockLabel = ''; 
         if (isLocked) {
-            lockLabel = `<div class="case-lock-label"><span class="pixel-lock-icon" aria-hidden="true"></span> ДОСТУПНО С ${caseData.requiredLevel} УРОВНЯ</div>`; 
+            lockLabel = `<div class="case-lock-label"><span class="pixel-lock-icon" aria-hidden="true"></span> С ${caseData.requiredLevel} УРОВНЯ</div>`; 
         }
         
         card.innerHTML = `
-            <img class="case-icon" src="${caseData.image}" loading="eager" decoding="async" alt="${escapeHtml(caseData.name)}" onerror="this.style.display='none';">
+            <span class="case-card-tier tier-${topTier}" title="Максимальная редкость: ${escapeHtml(tierNames[topTier] || '')}">${'◆'.repeat(Math.min(6, topTier))}</span>
+            <div class="case-art"><img class="case-icon" src="${caseData.image}" loading="eager" decoding="async" alt="${escapeHtml(caseData.name)}" onerror="this.style.display='none';"></div>
             <div class="case-name">${escapeHtml(caseData.name)}</div>
             ${priceDisplay ? 
                 `<div class="case-price"><span class="case-price-text">${priceDisplay}</span></div>` : 
@@ -163,6 +161,7 @@ function renderCases() {
             playClick(); 
             showCaseDetail(caseData); 
         }; 
+        card.onkeydown = event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); card.click(); } };
         
         fragment.appendChild(card); 
     }); 
@@ -221,63 +220,6 @@ function showCaseDetail(caseData) {
     const isLocked = caseData.requiredLevel && GameState.level < caseData.requiredLevel; 
     const dropTable = getDropTable(caseData.id);
     
-    let itemsHTML = '<div class="case-drop-grid">';
-    const totalChance = Math.max(1, dropTable.reduce((a,d)=>a+Number(d.chance||0),0));
-    dropTable.forEach(drop => {
-        const item = getItemById(drop.itemId);
-        if (!item) return;
-        const tier = Number(drop.tier)||1;
-        const tierColor = tierColors[tier] || '#fff';
-        const chance = ((Number(drop.chance||0) / totalChance) * 100).toFixed(2);
-        itemsHTML += `
-            <button class="case-drop-item tier-${tier}" type="button" onclick="playClick(); showItemInfo(${item.id}, false);" style="--drop-tier:${tierColor};">
-                <span class="case-drop-image">${itemSprite(item.image, 'case-drop-atlas')}</span>
-                <span class="case-drop-chance">${chance}%</span>
-            </button>
-        `;
-    });
-    itemsHTML += '</div>';
-
-    const currencyIcon = caseData.currency === 'gems' ? PATHS.gem : PATHS.coin;
-    const priceDisplay = caseData.isAd ? 'РЕКЛАМА' : `<img src="${currencyIcon}" style="width:16px;height:16px;vertical-align:middle;" onerror="this.style.display='none';"> ${caseData.price}`; 
-    let borderColor = isLocked ? '#666' : (caseData.borderColor || '#ffd700');
-    const caseFrameColor = isLocked ? '#666' : getCaseFrameColor(caseData); 
-    
-    const expRange = Array.isArray(caseData.exp) ? `${Math.min(...caseData.exp)}–${Math.max(...caseData.exp)}` : String(caseData.exp||20);
-    const ratingRange = Array.isArray(caseData.rating) ? `${Math.min(...caseData.rating)}–${Math.max(...caseData.rating)}` : String(caseData.rating||1);
-    const rewardHTML = `<div class="case-reward-strip"><div><span>ОПЫТ</span><b>${escapeHtml(expRange)}</b></div><div><span>РЕЙТИНГ</span><b>${escapeHtml(ratingRange)}</b></div></div>`;
-    let buttonHTML = ''; 
-    if (isLocked) {
-        buttonHTML = `
-            <div style="color:#ff9800;font-size:9px;padding:15px;border:2px solid #ff9800;border-radius:8px;margin-bottom:20px;">
-                <span class="pixel-lock-icon" aria-hidden="true"></span> ДОСТУПНО С ${caseData.requiredLevel} УРОВНЯ<br>
-                <span style="font-size:7px;color:#aaa;">ВАШ УРОВЕНЬ: ${GameState.level}</span>
-            </div>
-        `; 
-    } else {
-        buttonHTML = `
-            <button onclick="playClick(); openCasePreview(${caseData.id});" class="case-detail-open">
-                ${caseData.isAd ? 'СМОТРЕТЬ РЕКЛАМУ' : 'ОТКРЫТЬ'}
-            </button>
-        `; 
-    }
-    
-    detailPanel.innerHTML = `
-        <div class="case-detail-toolbar"><button class="case-detail-top-back" type="button" onclick="playClick(); backToCaseList();">← К КЕЙСАМ</button><button class="case-detail-favorite ${isFavoriteCase(caseData.id)?'active':''}" data-case-id="${Number(caseData.id)}" type="button" aria-label="${isFavoriteCase(caseData.id)?'Убрать из избранного':'Добавить в избранное'}" aria-pressed="${isFavoriteCase(caseData.id)}" onclick="toggleFavoriteCase(${Number(caseData.id)},event)">${favoriteStarSvg()}</button></div>
-        <div class="case-detail-main">
-            <div style="text-align:center;">
-                <div class="case-detail-image-frame" style="display:inline-block;border:3px solid ${caseFrameColor};padding:10px;border-radius:var(--border-radius);background:rgba(0,0,0,0.3);box-shadow:0 0 14px ${hexToRgba(caseFrameColor,0.38)},inset 0 0 10px ${hexToRgba(caseFrameColor,0.12)};">
-                    <img src="${caseData.image}" style="width:80px;height:80px;object-fit:contain;" onerror="this.style.display='none';">
-                </div>
-                <div style="color:var(--text-primary);font-size:14px;margin-top:10px;">${escapeHtml(caseData.name)}</div>
-                <div style="color:${caseData.currency === 'gems' ? '#00bcd4' : 'var(--border-color)'};font-size:12px;margin:10px 0;">${priceDisplay}</div>
-                ${buttonHTML}
-                ${rewardHTML}
-                <div class="case-drop-title"><span>ВОЗМОЖНЫЕ ПРЕДМЕТЫ</span></div>
-                ${itemsHTML}
-            </div>
-        </div>
-    `; 
 }
 
 // ==================== ОТКРЫТИЕ КЕЙСА ====================
